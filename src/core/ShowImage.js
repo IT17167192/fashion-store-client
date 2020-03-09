@@ -6,7 +6,7 @@ const ShowImage = ({item, url}) => (
         <img
             src={`${API}/${url}/image/${item._id}`}
             alt={item.name}
-            className="mb-3"
+            className="mb-3 col-auto"
             style={{height: "300px", width: "300px"}}
         />
     </div>

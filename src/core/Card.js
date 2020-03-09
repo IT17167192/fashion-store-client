@@ -4,9 +4,9 @@ import ShowImage from "./ShowImage";
 
 const Card = ({product}) => {
     return (
-        <div className="col-md-4 mb-3">
+        <div className="col-md-4 col-auto mb-3">
             <div className="cart">
-                <div className="card-header">{product.name}</div>
+                <div className="card-header alert-primary">{product.name}</div>
                 <div className="card-body">
                     <ShowImage item={product} url="product"/>
                     <p>{product.description}</p>
