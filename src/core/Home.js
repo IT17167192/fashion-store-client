@@ -25,9 +25,9 @@ const Home = () => {
     return (
         <Layout title="Home Page" description="Fashion Store">
 
-            <h2 className="mb-4">Products</h2>
+            <h2 className="mb-4 container-fluid">Products</h2>
 
-            <div className="row">
+            <div className="row container-fluid">
                 {products.map((product, i) => (
                     <Card key={i} product={product}/>
                 ))}
