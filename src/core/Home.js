@@ -5,32 +5,30 @@ import {getProducts} from "./apiCore";
 
 const Home = () => {
 
-    const [productsBySell, setProductsBySell] = useState([]);
+    const [products, setProducts] = useState([]);
     const [error, setError] = useState(false);
 
-    const loadProductsBySell = () => {
+    const loadProducts = () => {
         getProducts('quantity').then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
-                setProductsBySell(data);
+                setProducts(data);
             }
         })
     };
 
     useEffect(() => {
-        loadProductsBySell();
+        loadProducts();
     }, []);
 
     return (
         <Layout title="Home Page" description="Fashion Store">
 
-        {/*<h2 className="mb-4">Best Sellers</h2>*/}
-        {/*{productsBySell.map((product, i) => (*/}
-        {/*    <Card key={i} product={product}/>*/}
-        {/*))}*/}
-
-            {JSON.stringify(productsBySell)}
+        <h2 className="mb-4">Products</h2>
+        {products.map((product, i) => (
+            <Card key={i} product={product}/>
+        ))}
 
     </Layout>
     );

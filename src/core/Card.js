@@ -5,7 +5,7 @@ const Card = ({product}) => {
     return (
         <div className="col-4 mb-3">
             <div className="cart">
-                <div className="card-header">product.name</div>
+                <div className="card-header">{product.name}</div>
                 <div className="card-body">
                     <p>{product.description}</p>
                     <p>${product.price}</p>
