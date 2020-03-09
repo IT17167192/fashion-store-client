@@ -25,12 +25,15 @@ const Home = () => {
     return (
         <Layout title="Home Page" description="Fashion Store">
 
-        <h2 className="mb-4">Products</h2>
-        {products.map((product, i) => (
-            <Card key={i} product={product}/>
-        ))}
+            <h2 className="mb-4">Products</h2>
 
-    </Layout>
+            <div className="row">
+                {products.map((product, i) => (
+                    <Card key={i} product={product}/>
+                ))}
+            </div>
+
+        </Layout>
     );
 };
 
