@@ -68,7 +68,7 @@ const Signin = () => {
                            value={password}/>
                 </div>
 
-                <button className="btn btn-primary" onClick={clickSubmit}>Submit</button>
+                <button className="btn btn-primary" disabled={values.loading} onClick={clickSubmit}>Submit</button>
             </form>
         </div>
     );
