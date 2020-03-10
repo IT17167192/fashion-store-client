@@ -10,7 +10,7 @@ const Card = ({product}) => {
                 <div className="card-body">
                     <ShowImage item={product} url="product"/>
                     <p>{product.description}</p>
-                    <p>{product.currency} {product.price}</p>
+                    <p>{product.currency} {parseFloat(product.price).toFixed(2)}</p>
                     
                     <Link to="/">
                         <button className="btn btn-outline-primary mt-2 mb-2 mr-1">View Product</button>
