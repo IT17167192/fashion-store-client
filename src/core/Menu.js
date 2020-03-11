@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
+import AutoComplete from "../autocomplete/AutoComplete";
 
 
 const isActive = (history, path) => {
@@ -51,6 +52,8 @@ const Menu = ({history}) => (
                     </li>
                 </div>
             )}
+
+            <AutoComplete/>
         </ul>
     </div>
 );
