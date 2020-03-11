@@ -53,7 +53,6 @@ const Menu = ({history}) => (
                 </div>
             )}
 
-            <AutoComplete/>
         </ul>
     </div>
 );
