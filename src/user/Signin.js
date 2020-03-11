@@ -57,6 +57,10 @@ const Signin = () => {
                 return <Redirect to="/user/dashboard"/>
             }
         }
+
+        if(isAuthenticate()){
+            return <Redirect to="/"/>
+        }
     };
 
     const signInForm = () => (
