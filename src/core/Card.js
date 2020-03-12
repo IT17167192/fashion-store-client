@@ -1,10 +1,44 @@
-import React from "react";
-import {Link} from 'react-router-dom';
+import React, {useState} from "react";
+import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
+import {addItem} from "./CartHelper";
 
 const Card = ({product, showViewBtn = true}) => {
+
+    const [redirect, setRedirect] = useState(false);
+
     const showBtn = showViewBtn => {
-        return showViewBtn && (<button className="btn btn-outline-primary mt-2 mb-2 mr-1">View Product</button>);
+        return (
+            showViewBtn && (
+                <Link to={`/product/${product._id}`} className="mr-2">
+                    <button className="btn btn-outline-primary mt-2 mb-2">View Product</button>
+                </Link>
+            )
+        );
+    };
+
+    const addToCart = () => {
+        addItem(product, () => {
+            setRedirect(true);
+        })
+    };
+
+    const makeRedirect = redirect => {
+        if (redirect) {
+            return <Redirect to="/cart" />
+        }
+    };
+
+    const showAddToCartBtn = () => {
+        return (<button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>);
+    };
+
+    const showStock = (qunatity) => {
+        return qunatity > 0 ? (
+            <span className="badge badge-primary badge-pill">In Stock</span>
+        ) : (
+            <span className="badge badge-warning badge-pill">Out of Stock</span>
+        );
     };
 
     return (
@@ -12,14 +46,17 @@ const Card = ({product, showViewBtn = true}) => {
             <div className="cart">
                 <div className="card-header alert-primary">{product.name}</div>
                 <div className="card-body">
+                    {makeRedirect(redirect)}
                     <ShowImage item={product} url="product"/>
-                    <p>{product.description}</p>
-                    <p>{product.currency} {parseFloat(product.price).toFixed(2)}</p>
+                    <p className="lead mt-2">{product.description}</p>
+                    <p className="black-9">{product.currency} {parseFloat(product.price).toFixed(2)}</p>
+                    <p className="black-8">
+                        Category: {product.category && product.category.name} </p>
 
-                    <Link to={`/product/${product._id}`}>
-                        {showBtn(showViewBtn)}
-                    </Link>
-                    <button className="btn btn-outline-warning mt-2 mb-2 ml-1">Add to Cart</button>
+                    {showStock(product.quantity)}
+                    <br/>
+                    {showBtn(showViewBtn)}
+                    {showAddToCartBtn()}
                 </div>
             </div>
         </div>
