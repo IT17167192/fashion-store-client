@@ -6,7 +6,9 @@ import {addItem} from "./CartHelper";
 const Card = ({product, showViewBtn = true}) => {
 
     const [redirect, setRedirect] = useState(false);
-
+    const style = {
+        "font-weight": "bold"
+    }
     const showBtn = showViewBtn => {
         return (
             showViewBtn && (
@@ -48,7 +50,7 @@ const Card = ({product, showViewBtn = true}) => {
                 <div className="card-body">
                     {makeRedirect(redirect)}
                     <ShowImage item={product} url="product"/>
-                    <p className="lead mt-2">{product.description}</p>
+                    <p className="lead mt-2" style={style}>{product.description}</p>
                     <p className="black-9">{product.currency} {parseFloat(product.price).toFixed(2)}</p>
                     <p className="black-8">
                         Category: {product.category && product.category.name} </p>
