@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import Layout from "../core/Layout";
 import {Link, Redirect} from "react-router-dom";
-import {signin, authenticate} from "../auth";
+import {signin, authenticate, isAuthenticate} from "../auth";
 
 const Signin = () => {
 
     const [values, setValues] = useState({
-        email: 'mails4kasun@gmail.comm',
+        email: 'mails4kasun@gmail.com',
         password: '123456',
         error: '',
         loading: false,
@@ -14,6 +14,7 @@ const Signin = () => {
     });
 
     const {email, password, loading, error, redirect} = values;
+    const { user } = isAuthenticate();
 
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
@@ -50,6 +51,14 @@ const Signin = () => {
 
     const redirectUser = () => {
         if (redirect) {
+            if(user && user.role === "1"){
+                return <Redirect to="/admin/dashboard"/>
+            }else {
+                return <Redirect to="/user/dashboard"/>
+            }
+        }
+
+        if(isAuthenticate()){
             return <Redirect to="/"/>
         }
     };
@@ -68,7 +77,7 @@ const Signin = () => {
                            value={password}/>
                 </div>
 
-                <button className="btn btn-primary" onClick={clickSubmit}>Submit</button>
+                <button className="btn btn-primary" disabled={values.loading} onClick={clickSubmit}>Submit</button>
             </form>
         </div>
     );

@@ -8,17 +8,19 @@ const Card = ({product, showViewBtn = true}) => {
     };
 
     return (
-        <div className="cart">
-            <div className="card-header alert-primary">{product.name}</div>
-            <div className="card-body">
-                <ShowImage item={product} url="product"/>
-                <p>{product.description}</p>
-                <p>{product.currency} {product.price}</p>
+        <div className="col-md-4 col-auto mb-3">
+            <div className="cart">
+                <div className="card-header alert-primary">{product.name}</div>
+                <div className="card-body">
+                    <ShowImage item={product} url="product"/>
+                    <p>{product.description}</p>
+                    <p>{product.currency} {parseFloat(product.price).toFixed(2)}</p>
 
-                <Link to={`/product/${product._id}`}>
-                    {showBtn(showViewBtn)}
-                </Link>
-                <button className="btn btn-outline-warning mt-2 mb-2 ml-1">Add to Cart</button>
+                    <Link to={`/product/${product._id}`}>
+                        {showBtn(showViewBtn)}
+                    </Link>
+                    <button className="btn btn-outline-warning mt-2 mb-2 ml-1">Add to Cart</button>
+                </div>
             </div>
         </div>
     )

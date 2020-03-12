@@ -1,6 +1,8 @@
 import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
+import AutoComplete from "../autocomplete/AutoComplete";
+
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -13,11 +15,21 @@ const isActive = (history, path) => {
 const Menu = ({history}) => (
     <div>
         <ul className="nav nav-tabs bg-primary container-fluid col-auto">
+
+            {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate()) === 2) && (
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/admin/dashboard')} to="/admin/dashboard">Dashboard</Link>
+                </li>
+            )}
+
+            {isAuthenticate() && parseInt(isAuthenticate().user.role) === 0 && (
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">Dashboard</Link>
+                </li>
+            )}
+
             <li className="nav-item">
                 <Link className="nav-link" style={isActive(history, '/')} to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" style={isActive(history, '/dashboard')} to="/dashboard">Dashboard</Link>
             </li>
 
             {!isAuthenticate() && (
@@ -34,12 +46,13 @@ const Menu = ({history}) => (
             {isAuthenticate() && (
                 <div>
                     <li className="nav-item">
-                <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}} onClick={() => signout(() => {
-                    history.push('/');
-                })}>Signout</span>
+                        <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}} onClick={() => signout(() => {
+                            history.push('/');
+                        })}>Signout</span>
                     </li>
                 </div>
             )}
+
         </ul>
     </div>
 );
