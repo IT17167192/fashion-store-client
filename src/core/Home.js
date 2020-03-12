@@ -27,9 +27,9 @@ const Home = () => {
 
             <h2 className="mb-4 container-fluid">Products</h2>
 
-            <div className="row container-fluid">
+            <div className="row">
                 {products.map((product, i) => (
-                    <div key={i} className="col-4 mb-3">
+                    <div key={i} className="col-md-6 col-lg-4 col-sm-6 mb-3">
                         <Card product={product}/>
                     </div>
                 ))}

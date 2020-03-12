@@ -2,7 +2,7 @@ import React from "react";
 import {API} from "../config";
 
 const ShowImage = ({item, url}) => (
-    <div className="product-img">
+    <div className="product-img text-center">
         <img
             src={`${API}/${url}/image/${item._id}`}
             alt={item.name}

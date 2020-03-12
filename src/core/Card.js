@@ -42,8 +42,8 @@ const Card = ({product, showViewBtn = true}) => {
     };
 
     return (
-        <div className="col-md-4 col-auto mb-3">
-            <div className="cart">
+        <div className="col-auto mb-3">
+            <div className="card">
                 <div className="card-header alert-primary">{product.name}</div>
                 <div className="card-body">
                     {makeRedirect(redirect)}
