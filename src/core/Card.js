@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
-import {addItem, updateItem} from "./CartHelper";
+import {addItem, updateItem, removeItem} from "./CartHelper";
 
 const Card = ({
                   product,
                   showViewBtn = true,
-                  cartUpdate = false
+                  cartUpdate = false,
+                  removeProductCart = false
               }) => {
 
     const [redirect, setRedirect] = useState(false);
@@ -38,8 +39,12 @@ const Card = ({
         return (<button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>);
     };
 
-    const showStock = (qunatity) => {
-        return qunatity > 0 ? (
+    const showRemoveBtn = removeProductCart => {
+        return (removeProductCart && <button onClick={() => removeItem(product._id)} className="btn btn-outline-danger mt-2 mb-2">Remove</button>);
+    };
+
+    const showStock = (quantity) => {
+        return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock</span>
         ) : (
             <span className="badge badge-warning badge-pill">Out of Stock</span>
@@ -79,6 +84,7 @@ const Card = ({
                     <br/>
                     {showBtn(showViewBtn)}
                     {showAddToCartBtn()}
+                    {showRemoveBtn(removeProductCart)}
                     {showCartUpdate(cartUpdate)}
                 </div>
             </div>

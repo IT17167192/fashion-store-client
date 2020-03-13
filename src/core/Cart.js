@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
 import Card from "./Card";
-import {showCart} from "./CartHelper";
+import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
 
 const Cart = () => {
@@ -9,7 +9,7 @@ const Cart = () => {
 
     useEffect(() => {
         setItems(showCart())
-    }, []);
+    }, [items]);
 
     const showItems = items => {
         return (
@@ -21,6 +21,7 @@ const Cart = () => {
                         key={i}
                         product={product}
                         cartUpdate={true}
+                        removeProductCart={true}
                     />))}
             </div>
         )
