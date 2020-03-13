@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Card from "./Card";
 import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
+import Checkout from "./Checkout";
 
 const Cart = () => {
     const [items, setItems] = useState([]);
@@ -34,13 +35,16 @@ const Cart = () => {
         <h2>Your cart is empty. <br/><Link to="/">Continue Shopping</Link></h2>
     );
 
-    console.log("Hi: " + items);
-
     return (
         <Layout title="Shopping Cart" description="Manage Cart Items" className="container-fluid">
             <div className="row">
                 <div className="col-6">
                     {items.length > 0 ? showItems(items) : showNoItems()}
+                </div>
+                <div>
+                    <h2 className="mb-4">Your Cart Summary</h2>
+                    <hr />
+                    <Checkout products={items} />
                 </div>
             </div>
         </Layout>
