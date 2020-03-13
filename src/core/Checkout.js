@@ -12,8 +12,20 @@ const Checkout = ({products}) => {
         }, 0)
     };
 
+    const showCheckout = () => {
+        return isAuthenticate() ? (
+            <button className="btn btn-success">Checkout</button>
+        ) : (
+            <Link to="/signin">
+                <button className="btn btn-primary">Sign in to Checkout</button>
+            </Link>
+        )
+    };
+
     return <div>
         <h2>Total: ${getTotal()}</h2>
+
+        {showCheckout()}
     </div>
 };
 
