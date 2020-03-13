@@ -6,10 +6,11 @@ import {Link} from 'react-router-dom';
 
 const Cart = () => {
     const [items, setItems] = useState([]);
+    const [run, setRun] = useState(false);
 
     useEffect(() => {
         setItems(showCart())
-    }, [items]);
+    }, [run]);
 
     const showItems = items => {
         return (
@@ -22,6 +23,8 @@ const Cart = () => {
                         product={product}
                         cartUpdate={true}
                         removeProductCart={true}
+                        setRun={setRun}
+                        run={run}
                     />))}
             </div>
         )
