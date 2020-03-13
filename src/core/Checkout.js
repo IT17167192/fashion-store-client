@@ -8,7 +8,7 @@ import {isAuthenticate} from "../auth";
 const Checkout = ({products}) => {
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
-            return currentValue + nextValue.count * nextValue.price;
+            return (parseFloat(currentValue) + parseFloat(nextValue.count) * parseFloat(nextValue.price)).toFixed(2);
         }, 0)
     };
 
