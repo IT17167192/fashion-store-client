@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
 import AutoComplete from "../autocomplete/AutoComplete";
+import {totalItems} from "./CartHelper";
 
 
 const isActive = (history, path) => {
@@ -18,13 +19,15 @@ const Menu = ({history}) => (
 
             {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate()) === 2) && (
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/admin/dashboard')} to="/admin/dashboard">Dashboard</Link>
+                    <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
+                          to="/admin/dashboard">Dashboard</Link>
                 </li>
             )}
 
             {isAuthenticate() && parseInt(isAuthenticate().user.role) === 0 && (
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">Dashboard</Link>
+                    <Link className="nav-link" style={isActive(history, '/user/dashboard')}
+                          to="/user/dashboard">Dashboard</Link>
                 </li>
             )}
 
@@ -46,12 +49,22 @@ const Menu = ({history}) => (
             {isAuthenticate() && (
                 <div>
                     <li className="nav-item">
-                        <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}} onClick={() => signout(() => {
-                            history.push('/');
-                        })}>Signout</span>
+                        <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}}
+                              onClick={() => signout(() => {
+                                  history.push('/');
+                              })}>Signout</span>
                     </li>
                 </div>
             )}
+
+
+            <li className="nav-item">
+                <Link className="nav-link" style={isActive(history, '/cart')}
+                      to="/cart">Cart
+                    <sup><small className="cart-badge"> {totalItems()}</small></sup>
+                </Link>
+            </li>
+
 
         </ul>
     </div>

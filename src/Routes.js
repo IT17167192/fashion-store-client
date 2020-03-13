@@ -10,6 +10,7 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Dashboard from "./user/UserDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AdminDashboard from "./user/AdminDashboard";
+import Cart from "./core/Cart";
 
 const Routes = () => {
     return (
@@ -24,6 +25,7 @@ const Routes = () => {
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
                 <AdminRoute
                     path="/admin/dashboard" exact component={AdminDashboard} />
+                <Route path="/cart" exact component={Cart} />
             </Switch>
         </BrowserRouter>
     )

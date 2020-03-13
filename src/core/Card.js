@@ -1,14 +1,17 @@
 import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
-import {addItem} from "./CartHelper";
+import {addItem, updateItem} from "./CartHelper";
 
-const Card = ({product, showViewBtn = true}) => {
+const Card = ({
+                  product,
+                  showViewBtn = true,
+                  cartUpdate = false
+              }) => {
 
     const [redirect, setRedirect] = useState(false);
-    const style = {
-        "font-weight": "bold"
-    }
+    const [count, setCount] = useState(product.count);
+
     const showBtn = showViewBtn => {
         return (
             showViewBtn && (
@@ -27,7 +30,7 @@ const Card = ({product, showViewBtn = true}) => {
 
     const makeRedirect = redirect => {
         if (redirect) {
-            return <Redirect to="/cart" />
+            return <Redirect to="/cart"/>
         }
     };
 
@@ -43,6 +46,23 @@ const Card = ({product, showViewBtn = true}) => {
         );
     };
 
+    const handleCountChange = productId => event => {
+        setCount(event.target.value < 1 ? 1 : event.target.value)
+        if (event.target.value >= 1) {
+            updateItem(productId, event.target.value)
+        }
+    };
+
+    const showCartUpdate = cartUpdate => {
+        return cartUpdate &&
+            <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                    <span className="input-group-text">Quantity</span>
+                </div>
+                <input type="number" className="form-control" value={count} onChange={handleCountChange(product._id)} />
+            </div>
+    };
+
     return (
         <div className="col-auto mb-3">
             <div className="card">
@@ -50,7 +70,7 @@ const Card = ({product, showViewBtn = true}) => {
                 <div className="card-body">
                     {makeRedirect(redirect)}
                     <ShowImage item={product} url="product"/>
-                    <p className="lead mt-2" style={style}>{product.description}</p>
+                    <p className="lead mt-2 font-weight-bold">{product.description}</p>
                     <p className="black-9">{product.currency} {parseFloat(product.price).toFixed(2)}</p>
                     <p className="black-8">
                         Category: {product.category && product.category.name} </p>
@@ -59,6 +79,7 @@ const Card = ({product, showViewBtn = true}) => {
                     <br/>
                     {showBtn(showViewBtn)}
                     {showAddToCartBtn()}
+                    {showCartUpdate(cartUpdate)}
                 </div>
             </div>
         </div>
