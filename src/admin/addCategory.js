@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Fragment} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import {createCategory} from "./apiAdmin";
 import { MDBContainer, MDBAlert } from 'mdbreact';
 import { MDBDataTable } from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
+import { MDBBtn } from "mdbreact";
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -73,6 +74,18 @@ const AddCategory = () => {
             );
         }
     };
+
+    const backButton = () => {
+        return (
+            <Fragment>
+                <MDBBtn href="/admin/dashboard" color="mdb-color">
+                    Back to Dashboard
+                </MDBBtn>
+            </Fragment>
+        );
+    }
+
+
 
     const categoryTable = () => {
             if(categories.length > 0){
@@ -151,6 +164,8 @@ const AddCategory = () => {
                 {showSuccessMsg()}
                 {showErrorMsg()}
                 {newCategoryForm()}
+                <hr/>
+                {backButton()}
                 {categoryTable()}
         </Layout>
     );
