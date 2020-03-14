@@ -75,7 +75,6 @@ const AddCategory = () => {
     };
 
     const categoryTable = () => {
-        console.log(categories);
             if(categories.length > 0){
                 const data = {columns: [
                         {
@@ -141,7 +140,7 @@ const AddCategory = () => {
                     <input type="text" className="form-control" onChange={handleChange} value={name} autoFocus required/>
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary">{loader ? 'Loading...' : 'Create Category'}</button>
+                    <button className="btn btn-primary" disabled={loader}>{loader ? 'Loading...' : 'Create Category'}</button>
                 </div>
             </form>
         </div>
