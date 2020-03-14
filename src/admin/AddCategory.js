@@ -3,7 +3,7 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import { Link } from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
-import {createCategory} from "./apiAdmin";
+import {createCategory} from "./ApiAdmin";
 import { MDBContainer, MDBAlert } from 'mdbreact';
 import { MDBDataTable } from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
@@ -160,7 +160,7 @@ const AddCategory = () => {
     );
 
     return (
-        <Layout title="Add new category" description={`Welcome back ${user.name}!, Add a new category now!`} className="container-fluid">
+        <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`} className="container-fluid">
                 {showSuccessMsg()}
                 {showErrorMsg()}
                 {newCategoryForm()}
