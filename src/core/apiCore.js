@@ -21,4 +21,5 @@ export const getAllCategories = () => {
         method: "GET",
     })
         .then(response => response.json())
+        .catch(err => console.log(err))
 };
