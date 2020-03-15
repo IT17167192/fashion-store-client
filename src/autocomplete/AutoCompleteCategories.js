@@ -2,10 +2,11 @@ import React, {useState, useEffect} from "react";
 import {getAllCategories} from "../core/apiCore";
 import "./AutoComplete.css"
 
-const AutoCompleteCategories = () => {
+const AutoCompleteCategories = (props) => {
     const [categories, setCategories] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
     const [textValue, setTextValue] = useState([]);
+    const [_id, setId] = useState('');
     const [errorCat, setErrorCat] = useState(false);
 
     const loadCategories = () => {
@@ -33,6 +34,7 @@ const AutoCompleteCategories = () => {
         }
         setSuggestions(filteredCategories);
         setTextValue(value);
+        setId(event.target.id);
     }
 
     const renderSuggestions = () => {
@@ -44,7 +46,7 @@ const AutoCompleteCategories = () => {
         return (
             <ul>
                 {suggestions.map((suggestion, index) => (
-                    <li key={index} onClick={() => valueChangeHandler(suggestion.name)}>
+                    <li key={index} onClick={() => valueChangeHandler(suggestion.name, suggestion._id)}>
                         {suggestion.name}
                     </li>
                 ))}
@@ -52,14 +54,16 @@ const AutoCompleteCategories = () => {
         )
     }
 
-    const valueChangeHandler = (value) => {
+    const valueChangeHandler = (value, id) => {
         setTextValue(value);
+        setId(id);
+        props.onSelect(id);
         setSuggestions([]);
     }
 
     return (
        <div className="AutoComplete">
-           <input type="text" onChange={onChangeHandler} value={textValue}/>
+           <input type="text" onChange={onChangeHandler} placeholder="Search Categories" id={_id} value={textValue}/>
            {renderSuggestions()}
        </div>
     );
