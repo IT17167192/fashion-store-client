@@ -1,4 +1,5 @@
 import React from "react";
+import '../StyleMain.css'
 
 const Layout = ({
                     title = 'Title',

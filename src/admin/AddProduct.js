@@ -234,6 +234,7 @@ const AddProduct = () => {
                                         onChange={handleOnChange('currency')}
                                         className="form-control"
                                     >
+                                        <option value="select">Select currency</option>
                                         <option value="Rs">Rs</option>
                                         <option value="$">$</option>
                                     </select>
@@ -248,6 +249,7 @@ const AddProduct = () => {
                                         onChange={handleOnChange('takeInMethod')}
                                         className="form-control"
                                     >
+                                        <option value="select">Select a method</option>
                                         <option value="false">No</option>
                                         <option value="true">Yes</option>
                                     </select>

@@ -63,7 +63,7 @@ const AutoCompleteCategories = (props) => {
 
     return (
        <div className="AutoComplete">
-           <input type="text" onChange={onChangeHandler} placeholder="Search Categories" id={_id} value={textValue}/>
+           <input type="text" onChange={onChangeHandler} placeholder="Search categories" id={_id} value={textValue}/>
            {renderSuggestions()}
        </div>
     );
