@@ -23,3 +23,18 @@ export const getAllCategories = () => {
         .then(response => response.json())
         .catch(err => console.log(err))
 };
+
+// export const updateUserCart = (userId, toekn, products) => {
+//     return fetch(`${API}/user/${userId}`, {
+//         method: "PUT",
+//         headers: {
+//
+//             Accept: "application/json",
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${toekn}`
+//         },
+//         body: {"_id": products}
+//     })
+//         .then(response => response.json())
+//         .catch(err => console.log(err))
+// };

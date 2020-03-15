@@ -12,6 +12,7 @@ import AdminRoute from "./auth/AdminRoute";
 import AdminDashboard from "./user/AdminDashboard";
 import Cart from "./core/Cart";
 import AddCategory from "./admin/addCategory";
+import Profile from "./user/Profile";
 
 const Routes = () => {
     return (
@@ -29,6 +30,7 @@ const Routes = () => {
                 <AdminRoute
                     path="/create/category" exact component={AddCategory} />
                 <Route path="/cart" exact component={Cart} />
+                <PrivateRoute path="/profile/:userId" exact component={Profile} />
             </Switch>
         </BrowserRouter>
     )

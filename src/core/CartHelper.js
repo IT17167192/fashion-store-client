@@ -36,6 +36,15 @@ export const showCart = () => {
     return [];
 };
 
+// export const getCartProductId = () => {
+//     if (typeof window !== 'undefined') {
+//         if (localStorage.getItem('cart')) {
+//             return JSON.parse(localStorage.getItem('cart'))[0]._id;
+//         }
+//     }
+//     return [];
+// };
+
 export const updateItem = (productId, count) => {
     let cart =[];
     if (typeof window !== 'undefined') {
