@@ -51,6 +51,7 @@ const AddCategory = () => {
         createCategory(user._id, token, {name})
             .then(data=>{
                 setLoader(false);
+                setName('');
                 if(data.error){
                     setError(true);
                     setSuccess(false);
@@ -68,7 +69,7 @@ const AddCategory = () => {
             return(
                 <MDBContainer>
                     <MDBAlert color="success" dismiss>
-                        <strong>{name}</strong> is Created!
+                        <strong>New category is created successfully!</strong>
                     </MDBAlert>
                 </MDBContainer>
             );
@@ -138,7 +139,7 @@ const AddCategory = () => {
             return(
                 <MDBContainer>
                     <MDBAlert color="danger" dismiss>
-                        <strong>{name}</strong> should be unique!
+                        <strong>Name</strong> should be unique!
                     </MDBAlert>
                 </MDBContainer>
             );
