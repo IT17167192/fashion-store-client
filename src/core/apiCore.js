@@ -8,6 +8,14 @@ export const getProducts = (sortBy) => {
         .catch(err => console.log(err))
 };
 
+export const getImage = (productId) => {
+    return fetch(`${API}/product/image/${productId}`, {
+        method: "GET",
+    })
+        .then(response => response)
+        .catch(err => console.log(err))
+}
+
 export const getProduct = (productId) => {
     return fetch(`${API}/product/${productId}`, {
         method: "GET",
