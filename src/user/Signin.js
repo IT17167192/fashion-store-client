@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import Layout from "../core/Layout";
 import {Link, Redirect} from "react-router-dom";
 import {signin, authenticate, isAuthenticate} from "../auth";
+import {getCartProductId} from "../core/CartHelper";
+import {updateUserCart} from "../core/apiCore";
 
 const Signin = () => {
 
     const [values, setValues] = useState({
-        email: 'mails4kasun@gmail.com',
+        email: 'mails4kasunn@gmail.com',
         password: '123456',
         error: '',
         loading: false,
@@ -32,7 +34,9 @@ const Signin = () => {
                     authenticate(data, () => {
                             setValues({...values, redirect: true})
                         }
-                    )
+                    );
+                    // updateUserCart('5e6d2d3aef0ca51d38c58578', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhNTc5M2QxY2JlYzMwZmMwMmZhYjUiLCJpYXQiOjE1ODQyMDEwMjN9.6ph27SWcp98bs29rvB51xer6OYTEysxP9ScKjqaLSWs', JSON.parse(JSON.stringify(getCartProductId())));
+                    // console.log(JSON.parse(JSON.stringify(getCartProductId())));
                 }
             })
     };
