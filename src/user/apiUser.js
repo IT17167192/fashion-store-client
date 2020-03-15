@@ -30,7 +30,7 @@ export const update = (userId, token, user) => {
 export const updateUser = (user, next) => {
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('userToken')) {
-            let auth = localStorage.getItem('userToken');
+            let auth = JSON.parse(localStorage.getItem('userToken'));
             auth.user = user;
             localStorage.setItem('userToken', JSON.stringify(auth))
             next();

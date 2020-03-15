@@ -11,7 +11,7 @@ import Dashboard from "./user/UserDashboard";
 import AdminRoute from "./auth/AdminRoute";
 import AdminDashboard from "./user/AdminDashboard";
 import Cart from "./core/Cart";
-import AddCategory from "./admin/addCategory";
+import AddCategory from "./admin/AddCategory";
 import Profile from "./user/Profile";
 import AddProduct from "./admin/AddProduct";
 
