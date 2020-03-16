@@ -40,7 +40,6 @@ export const getCartProductId = () => {
     let products = [];
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
-            //return JSON.parse(localStorage.getItem('cart'))[0];
             for (let i = 0; i < JSON.parse(localStorage.getItem('cart')).length; i++) {
                 products.push(JSON.parse(localStorage.getItem('cart'))[i]);
             }

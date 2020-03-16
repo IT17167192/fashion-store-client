@@ -25,9 +25,6 @@ export const getAllCategories = () => {
 };
 
 export const updateUserCart = (userId, token, products) => {
-    console.log("ID:" + userId);
-    console.log("token:" + token);
-    console.log("products:" + JSON.stringify(products));
     return fetch(`${API}/user/${userId}`, {
         method: "PUT",
         headers: {
