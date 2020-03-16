@@ -4,7 +4,7 @@ import {isAuthenticate} from "../auth";
 import { Link } from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
 import {createProduct} from "./ApiAdmin";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert } from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
 
 const AddProduct = () => {
@@ -15,14 +15,15 @@ const AddProduct = () => {
         price: '',
         categories: [],
         category: '',
-        currency: '',
+        currency: 'Rs',
         quantity: '',
-        takeInMethod: '',
+        takeInMethod: 'false',
         image: '',
         loading: false,
-        discount: '',
-        error: '',
-        createdProduct: '',
+        discount: '0.00',
+        error: false,
+        createdProduct: false,
+        showSuccess: false,
         redirectToProfile: '',
         formData: ''
     });
@@ -40,20 +41,96 @@ const AddProduct = () => {
         discount,
         error,
         createdProduct,
+        showSuccess,
         redirectToProfile,
         formData
     } = productValues;
 
-    const handleOnChange = (value) => {};
+    useEffect(() => {
+        setProductValues({...productValues, formData: new FormData()})
+    }, []);
+
+    const handleOnChange = (name) => (event) =>{
+        const value = name === 'image' ? event.target.files[0] : event.target.value;
+        formData.set(name, value);
+        setProductValues({...productValues, [name]: value});
+    };
+
+    const onCategoryChangeHandler = (categoryId) => {
+        formData.set("category", categoryId);
+        setProductValues({...productValues, "category": categoryId});
+    };
+
+    const submit = (event) => {
+        event.preventDefault();
+        setProductValues({...productValues, error: '', loading: true});
+
+        if(!takeInMethod){
+            setProductValues({...productValues, takeInMethod: 'false'});
+        }
+
+        if(!currency){
+            setProductValues({...productValues, currency: 'Rs'});
+        }
+
+        createProduct(user._id, token, formData)
+            .then(data=> {
+                if(data.error){
+                    setProductValues({...productValues, error: data.error, showSuccess: false});
+                }else{
+                    setProductValues({
+                        ...productValues,
+                        name: '',
+                        description: '',
+                        image: '',
+                        price: '',
+                        quantity: '',
+                        loading: false,
+                        discount: '',
+                        currency: '',
+                        error: false,
+                        showSuccess: true,
+                        createProduct: data.name
+                    })
+                }
+            })
+
+    };
+
+    const showErrorMsg = () => {
+        if(error){
+            return(
+                <MDBContainer>
+                    <MDBAlert color="danger" dismiss>
+                        <strong>{error}</strong>
+                    </MDBAlert>
+                </MDBContainer>
+            );
+        }
+    };
+
+    const showSuccessMsg = () => {
+        if(showSuccess){
+            return(
+                <MDBContainer>
+                    <MDBAlert color="success" dismiss>
+                        <strong>New product is created successfully!</strong>
+                    </MDBAlert>
+                </MDBContainer>
+            );
+        }
+    };
 
     const newPostForm = () => (
         <div>
             <MDBContainer>
                 <MDBRow>
                     <MDBCol md="12" lg="12" sm="12">
+                        {showErrorMsg()}
+                        {showSuccessMsg()}
                         <MDBCard>
                             <MDBCardBody>
-                                <form>
+                                <form onSubmit={submit}>
                                     <div className="input-group">
                                         <div className="input-group-prepend">
                                         <span className="input-group-text" id="inputGroupFileAddon01">
@@ -104,6 +181,14 @@ const AddProduct = () => {
                                         htmlFor="defaultFormCardNameEx"
                                         className="grey-text font-weight-light"
                                     >
+                                        Select Category
+                                    </label>
+                                    <AutoCompleteCategories onSelect={onCategoryChangeHandler} />
+                                    <br/>
+                                    <label
+                                        htmlFor="defaultFormCardNameEx"
+                                        className="grey-text font-weight-light"
+                                    >
                                         Price
                                     </label>
                                     <input
@@ -111,27 +196,6 @@ const AddProduct = () => {
                                         onChange={handleOnChange('price')}
                                         className="form-control"
                                         value={price}
-                                    />
-                                    <br/>
-                                    <label
-                                        htmlFor="defaultFormCardNameEx"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        Select Category
-                                    </label>
-                                    <AutoCompleteCategories/>
-                                    <br/>
-                                    <label
-                                        htmlFor="defaultFormCardNameEx"
-                                        className="grey-text font-weight-light"
-                                    >
-                                        Quantity
-                                    </label>
-                                    <input
-                                        type="number"
-                                        onChange={handleOnChange('quantity')}
-                                        className="form-control"
-                                        value={quantity}
                                     />
                                     <br/>
                                     <label
@@ -151,12 +215,26 @@ const AddProduct = () => {
                                         htmlFor="defaultFormCardNameEx"
                                         className="grey-text font-weight-light"
                                     >
+                                        Quantity
+                                    </label>
+                                    <input
+                                        type="number"
+                                        onChange={handleOnChange('quantity')}
+                                        className="form-control"
+                                        value={quantity}
+                                    />
+                                    <br/>
+                                    <label
+                                        htmlFor="defaultFormCardNameEx"
+                                        className="grey-text font-weight-light"
+                                    >
                                         Currency
                                     </label>
                                     <select
                                         onChange={handleOnChange('currency')}
                                         className="form-control"
                                     >
+                                        <option value="select">Select currency</option>
                                         <option value="Rs">Rs</option>
                                         <option value="$">$</option>
                                     </select>
@@ -171,6 +249,7 @@ const AddProduct = () => {
                                         onChange={handleOnChange('takeInMethod')}
                                         className="form-control"
                                     >
+                                        <option value="select">Select a method</option>
                                         <option value="false">No</option>
                                         <option value="true">Yes</option>
                                     </select>
