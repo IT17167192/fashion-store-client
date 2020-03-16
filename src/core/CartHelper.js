@@ -36,14 +36,19 @@ export const showCart = () => {
     return [];
 };
 
-// export const getCartProductId = () => {
-//     if (typeof window !== 'undefined') {
-//         if (localStorage.getItem('cart')) {
-//             return JSON.parse(localStorage.getItem('cart'))[0]._id;
-//         }
-//     }
-//     return [];
-// };
+export const getCartProductId = () => {
+    let products = [];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            //return JSON.parse(localStorage.getItem('cart'))[0];
+            for (let i = 0; i < JSON.parse(localStorage.getItem('cart')).length; i++) {
+                products.push(JSON.parse(localStorage.getItem('cart'))[i]);
+            }
+        }
+        return JSON.parse(JSON.stringify(products));
+    }
+    return [];
+};
 
 export const updateItem = (productId, count) => {
     let cart =[];

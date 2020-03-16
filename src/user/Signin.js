@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import Layout from "../core/Layout";
 import {Link, Redirect} from "react-router-dom";
 import {signin, authenticate, isAuthenticate} from "../auth";
-import {getCartProductId} from "../core/CartHelper";
+import {addItem, getCartProductId} from "../core/CartHelper";
 import {updateUserCart} from "../core/apiCore";
+import {read} from "./apiUser";
+import {updateUser} from "./apiUser";
 
 const Signin = () => {
 
@@ -15,11 +17,52 @@ const Signin = () => {
         redirect: false
     });
 
+    const [productId, setProductId] = useState({
+        product: '',
+        errorP: ''
+    });
+
+    const {product, errorP} = productId;
     const {email, password, loading, error, redirect} = values;
     const { user } = isAuthenticate();
 
+    const addToCart = (product) => {
+        addItem(product, () => {
+            return <Redirect to="/cart"/>;
+        })
+    };
+
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value});
+        setProductId({...productId, errorP: false, product: JSON.parse(JSON.stringify(getCartProductId()))});
+
+
+    };
+
+    const setProduct = () => {
+        const { token, user } = isAuthenticate();
+
+        updateUserCart(user._id, token, {product}).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                // updateUser(data, () => {
+                //     setValues({...values, name: data.name, email: data.email, success: true})
+                // })
+            }
+        })
+    };
+
+    const setDbProductsToCart = () => {
+        const { token, user } = isAuthenticate();
+        read(user._id, token).then(data => {
+            if (data.error) {
+            } else {
+                for (let i = 0; i < (data.product).length; i++) {
+                    addToCart((data.product)[i]);
+                }
+            }
+        });
     };
 
     const clickSubmit = (event) => {
@@ -35,8 +78,8 @@ const Signin = () => {
                             setValues({...values, redirect: true})
                         }
                     );
-                    // updateUserCart('5e6d2d3aef0ca51d38c58578', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTZhNTc5M2QxY2JlYzMwZmMwMmZhYjUiLCJpYXQiOjE1ODQyMDEwMjN9.6ph27SWcp98bs29rvB51xer6OYTEysxP9ScKjqaLSWs', JSON.parse(JSON.stringify(getCartProductId())));
-                    // console.log(JSON.parse(JSON.stringify(getCartProductId())));
+                    setDbProductsToCart();
+                    setProduct();
                 }
             })
     };
