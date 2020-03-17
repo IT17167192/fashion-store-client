@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
 import {addItem, updateItem, removeItem} from "./CartHelper";
+import {updateUserCart} from "./apiCore";
+import {isAuthenticate} from "../auth";
 
 const Card = ({
                   product,
@@ -26,6 +28,20 @@ const Card = ({
     };
 
     const addToCart = () => {
+        const { token, user } = isAuthenticate();
+
+        if (user != null) {
+            updateUserCart(user._id, token, {product}).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                } else {
+                    // updateUser(data, () => {
+                    //     setValues({...values, name: data.name, email: data.email, success: true})
+                    // })
+                }
+            });
+        }
+
         addItem(product, () => {
             setRedirect(true);
         })
