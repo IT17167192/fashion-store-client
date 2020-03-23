@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
 import {addItem, updateItem, removeItem} from "./CartHelper";
-import {updateUserCart} from "./apiCore";
+import {updateUserCart, removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
 
 const Card = ({
@@ -47,6 +47,24 @@ const Card = ({
         })
     };
 
+    const removeFromCart = () => {
+        const { token, user } = isAuthenticate();
+
+        if (user != null) {
+            removeCartItem(user._id, token, product).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                } else {
+                    // updateUser(data, () => {
+                    //     setValues({...values, name: data.name, email: data.email, success: true})
+                    // })
+                }
+            });
+        }
+
+        removeItem(product._id);
+    };
+
     const makeRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart"/>
@@ -60,7 +78,7 @@ const Card = ({
     const showRemoveBtn = removeProductCart => {
         return (removeProductCart &&
             <button
-            onClick={() => {removeItem(product._id); setRun(!run);}}
+            onClick={() => {removeFromCart(); setRun(!run);}}
             className="btn btn-outline-danger mt-2 mb-2">
             Remove
         </button>);
