@@ -63,8 +63,8 @@ const Card = ({
         }
     };
 
-    const showAddToCartBtn = () => {
-        return !cartUpdate && <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
+    const showAddToCartBtn = (cartUpdate, quantity) => {
+        return !cartUpdate && quantity > 0 && <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
     };
 
     const showRemoveBtn = removeProductCart => {
@@ -117,7 +117,7 @@ const Card = ({
                     {showStock(product.quantity)}
                     <br/>
                     {showBtn(showViewBtn)}
-                    {showAddToCartBtn(cartUpdate)}
+                    {showAddToCartBtn(cartUpdate, product.quantity)}
                     {showRemoveBtn(removeProductCart)}
                     {showCartUpdate(cartUpdate)}
                 </div>
