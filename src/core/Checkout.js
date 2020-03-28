@@ -22,11 +22,19 @@ const Checkout = ({products}) => {
         )
     };
 
-    return <div>
-        <h2>Total: ${getTotal()}</h2>
-
-        {showCheckout()}
-    </div>
+    return (
+        <div>
+            <div className="row">
+                <div className="col-sm-5">
+                    <h5>Subtotal: </h5>
+                </div>
+                <div className="col-sm-4 text-right">
+                    ${getTotal()}
+                </div>
+            </div>
+            {showCheckout()}
+        </div>
+    )
 };
 
 export default Checkout;

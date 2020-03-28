@@ -16,7 +16,7 @@ const Cart = () => {
     const showItems = items => {
         return (
             <div>
-                <h2>Your cart have {`${items.length}`} items</h2>
+                <h3>Your cart have {`${items.length}`} items</h3>
                 <hr/>
                 {items.map((product, i) => (
                     <Card
@@ -38,15 +38,22 @@ const Cart = () => {
     return (
         <Layout title="Shopping Cart" description="Manage Cart Items" className="container-fluid">
             <div className="row">
-                <div className="col-6">
-                    {items.length > 0 ? showItems(items) : showNoItems()}
+                    <div className="col-5">
+                        {items.length > 0 ? showItems(items) : showNoItems()}
+                    </div>
+
+                    <div className="col-4 ml-auto mr-5 my-5">
+                        <div className="card">
+                            <div className="card-body">
+                                <div>
+                                    <h3 className="mb-4">Your Cart Summary</h3>
+                                    <hr/>
+                                    <Checkout products={items}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h2 className="mb-4">Your Cart Summary</h2>
-                    <hr />
-                    <Checkout products={items} />
-                </div>
-            </div>
         </Layout>
     );
 };
