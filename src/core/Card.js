@@ -15,7 +15,6 @@ const Card = ({
               }) => {
 
     const [redirect, setRedirect] = useState(false);
-    //const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
 
     const showBtn = showViewBtn => {
@@ -35,10 +34,6 @@ const Card = ({
             updateUserCart(user._id, token, {product}).then(data => {
                 if (data.error) {
                     console.log(data.error);
-                } else {
-                    // updateUser(data, () => {
-                    //     setValues({...values, name: data.name, email: data.email, success: true})
-                    // })
                 }
             });
         }
@@ -55,10 +50,6 @@ const Card = ({
             removeCartItem(user._id, token, product).then(data => {
                 if (data.error) {
                     console.log(data.error);
-                } else {
-                    // updateUser(data, () => {
-                    //     setValues({...values, name: data.name, email: data.email, success: true})
-                    // })
                 }
             });
         }
