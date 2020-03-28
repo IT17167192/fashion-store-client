@@ -55,7 +55,7 @@ const Home = () => {
                     </div>
                 );
             }
-    }
+    };
 
     return (
             <Layout title="Home Page" description="Fashion Store">

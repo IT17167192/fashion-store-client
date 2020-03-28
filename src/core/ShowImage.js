@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from "react";
+import React, {useState, useEffect} from "react";
 import {API} from "../config";
 import {getImage} from "./apiCore";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -26,14 +26,14 @@ const ShowImage = ({item, url}) => {
         loadImage(id);
     }, []);
 
-    if(loading){
+    if (loading) {
         return (
             <div style={{height: "182px", width: "360px", marginTop: "40%", marginLeft: "45%"}}>
                 <CircularProgress size={30}/>
             </div>
         );
-    }else{
-        return(
+    } else {
+        return (
             <div className="product-img img-thumbnail text-center">
                 <img
                     src={image}

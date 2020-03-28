@@ -15,6 +15,7 @@ const Card = ({
               }) => {
 
     const [redirect, setRedirect] = useState(false);
+    //const [redirect, setRedirect] = useState(false);
     const [count, setCount] = useState(product.count);
 
     const showBtn = showViewBtn => {
