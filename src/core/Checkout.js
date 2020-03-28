@@ -14,10 +14,10 @@ const Checkout = ({products}) => {
 
     const showCheckout = () => {
         return isAuthenticate() ? (
-            <button className="btn btn-success">Checkout</button>
+            <button className="btn btn-success col-sm-12">Checkout</button>
         ) : (
             <Link to="/signin">
-                <button className="btn btn-primary">Sign in to Checkout</button>
+                <button className="btn btn-primary col-sm-12">Sign in to Checkout</button>
             </Link>
         )
     };
@@ -26,13 +26,23 @@ const Checkout = ({products}) => {
         <div>
             <div className="row">
                 <div className="col-sm-5">
-                    <h5>Subtotal: </h5>
+                    <h6>Subtotal: </h6>
                 </div>
-                <div className="col-sm-4 text-right">
+                <div className="col-sm-7 text-right">
                     ${getTotal()}
                 </div>
             </div>
+            <div className="row">
+                <div className="col-sm-5">
+                    <h5>Total: </h5>
+                </div>
+                <div className="col-sm-7 text-right">
+                    <h5>${getTotal()}</h5>
+                </div>
+            </div>
+
             {showCheckout()}
+
         </div>
     )
 };
