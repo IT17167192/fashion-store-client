@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShowImage from "./ShowImage";
-import {addItem, updateItem, removeItem} from "./CartHelper";
-import {updateUserCart, removeCartItem} from "./apiCore";
+import {addItem, updateItem} from "./CartHelper";
+import {updateUserCart} from "./apiCore";
 import {isAuthenticate} from "../auth";
 
 const Card = ({
@@ -43,20 +43,6 @@ const Card = ({
         })
     };
 
-    const removeFromCart = () => {
-        const { token, user } = isAuthenticate();
-
-        if (user != null) {
-            removeCartItem(user._id, token, product).then(data => {
-                if (data.error) {
-                    console.log(data.error);
-                }
-            });
-        }
-
-        removeItem(product._id);
-    };
-
     const makeRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart"/>
@@ -65,15 +51,6 @@ const Card = ({
 
     const showAddToCartBtn = (cartUpdate, quantity) => {
         return !cartUpdate && quantity > 0 && <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
-    };
-
-    const showRemoveBtn = removeProductCart => {
-        return (removeProductCart &&
-            <button
-            onClick={() => {removeFromCart(); setRun(!run);}}
-            className="btn btn-outline-danger mt-2 mb-2">
-            Remove
-        </button>);
     };
 
     const showStock = (quantity) => {
