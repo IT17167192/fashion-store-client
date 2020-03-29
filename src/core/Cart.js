@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
-import Card from "./Card";
+import CartItems from "./CartItems";
 import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
 import Checkout from "./Checkout";
@@ -20,7 +20,7 @@ const Cart = () => {
                 <h3>Your cart have {`${items.length}`} items</h3>
                 <hr/>
                 {items.map((product, i) => (
-                    <Card
+                    <CartItems
                         key={i}
                         product={product}
                         cartUpdate={true}
@@ -86,7 +86,7 @@ const Cart = () => {
             </div>
 
             <div className="row">
-                <div className="col-5">
+                <div className="col-7">
                     {items.length > 0 ? showItems(items) : ''}
                 </div>
 
