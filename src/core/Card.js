@@ -95,7 +95,6 @@ const Card = ({
                     <br/>
                     {showBtn(showViewBtn)}
                     {showAddToCartBtn(cartUpdate, product.quantity)}
-                    {showRemoveBtn(removeProductCart)}
                     {showCartUpdate(cartUpdate)}
                 </div>
             </div>
