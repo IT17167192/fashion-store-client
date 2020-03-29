@@ -47,7 +47,7 @@ const CartItems = ({
                     removeFromCart();
                     setRun(!run);
                 }}
-                className="btn btn-outline-danger mt-2 mb-2">
+                className="btn btn-sm btn-outline-orange">
                 Remove
             </button>);
     };
@@ -113,6 +113,9 @@ const CartItems = ({
                             <div className="col-sm-12 row">
                                 <div className="col-sm-6">
                                     {showStock(product.quantity)}
+                                </div>
+                                <div className="col-sm-6 text-right">
+                                    {showRemoveBtn(removeProductCart)}
                                 </div>
                             </div>
                         </div>
