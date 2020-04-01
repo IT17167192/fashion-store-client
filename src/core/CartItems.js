@@ -79,7 +79,7 @@ const CartItems = ({
     };
 
     return (
-        <div className="col-auto mb-3">
+        <div className="mb-3">
             <div className="card">
                 <div className="card-body">
                     <div className="row">

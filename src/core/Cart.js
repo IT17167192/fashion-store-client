@@ -54,11 +54,11 @@ const Cart = () => {
                 <div>
                     <h3>You don't have any items in your cart. Let's get shopping!</h3>
 
-                        <div className="col-sm-12">
-                            <button className="btn btn-lg btn-white text-primary w-50"><Link to="/">Start
-                                Shopping</Link>
-                            </button>
-                        </div>
+                    <div className="col-sm-12">
+                        <button className="btn btn-lg btn-white text-primary w-50"><Link to="/">Start
+                            Shopping</Link>
+                        </button>
+                    </div>
                 </div>
             )
         )
@@ -85,15 +85,17 @@ const Cart = () => {
                 </div>
             </div>
 
+
             <div className="row">
-                <div className="col-7">
+                <div className="col-sm-7">
                     {items.length > 0 ? showItems(items) : ''}
                 </div>
 
-                <div className="col-4 ml-auto mr-5 my-5">
+                <div className="col-sm-4 ml-auto mr-auto my-5">
                     {items.length > 0 ? showSummary(items) : ''}
                 </div>
             </div>
+
         </Layout>
     );
 };
