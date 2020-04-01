@@ -6,7 +6,6 @@ import {removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { orange } from '@material-ui/core/colors';
 
 const CartItems = ({
                        product,
