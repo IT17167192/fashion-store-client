@@ -4,7 +4,9 @@ import ShowCartImage from "./ShowCartImage";
 import {updateItem, removeItem} from "./CartHelper";
 import {removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
-import Checkout from "./Checkout";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import { orange } from '@material-ui/core/colors';
 
 const CartItems = ({
                        product,
@@ -93,11 +95,22 @@ const CartItems = ({
                     <div className="row">
                         <div className="col-sm-2 mr-5">
                             <div className="row">
-                                <div className="col-sm-1 mt-5">
-                                    <input type="checkbox" defaultChecked={isChecked}
-                                           onChange={selectItem(product._id)}/>
-                                </div>
-                                <div className="col-sm-5 text-center">
+
+
+                                <FormControlLabel className="col-sm-1"
+                                    control={
+                                        <Checkbox
+                                            defaultChecked={isChecked}
+                                            onChange={selectItem(product._id)}
+                                            name="checkedB"
+                                            style ={{
+                                                color: "#ff9408",
+                                            }}
+                                        />
+                                    }
+                                />
+
+                                <div className="col-sm-5 text-center mt-2">
                                     <ShowCartImage item={product} url="product"/>
                                 </div>
                             </div>
