@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
-import CartItems from "./CartItems";
+import CartItems, {getItems} from "./CartItems";
 import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
 import Checkout from "./Checkout";
@@ -11,7 +11,7 @@ const Cart = () => {
     const [run, setRun] = useState(false);
 
     useEffect(() => {
-        setItems(showCart())
+        setItems(showCart());
     }, [run]);
 
     const showItems = items => {

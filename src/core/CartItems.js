@@ -4,6 +4,7 @@ import ShowCartImage from "./ShowCartImage";
 import {updateItem, removeItem} from "./CartHelper";
 import {removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
+import Checkout from "./Checkout";
 
 const CartItems = ({
                        product,
@@ -15,6 +16,7 @@ const CartItems = ({
                    }) => {
 
     const [count, setCount] = useState(product.count);
+    const [isChecked, setIsChecked] = useState(product.isChecked);
 
     const showBtn = showViewBtn => {
         return (
@@ -24,6 +26,12 @@ const CartItems = ({
                 </Link>
             )
         );
+    };
+
+    const selectItem = productId => event => {
+        setRun(!run);
+        setIsChecked(!isChecked);
+        updateItem(productId, count, !isChecked)
     };
 
     const removeFromCart = () => {
@@ -62,9 +70,9 @@ const CartItems = ({
 
     const handleCountChange = productId => event => {
         setRun(!run);
-        setCount(event.target.value < 1 ? 1 : event.target.value)
+        setCount(event.target.value < 1 ? 1 : event.target.value);
         if (event.target.value >= 1) {
-            updateItem(productId, event.target.value)
+            updateItem(productId, event.target.value, isChecked)
         }
     };
 
@@ -83,11 +91,19 @@ const CartItems = ({
             <div className="card">
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-sm-2">
-                            <ShowCartImage item={product} url="product"/>
+                        <div className="col-sm-2 mr-5">
+                            <div className="row">
+                                <div className="col-sm-1 mt-5">
+                                    <input type="checkbox" defaultChecked={isChecked}
+                                           onChange={selectItem(product._id)}/>
+                                </div>
+                                <div className="col-sm-5 text-center">
+                                    <ShowCartImage item={product} url="product"/>
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="col-sm-10">
+                        <div className="col-sm-9">
                             <div className="col-sm-12 row">
                                 <div className="col-sm-6">
                                     <p className="lead mt-2 font-weight-bold"
@@ -95,19 +111,30 @@ const CartItems = ({
                                 </div>
                             </div>
                             <div className="col-sm-12 row">
-                                <div className="col-sm-5">
-                                    <p className="mt-4 text-black-50" style={{marginBottom: '0px'}}>{product.description}</p>
+                                <div className="col-sm-6">
+                                    <div className="row">
+                                        <div className="col-sm-12">
+                                            <p className="mt-4 text-black-50"
+                                               style={{marginBottom: '0px'}}>{product.description}</p>
+                                        </div>
+                                        <div className="col-sm-12">
+                                            <p className="text-black-50">Category: {product.category.name}</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="col-sm-3">
                                     {showCartUpdate(cartUpdate)}
                                 </div>
-                                <div className="col-sm-4 text-right">
-                                    <p className="lead font-weight-normal" style={{fontSize: 22}}>{product.currency}{parseFloat(product.price * count).toFixed(2)}</p>
-                                </div>
-                            </div>
-                            <div className="col-sm-12 row">
-                                <div className="col-sm-6">
-                                    <p className="text-black-50">Category: {product.category.name}</p>
+                                <div className="col-sm-3 text-right">
+                                    <div className="row">
+                                        <div className="col-sm-12">
+                                            <p className="lead font-weight-normal"
+                                               style={{fontSize: 22}}>{product.currency}{parseFloat(product.price * count).toFixed(2)}</p>
+                                        </div>
+                                        <div className="col-sm-12">
+                                            <p className="lead font-weight-normal text-black-50" style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-sm-12 row">

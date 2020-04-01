@@ -8,14 +8,10 @@ import {isAuthenticate} from "../auth";
 const Card = ({
                   product,
                   showViewBtn = true,
-                  cartUpdate = false,
-                  removeProductCart = false,
-                  setRun = f => f,
-                  run = undefined
+                  cartUpdate = false
               }) => {
 
     const [redirect, setRedirect] = useState(false);
-    const [count, setCount] = useState(product.count);
 
     const showBtn = showViewBtn => {
         return (
@@ -61,24 +57,6 @@ const Card = ({
         );
     };
 
-    const handleCountChange = productId => event => {
-        setRun(!run);
-        setCount(event.target.value < 1 ? 1 : event.target.value)
-        if (event.target.value >= 1) {
-            updateItem(productId, event.target.value)
-        }
-    };
-
-    const showCartUpdate = cartUpdate => {
-        return cartUpdate &&
-            <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                    <span className="input-group-text">Quantity</span>
-                </div>
-                <input type="number" className="form-control" value={count} onChange={handleCountChange(product._id)} />
-            </div>
-    };
-
     return (
         <div className="col-auto mb-3">
             <div className="card">
@@ -95,7 +73,6 @@ const Card = ({
                     <br/>
                     {showBtn(showViewBtn)}
                     {showAddToCartBtn(cartUpdate, product.quantity)}
-                    {showCartUpdate(cartUpdate)}
                 </div>
             </div>
         </div>

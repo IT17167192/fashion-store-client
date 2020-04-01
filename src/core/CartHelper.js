@@ -6,7 +6,8 @@ export const addItem = (item, next) => {
         }
         cart.push({
             ...item,
-            count: 1
+            count: 1,
+            isChecked: false
         });
 
         cart = Array.from(new Set(cart.map(p => p._id))).map(id => {
@@ -49,7 +50,7 @@ export const getCartProductId = () => {
     return [];
 };
 
-export const updateItem = (productId, count) => {
+export const updateItem = (productId, count, isChecked) => {
     let cart = [];
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
@@ -59,6 +60,7 @@ export const updateItem = (productId, count) => {
         cart.map((product, i) => {
             if (product._id === productId) {
                 cart[i].count = count;
+                cart[i].isChecked = isChecked;
             }
         });
         localStorage.setItem('cart', JSON.stringify(cart))
