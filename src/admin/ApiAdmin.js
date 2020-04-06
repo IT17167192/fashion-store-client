@@ -27,12 +27,13 @@ export const createProduct = (userId, token, product) => {
         .catch(err => console.log(err))
 };
 
-export const addAdminUser = (data) => {
-    return fetch(`${API}/signup`, {
+export const addAdminUser = (userId, token, data) => {
+    return fetch(`${API}/adminUser/create/${userId}`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
         },
         body: JSON.stringify(data)
     })

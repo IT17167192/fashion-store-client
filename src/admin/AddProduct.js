@@ -1,10 +1,10 @@
 import React, {useEffect, useState, Fragment} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
 import {createProduct} from "./ApiAdmin";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert } from 'mdbreact';
+import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
 
 const AddProduct = () => {
@@ -50,7 +50,7 @@ const AddProduct = () => {
         setProductValues({...productValues, formData: new FormData()})
     }, []);
 
-    const handleOnChange = (name) => (event) =>{
+    const handleOnChange = (name) => (event) => {
         const value = name === 'image' ? event.target.files[0] : event.target.value;
         formData.set(name, value);
         setProductValues({...productValues, [name]: value});
@@ -65,19 +65,19 @@ const AddProduct = () => {
         event.preventDefault();
         setProductValues({...productValues, error: '', loading: true});
 
-        if(!takeInMethod){
+        if (!takeInMethod) {
             setProductValues({...productValues, takeInMethod: 'false'});
         }
 
-        if(!currency){
+        if (!currency) {
             setProductValues({...productValues, currency: 'Rs'});
         }
 
         createProduct(user._id, token, formData)
-            .then(data=> {
-                if(data.error){
+            .then(data => {
+                if (data.error) {
                     setProductValues({...productValues, error: data.error, showSuccess: false});
-                }else{
+                } else {
                     setProductValues({
                         ...productValues,
                         name: '',
@@ -98,25 +98,21 @@ const AddProduct = () => {
     };
 
     const showErrorMsg = () => {
-        if(error){
-            return(
-                <MDBContainer>
-                    <MDBAlert color="danger" dismiss>
-                        <strong>{error}</strong>
-                    </MDBAlert>
-                </MDBContainer>
+        if (error) {
+            return (
+                <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{error}</strong>
+                </div>
             );
         }
     };
 
     const showSuccessMsg = () => {
-        if(showSuccess){
-            return(
-                <MDBContainer>
-                    <MDBAlert color="success" dismiss>
-                        <strong>New product is created successfully!</strong>
-                    </MDBAlert>
-                </MDBContainer>
+        if (showSuccess) {
+            return (
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>New product is created successfully!</strong>
+                </div>
             );
         }
     };
@@ -183,7 +179,7 @@ const AddProduct = () => {
                                     >
                                         Select Category
                                     </label>
-                                    <AutoCompleteCategories onSelect={onCategoryChangeHandler} />
+                                    <AutoCompleteCategories onSelect={onCategoryChangeHandler}/>
                                     <br/>
                                     <label
                                         htmlFor="defaultFormCardNameEx"
@@ -269,7 +265,8 @@ const AddProduct = () => {
     );
 
     return (
-        <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`} className="container-fluid">
+        <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
+                className="container-fluid">
             {newPostForm()}
             <hr/>
 

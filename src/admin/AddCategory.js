@@ -1,13 +1,13 @@
 import React, {useEffect, useState, Fragment} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
 import {createCategory} from "./ApiAdmin";
-import { MDBContainer, MDBAlert } from 'mdbreact';
-import { MDBDataTable } from 'mdbreact';
+import {MDBContainer, MDBAlert} from 'mdbreact';
+import {MDBDataTable} from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
-import { MDBBtn } from "mdbreact";
+import {MDBBtn} from "mdbreact";
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -49,13 +49,13 @@ const AddCategory = () => {
         //create category
         //use api request
         createCategory(user._id, token, {name})
-            .then(data=>{
+            .then(data => {
                 setLoader(false);
                 setName('');
-                if(data.error){
+                if (data.error) {
                     setError(true);
                     setSuccess(false);
-                }else{
+                } else {
                     setError(false);
                     setSuccess(true);
                     loadCategories();
@@ -65,13 +65,11 @@ const AddCategory = () => {
     };
 
     const showSuccessMsg = () => {
-        if(success){
-            return(
-                <MDBContainer>
-                    <MDBAlert color="success" dismiss>
-                        <strong>New category is created successfully!</strong>
-                    </MDBAlert>
-                </MDBContainer>
+        if (success) {
+            return (
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>New category is created successfully!</strong>
+                </div>
             );
         }
     };
@@ -87,61 +85,60 @@ const AddCategory = () => {
     }
 
 
-
     const categoryTable = () => {
-            if(categories.length > 0){
-                const data = {columns: [
-                        {
-                            label: 'ID',
-                            field: '_id',
-                            sort: 'asc',
-                            width: 200
-                        },
-                        {
-                            label: 'Name',
-                            field: 'name',
-                            sort: 'asc',
-                            width: 270
-                        },
-                        {
-                            label: 'Created At',
-                            field: 'createdAt',
-                            sort: 'asc',
-                            width: 200
-                        },
-                        {
-                            label: 'Updated At',
-                            field: 'updatedAt',
-                            sort: 'asc',
-                            width: 100
-                        }
-                    ],rows: categories};
+        if (categories.length > 0) {
+            const data = {
+                columns: [
+                    {
+                        label: 'ID',
+                        field: '_id',
+                        sort: 'asc',
+                        width: 200
+                    },
+                    {
+                        label: 'Name',
+                        field: 'name',
+                        sort: 'asc',
+                        width: 270
+                    },
+                    {
+                        label: 'Created At',
+                        field: 'createdAt',
+                        sort: 'asc',
+                        width: 200
+                    },
+                    {
+                        label: 'Updated At',
+                        field: 'updatedAt',
+                        sort: 'asc',
+                        width: 100
+                    }
+                ], rows: categories
+            };
 
-                return (
-                    <div className="container-fluid col-md-12 col-lg-12 col-sm-12">
-                        <MDBDataTable
-                            striped
-                            bordered
-                            hover
-                            responsive
-                            data={data}
-                        />
-                    </div>
-                );
+            return (
+                <div className="container-fluid col-md-12 col-lg-12 col-sm-12">
+                    <MDBDataTable
+                        striped
+                        bordered
+                        hover
+                        responsive
+                        data={data}
+                    />
+                </div>
+            );
 
-            }else{
-                return null;
-            }
+        } else {
+            return null;
+        }
     };
 
     const showErrorMsg = () => {
-        if(error){
-            return(
-                <MDBContainer>
-                    <MDBAlert color="danger" dismiss>
-                        <strong>Name</strong> should be unique!
-                    </MDBAlert>
-                </MDBContainer>
+        if (error) {
+            return (
+                <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Name</strong> should be unique!
+                </div>
             );
         }
     };
@@ -151,23 +148,26 @@ const AddCategory = () => {
             <form onSubmit={submit}>
                 <div className="form-group">
                     <label className="text-muted">Category Name</label>
-                    <input type="text" className="form-control" onChange={handleChange} value={name} autoFocus required/>
+                    <input type="text" className="form-control" onChange={handleChange} value={name} autoFocus
+                           required/>
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary" disabled={loader}>{loader ? 'Loading...' : 'Create Category'}</button>
+                    <button className="btn btn-primary"
+                            disabled={loader}>{loader ? 'Loading...' : 'Create Category'}</button>
                 </div>
             </form>
         </div>
     );
 
     return (
-        <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`} className="container-fluid">
-                {showSuccessMsg()}
-                {showErrorMsg()}
-                {newCategoryForm()}
-                <hr/>
-                {backButton()}
-                {categoryTable()}
+        <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
+                className="container-fluid">
+            {showSuccessMsg()}
+            {showErrorMsg()}
+            {newCategoryForm()}
+            <hr/>
+            {backButton()}
+            {categoryTable()}
         </Layout>
     );
 };
