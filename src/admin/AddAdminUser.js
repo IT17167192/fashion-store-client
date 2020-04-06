@@ -88,7 +88,7 @@ const AddAdminUser = () => {
     );
 
     return (
-        <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
+        <Layout title="Add new user" description={`Welcome back ${user.name}, Add a new user now!`}
                 className="container-fluid">
             {newUser()}
             <hr/>
