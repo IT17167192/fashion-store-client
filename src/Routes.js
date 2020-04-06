@@ -9,6 +9,7 @@ import Product from "./core/Product";
 import PrivateRoute from "./auth/PrivateRoute";
 import Dashboard from "./user/UserDashboard";
 import AdminRoute from "./auth/AdminRoute";
+import StoreManagerRote from "./auth/StoreManagerRoute"
 import AdminDashboard from "./user/AdminDashboard";
 import Cart from "./core/Cart";
 import AddCategory from "./admin/AddCategory";
@@ -27,11 +28,11 @@ const Routes = () => {
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/product/:productId" exact component={Product} />
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/admin/dashboard" exact component={AdminDashboard} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/create/category" exact component={AddCategory} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/create/product" exact component={AddProduct} />
                 <AdminRoute
                     path="/create/user" exact component={AddAdminUser} />

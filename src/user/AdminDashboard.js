@@ -14,7 +14,7 @@ const AdminDashboard = () => {
         return (
             <div className="col-md-3 mb-4">
                 <div className="card">
-                    <div className="card-header" >Admin Links</div>
+                    <div className="card-header" >{parseInt(isAuthenticate().user.role) === 1 ? "Admin Links" : "Store Manager Links"}</div>
                     <div className="card-body">
                         <ul className="list-group">
                             <li className="list-group-item">
@@ -23,9 +23,11 @@ const AdminDashboard = () => {
                             <li className="list-group-item">
                                 <Link className="nav-link" to="/create/product">Create Product</Link>
                             </li>
-                            <li className="list-group-item">
-                                <Link className="nav-link" to="/create/user">Create Admin User</Link>
-                            </li>
+                            {(parseInt(isAuthenticate().user.role) === 1) && (
+                                <li className="list-group-item">
+                                    <Link className="nav-link" to="/create/user">Create Admin User</Link>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
