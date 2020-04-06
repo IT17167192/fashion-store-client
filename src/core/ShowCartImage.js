@@ -5,7 +5,6 @@ const ShowCartImage = ({item, url}) => (
     <div className="product-img">
         <img
             src={`${API}/${url}/image/${item._id}`}
-            alt={item.name}
             className="mb-3"
             style={{height: "150px", width: "150px"}}
         />

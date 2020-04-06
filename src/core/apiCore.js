@@ -47,8 +47,6 @@ export const updateUserCart = (userId, token, products) => {
 };
 
 export const removeCartItem = (userId, token, products) => {
-    console.log(products);
-
     return fetch(`${API}/cart/remove/${userId}`, {
         method: "POST",
         headers: {

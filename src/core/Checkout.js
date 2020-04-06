@@ -5,9 +5,7 @@ import {isAuthenticate} from "../auth";
 const Checkout = ({products}) => {
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
-            console.log("Yoo:" + nextValue.isChecked);
-            return (nextValue.isChecked ? (parseFloat(currentValue) + parseFloat(nextValue.count) * parseFloat(nextValue.price)).toFixed(2) : (0).toFixed(2));
-
+            return (nextValue.isChecked ? (parseFloat(currentValue) + parseFloat(nextValue.count) * parseFloat(nextValue.price)).toFixed(2) : (parseFloat(currentValue)).toFixed(2));
         }, 0)
     };
 

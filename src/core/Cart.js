@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
-import CartItems, {getItems} from "./CartItems";
+import CartItems from "./CartItems";
 import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
 import Checkout from "./Checkout";
