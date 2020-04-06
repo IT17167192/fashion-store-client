@@ -35,7 +35,7 @@ const AutoCompleteCategories = (props) => {
         setSuggestions(filteredCategories);
         setTextValue(value);
         setId(event.target.id);
-    }
+    };
 
     const renderSuggestions = () => {
         const suggestionState = suggestions;
@@ -52,14 +52,14 @@ const AutoCompleteCategories = (props) => {
                 ))}
             </ul>
         )
-    }
+    };
 
     const valueChangeHandler = (value, id) => {
         setTextValue(value);
         setId(id);
         props.onSelect(id);
         setSuggestions([]);
-    }
+    };
 
     return (
        <div className="AutoComplete">

@@ -16,7 +16,7 @@ const Menu = ({history}) => (
     <div>
         <ul className="nav nav-tabs bg-primary container-fluid col-auto">
 
-            {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate()) === 2) && (
+            {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
                           to="/admin/dashboard">Dashboard</Link>
