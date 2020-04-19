@@ -138,7 +138,7 @@ const ShopPage = () => {
                     </div>
                 </div>
 
-                <FooterPage/>
+                {showViewProducts && showViewCategories ? <FooterPage/> : ''}
             </div>
         );
     }
