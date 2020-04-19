@@ -35,6 +35,10 @@ const Menu = ({history}) => (
                 </li>
 
                 <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Shop Page</Link>
+                </li>
+
+                <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/cart')}
                           to="/cart">Cart
                         <sup><small className="cart-badge"> {totalItems()}</small></sup>
