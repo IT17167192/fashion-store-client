@@ -52,6 +52,7 @@ const ShopPage = () => {
     useEffect(() => {
         setLoadingCategories(true);
         setLoadingProducts(true);
+        loadFilteredProducts([]);
         loadCategories();
     }, []);
 
