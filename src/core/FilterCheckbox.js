@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const FilterCheckbox = ({categories}) => {
+const FilterCheckbox = ({categories, handleFilters}) => {
     const [checked, setChecked] = useState([]);
 
     const handleCheck = (category) => () => {
@@ -8,7 +8,7 @@ const FilterCheckbox = ({categories}) => {
         //check whether id is exist in checked array
         const currentCategoryId = checked.indexOf(category._id);
         const allCategoryIds = [...checked];
-        if(currentCategoryId !== -1){
+        if(currentCategoryId === -1){
             allCategoryIds.push(category._id);
         }else{
             //unchecking checkbox
@@ -18,6 +18,7 @@ const FilterCheckbox = ({categories}) => {
 
         //after the logic set new list
         setChecked(allCategoryIds);
+        handleFilters(allCategoryIds);
     };
 
     return categories.map((category, index) => (
