@@ -40,3 +40,53 @@ export const addAdminUser = (userId, token, data) => {
         .then(response => response.json())
         .catch(err => console.log(err))
 };
+
+//Perform Create Read Update Delete for Products
+
+//Get all products
+export const getAllProducts = () => {
+    return fetch(`${API}/products`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+//Get Single Product
+export const getSingleProduct = (productId) => {
+    return fetch(`${API}/products/${productId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+
+// Update single product
+export const updateSingleProduct = (productId, userId, token, product) => {
+    return fetch(`${API}/product/${productId}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
+        },
+        body: product
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+// Delete single product
+export const deleteSingleProduct = (productId, userId, token) => {
+    return fetch(`${API}/product/${productId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
