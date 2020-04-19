@@ -96,7 +96,7 @@ const ShopPage = () => {
                                     <div className="row">
                                         {
                                             filteredProducts.map((product, i) => (
-                                                <div key={i} className="col-md-12 col-lg-4 col-sm-12 mb-3">
+                                                <div key={i} className="col-md-12 col-lg-6 col-xl-6 col-sm-12 mb-3">
                                                     <Card product={product}/>
                                                 </div>
                                             ))
@@ -104,7 +104,7 @@ const ShopPage = () => {
                                     </div>
                                 </div> :
                                 <div className="container-fluid text-center">
-                                    <CircularProgress size={120}/>
+                                    <CircularProgress size={80}/>
                                 </div>
                         }
                     </div>
