@@ -14,6 +14,7 @@ const ShopPage = () => {
 
     const [limitTo, setLimitTo] = useState(6);
     const [skip, setSkip] = useState(0);
+    const [loadedSize, setLoadedSize] = useState(0);
 
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [errorProducts, setErrorProducts] = useState(false);
@@ -33,8 +34,33 @@ const ShopPage = () => {
             } else {
                 setFilteredProducts(data.data);
                 setShowViewProducts(true);
+                setLoadedSize(data.size);
+                setSkip(0);
             }
-        })
+        });
+    };
+
+    const loadMore = () => {
+      let toSkip = skip + limitTo;
+        getProductByFilters(toSkip, limitTo, pageFilters.filters).then(data => {
+            setLoadingProducts(false);
+            if (data.error) {
+                setErrorProducts(data.error);
+            } else {
+                setFilteredProducts([...filteredProducts, ...data.data]);
+                setShowViewProducts(true);
+                setLoadedSize(data.size);
+                setSkip(toSkip);
+            }
+        });
+    };
+
+    const loadMoreButton = () => {
+        return (
+            loadedSize > 0 && loadedSize >= limitTo && (
+                <button onClick={loadMore} className="btn btn-warning mb-5">Load More</button>
+            )
+        );
     };
 
     const loadCategories = () => {
@@ -108,6 +134,7 @@ const ShopPage = () => {
                                     <CircularProgress size={80}/>
                                 </div>
                         }
+                        {loadMoreButton()}
                     </div>
                 </div>
 
