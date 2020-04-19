@@ -94,8 +94,7 @@ const ShopPage = () => {
             <div>
                 <div className="row container-fluid">
                     <div
-                        className="text-center text-sm-center
-                         text-md-center text-lg-left text-xl-left col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                        className="text-left col-sm-12 col-md-12 col-lg-2 col-xl-2 mb-5">
 
                         {
                             showViewCategories ?
