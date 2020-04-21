@@ -9,6 +9,8 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
+    "braintree-web": "^3.60.0",
+    "braintree-web-drop-in-react": "^1.1.1",
     "cors": "^2.8.5",
     "dayjs": "^1.8.22",
     "jquery": "^3.4.1",
