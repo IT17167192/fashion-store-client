@@ -9,7 +9,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 const CartItems = ({
                        product,
-                       showViewBtn = true,
                        cartUpdate = false,
                        removeProductCart = false,
                        setRun = f => f,
@@ -18,16 +17,6 @@ const CartItems = ({
 
     const [count, setCount] = useState(product.count);
     const [isChecked, setIsChecked] = useState(product.isChecked);
-
-    const showBtn = showViewBtn => {
-        return (
-            showViewBtn && (
-                <Link to={`/product/${product._id}`} className="mr-2">
-                    <button className="btn btn-outline-primary mt-2 mb-2">View Product</button>
-                </Link>
-            )
-        );
-    };
 
     const selectItem = productId => event => {
         setRun(!run);

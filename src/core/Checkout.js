@@ -71,7 +71,7 @@ const Checkout = ({products}) => {
                         setData({...data, success: response.success});
                         // empty cart
                         emptyCart(() => {
-                            console.log('payment success and empty cart')
+                            console.log('payment success and empty cart');
                             setData({loading: false})
 
                             // in case page does not reload by itself uncomment the below
