@@ -130,7 +130,7 @@ const CartItems = ({
                                                style={{marginBottom: '0px'}}>{product.description}</p>
                                         </div>
                                         <div className="col-sm-12">
-                                            <p className="text-black-50">Category: {product.category.name}</p>
+                                            <p className="text-black-50">Category: {product.category ? product.category.name : 'Other'}</p>
                                         </div>
                                     </div>
                                 </div>
