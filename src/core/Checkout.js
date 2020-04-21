@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {getBraintreeClientToken, processPayment} from "./apiCore";
-import {emptyCart} from "./CartHelper";
+import {getBraintreeClientToken, processPayment, removeCartItem} from "./apiCore";
+import {emptyCart, showSelectedCart} from "./CartHelper";
 import {Link} from "react-router-dom";
 import {isAuthenticate} from "../auth";
 import DropIn from "braintree-web-drop-in-react";
@@ -69,15 +69,27 @@ const Checkout = ({products}) => {
                     .then(response => {
                         // console.log(response)
                         setData({...data, success: response.success});
-                        // empty cart
+
+                        const { token, user } = isAuthenticate();
+                        const items = showSelectedCart();   //get selected items
+
+                        //remove paid products from db one by one
+                        for (let i = 0; i < items.length; ++i) {
+                            removeCartItem(user._id, token, items[i]).then(data => {
+                                if (data.error) {
+                                    console.log(data.error);
+                                }
+                            });
+                        }
+
+                        //delete paid products from local storage
                         emptyCart(() => {
                             console.log('payment success and empty cart');
                             setData({loading: false})
 
                             // in case page does not reload by itself uncomment the below
                             // window.location.reload();
-                        })
-                        // create order
+                        });
                     })
                     .catch(error => {
                         console.log(error);

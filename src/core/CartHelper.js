@@ -37,6 +37,24 @@ export const showCart = () => {
     return [];
 };
 
+export const showSelectedCart = () => {
+    let cart = [];
+    if (typeof window !== 'undefined') {
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+
+        cart.map((product, i) => {
+            if (!product.isChecked) {
+                cart.splice(i, 1);
+            }
+        });
+        console.log(cart.length);
+        return JSON.parse(JSON.stringify(cart));
+    }
+    return [];
+};
+
 export const getCartProductId = () => {
     let products = [];
     if (typeof window !== 'undefined') {
@@ -85,4 +103,20 @@ export const removeItem = (productId) => {
     return cart;
 };
 
+export const emptyCart = next => {
+    let cart = [];
+    if(typeof window !== 'undefined'){
+        if (localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
 
+        cart.map((product, i) => {
+            if (product.isChecked) {
+                cart.splice(i, 1);
+            }
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        next()
+    }
+    return cart;
+};

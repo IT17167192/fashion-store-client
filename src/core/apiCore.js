@@ -62,9 +62,9 @@ export const removeCartItem = (userId, token, products) => {
 
 export const getProductByFilters = (skip, limitTo, filters = {}) => {
     const data = {
-      limitTo,
-      skip,
-      filters
+        limitTo,
+        skip,
+        filters
     };
     return fetch(`${API}/products/by/search`, {
         method: 'POST',
