@@ -61,13 +61,12 @@ const Card = ({
     return (
         <div className="col-auto mb-3">
             <div className="card">
-                <div className="card-header alert-primary">{product.name}</div>
                 <div className="card-body">
                     {makeRedirect(redirect)}
                     <Link to={`/product/${product._id}`} className="mr-2">
                         <ShowImage item={product} url="product"/>
                     </Link>
-                    <p className="lead font-weight-bold">{product.description}</p>
+                    <p className="lead font-weight-bold">{product.name}</p>
                     <p className="black-9">{product.currency} {parseFloat(product.price).toFixed(2)}</p>
                     <p className="black-8">
                         Category: {product.category && product.category.name} </p>
