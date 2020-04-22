@@ -93,7 +93,7 @@ const Signin = () => {
     };
 
     const showError = () => (
-        <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
+        <div className="alert alert-danger text-center" style={{display: error ? '' : 'none'}}>
             {error}
         </div>
     );
@@ -119,33 +119,40 @@ const Signin = () => {
     };
 
     const signInForm = () => (
-        <div className="mb-5 container col-auto">
-            <form>
-                <div className="form-group">
-                    <label className="text-muted">Email</label>
-                    <input type="email" onChange={handleChange('email')} className="form-control" value={email}/>
-                </div>
 
-                <div className="form-group">
-                    <label className="text-muted">Password</label>
-                    <input type="password" onChange={handleChange('password')} className="form-control"
-                           value={password}/>
-                </div>
+        <div className="container d-flex mt-5 justify-content-center">
+            <div className="col-sm-5">
+            <h3 className="text-center mt-4 font-weight-bolder">Sign in</h3>
+                    <div className="card card-body mt-5">
+                        <form>
+                            <div className="form-group">
+                                <label className="text-muted">Email</label>
+                                <input type="email" onChange={handleChange('email')} className="form-control"
+                                       value={email}/>
+                            </div>
 
-                <button className="btn btn-primary" disabled={values.loading} onClick={clickSubmit}>Submit</button>
-            </form>
+                            <div className="form-group">
+                                <label className="text-muted">Password</label>
+                                <input type="password" onChange={handleChange('password')} className="form-control"
+                                       value={password}/>
+                            </div>
+                            {showLoading()}
+                            {showError()}
+                            <button className="btn btn-primary w-100" disabled={values.loading}
+                                    onClick={clickSubmit}>Sign
+                                in
+                            </button>
+                        </form>
+                    </div>
+            </div>
         </div>
     );
 
     return (
-        <Layout title="Signin"
-                description="Fashion Store"
-                className="container-fluid col-md-8 mb-5">
-            {showLoading()}
-            {showError()}
+        <div>
             {signInForm()}
             {redirectUser()}
-        </Layout>
+        </div>
     )
 };
 
