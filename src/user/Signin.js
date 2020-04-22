@@ -122,28 +122,28 @@ const Signin = () => {
 
         <div className="container d-flex mt-5 justify-content-center">
             <div className="col-sm-5">
-            <h3 className="text-center mt-4 font-weight-bolder">Sign in</h3>
-                    <div className="card card-body mt-5">
-                        <form>
-                            <div className="form-group">
-                                <label className="text-muted">Email</label>
-                                <input type="email" onChange={handleChange('email')} className="form-control"
-                                       value={email}/>
-                            </div>
+                <h3 className="text-center mt-4 font-weight-bolder">Sign in</h3>
+                <div className="card card-body mt-5">
+                    <form>
+                        <div className="form-group">
+                            <label className="text-muted">Email</label>
+                            <input type="email" onChange={handleChange('email')} className="form-control"
+                                   value={email}/>
+                        </div>
 
-                            <div className="form-group">
-                                <label className="text-muted">Password</label>
-                                <input type="password" onChange={handleChange('password')} className="form-control"
-                                       value={password}/>
-                            </div>
-                            {showLoading()}
-                            {showError()}
-                            <button className="btn btn-primary w-100" disabled={values.loading}
-                                    onClick={clickSubmit}>Sign
-                                in
-                            </button>
-                        </form>
-                    </div>
+                        <div className="form-group">
+                            <label className="text-muted">Password</label>
+                            <input type="password" onChange={handleChange('password')} className="form-control"
+                                   value={password}/>
+                        </div>
+                        {showLoading()}
+                        {showError()}
+                        <button className="btn btn-primary w-100" disabled={values.loading}
+                                onClick={clickSubmit}>Sign
+                            in
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

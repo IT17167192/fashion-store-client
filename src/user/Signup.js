@@ -33,7 +33,7 @@ const Signup = () => {
     };
 
     const showError = () => (
-        <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
+        <div className="alert alert-danger text-center" style={{display: error ? '' : 'none'}}>
             {error}
         </div>
     );
@@ -45,36 +45,40 @@ const Signup = () => {
     );
 
     const signUpForm = () => (
-        <div className="mb-5 container col-auto">
-            <form>
-                <div className="form-group">
-                    <label className="text-muted">Name</label>
-                    <input type="text" onChange={handleChange('name')} className="form-control" value={name}/>
-                </div>
+        <div className="container d-flex mt-5 justify-content-center">
+            <div className="col-sm-5">
+                <h3 className="text-center mt-4 font-weight-bolder">Sign up</h3>
+                <div className="card card-body mt-5">
+                    <form>
+                        <div className="form-group">
+                            <label className="text-muted">Name</label>
+                            <input type="text" onChange={handleChange('name')} className="form-control" value={name}/>
+                        </div>
 
-                <div className="form-group">
-                    <label className="text-muted">Email</label>
-                    <input type="email" onChange={handleChange('email')} className="form-control" value={email}/>
-                </div>
+                        <div className="form-group">
+                            <label className="text-muted">Email</label>
+                            <input type="email" onChange={handleChange('email')} className="form-control"
+                                   value={email}/>
+                        </div>
 
-                <div className="form-group">
-                    <label className="text-muted">Password</label>
-                    <input type="password" onChange={handleChange('password')} className="form-control" value={password}/>
+                        <div className="form-group">
+                            <label className="text-muted">Password</label>
+                            <input type="password" onChange={handleChange('password')} className="form-control"
+                                   value={password}/>
+                        </div>
+                        {showSuccess()}
+                        {showError()}
+                        <button className="btn btn-primary w-100" onClick={clickSubmit}>Register</button>
+                    </form>
                 </div>
-
-                <button className="btn btn-primary" onClick={clickSubmit}>Submit</button>
-            </form>
+            </div>
         </div>
     );
 
     return (
-        <Layout title="Signup"
-                description="Fashion Store"
-                className="container-fluid col-md-8 mb-5">
-            {showSuccess()}
-            {showError()}
+        <div>
             {signUpForm()}
-        </Layout>
+        </div>
     )
 };
 
