@@ -88,7 +88,7 @@ const CartItems = ({
                                 <FormControlLabel className="col-sm-1"
                                     control={
                                         <Checkbox
-                                            defaultChecked={isChecked}
+                                            checked={isChecked}
                                             onChange={selectItem(product._id)}
                                             name="checkedB"
                                             style ={{
