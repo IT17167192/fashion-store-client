@@ -24,7 +24,7 @@ const Card = ({
     };
 
     const addToCart = () => {
-        const { token, user } = isAuthenticate();
+        const {token, user} = isAuthenticate();
 
         if (user != null) {
             updateUserCart(user._id, token, {product}).then(data => {
@@ -46,7 +46,8 @@ const Card = ({
     };
 
     const showAddToCartBtn = (cartUpdate, quantity) => {
-        return !cartUpdate && quantity > 0 && <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
+        return !cartUpdate && quantity > 0 &&
+            <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
     };
 
     const showStock = (quantity) => {
@@ -63,15 +64,17 @@ const Card = ({
                 <div className="card-header alert-primary">{product.name}</div>
                 <div className="card-body">
                     {makeRedirect(redirect)}
-                    <ShowImage item={product} url="product"/>
-                    <p className="lead mt-2 font-weight-bold">{product.description}</p>
+                    <Link to={`/product/${product._id}`} className="mr-2">
+                        <ShowImage item={product} url="product"/>
+                    </Link>
+                    <p className="lead font-weight-bold">{product.description}</p>
                     <p className="black-9">{product.currency} {parseFloat(product.price).toFixed(2)}</p>
                     <p className="black-8">
                         Category: {product.category && product.category.name} </p>
 
                     {showStock(product.quantity)}
                     <br/>
-                    {showBtn(showViewBtn)}
+                    {/*{showBtn(showViewBtn)}*/}
                     {showAddToCartBtn(cartUpdate, product.quantity)}
                 </div>
             </div>

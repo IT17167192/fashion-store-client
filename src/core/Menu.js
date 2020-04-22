@@ -8,14 +8,14 @@ const isActive = (history, path) => {
     if (history.location.pathname === path) {
         return {color: '#ff9900'};
     } else {
-        return {color: '#ffffff'};
+        return {color: '#7a7a7a'};
     }
 };
 
 const Menu = ({history}) => (
 
-    <nav className="navbar navbar-expand-lg navbar-dark primary-color">
-        <Link className="navbar-brand" to="/">Fashion Store</Link>
+    <nav className="navbar navbar-expand-lg navbar-dark rgba-grey-slight mb-2">
+        <Link className="navbar-brand text-dark font-weight-bolder" to="/">Fashion Store</Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
