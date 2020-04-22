@@ -118,15 +118,6 @@ const Checkout = ({products}) => {
         </div>
     );
 
-    const showError = error => (
-        <div
-            className="alert alert-danger"
-            style={{display: error ? "" : "none"}}
-        >
-            {error}
-        </div>
-    );
-
     const showSuccess = success => (
         <div
             className="alert alert-info"
@@ -149,7 +140,7 @@ const Checkout = ({products}) => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-sm-5">
+                <div className="col-sm-5 mb-3">
                     <h5>Total: </h5>
                 </div>
                 <div className="col-sm-7 text-right">
@@ -159,7 +150,6 @@ const Checkout = ({products}) => {
 
             {showLoading(data.loading)}
             {showSuccess(data.success)}
-            {showError(data.error)}
             {showCheckout()}
 
         </div>
