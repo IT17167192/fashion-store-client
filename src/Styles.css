@@ -1,5 +1,5 @@
 /*cart nav*/
-.cart-badge, .cart-badge:hover {
+.cart-badge, .cart-badge:hover, .wishlist-badge , .wishlist-badge:hover {
     border-radius: 50%;
     padding-right: 3px;
     font-size: 12px;;
