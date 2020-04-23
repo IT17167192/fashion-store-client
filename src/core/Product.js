@@ -8,18 +8,21 @@ import {Redirect} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMoneyBill} from '@fortawesome/free-solid-svg-icons'
 import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-brands-svg-icons';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Product = props => {
 
     const [product, setProduct] = useState({});
     const [error, setError] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const singleProduct = productId => {
         getProduct(productId).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
+                setLoading(false);
                 setProduct(data);
             }
         })
@@ -65,7 +68,7 @@ const Product = props => {
             <button onClick={addToCart} className="btn bg-dark text-white mt-2 mb-2">Add to Cart</button>;
     };
 
-    return (
+    return ( loading ? <CircularProgress size={100} style={{marginTop: "20%", marginLeft: "48%"}}/> :
         <Layout title={product.name} description={product.description} className="container-fluid">
             {makeCartRedirect(redirect)}
             <div className="container">
