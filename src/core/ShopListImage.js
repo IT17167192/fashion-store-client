@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
-import {API} from "../config";
 import {getImage} from "./apiCore";
 import CircularProgress from "@material-ui/core/CircularProgress";
-//src={`${API}/${url}/image/${item._id}`}
+
 const ShopListImage = ({item, url}) => {
 
     const [image, setImage] = useState('');
@@ -38,8 +37,12 @@ const ShopListImage = ({item, url}) => {
                 <img className="pic-1"
                      src={image}
                      alt={item.name}
-                     className="mb-3 col-auto"
-                     style={{height: "300px", width: "300px"}}
+                     style={{height: "300px"}}
+                />
+                <img className="pic-2"
+                     src={image}
+                     alt={item.name}
+                     style={{height: "300px"}}
                 />
             </a>
         )
