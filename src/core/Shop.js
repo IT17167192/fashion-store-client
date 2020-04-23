@@ -4,7 +4,6 @@ import Ftr from "./Ftr";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, getProductByFilters} from "./apiCore";
 import FilterCheckbox from "./FilterCheckbox";
-import CardLayout from "./CardLayout";
 import ShopListCard from "./ShopListCard";
 
 const ShopPage = () => {
