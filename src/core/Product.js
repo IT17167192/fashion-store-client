@@ -7,7 +7,7 @@ import {addItem} from "./CartHelper";
 import {Redirect} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMoneyBill} from '@fortawesome/free-solid-svg-icons'
-import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-brands-svg-icons'
+import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-brands-svg-icons';
 
 const Product = props => {
 
