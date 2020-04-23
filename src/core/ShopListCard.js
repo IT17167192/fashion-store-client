@@ -79,10 +79,11 @@ const ShopListCard = ({
             </div>
             <div className="product-content">
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <h4 style={{'fontSize' : 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></h4>
+                    <span style={{'fontSize' : 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></span>
                 </Link>
+                <br/>
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <h4 className="title"><a href="javascript : ;">Category: {product.category && product.category.name}</a></h4>
+                    <span className="title"><a href="javascript : ;">Category: {product.category && product.category.name}</a></span>
                 </Link>
                 <ul className="rating">
                     <li className="fa fa-star"></li>
