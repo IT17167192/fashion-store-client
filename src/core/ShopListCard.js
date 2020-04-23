@@ -44,6 +44,14 @@ const ShopListCard = ({
         })
     };
 
+    const calculateDiscountedPrice = (product) => {
+        let price = product.price;
+        if(product.currency === '$'){
+            price = product.price * 180;
+        }
+        return product.currency === '$' ? parseFloat((price - ((price * product.discount) / 100)) / 180).toFixed(2) : parseFloat(price - ((price * product.discount) / 100)).toFixed(2);
+    };
+
     const makeRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart"/>
@@ -92,8 +100,9 @@ const ShopListCard = ({
                     <li className="fa fa-star"></li>
                     <li className="fa fa-star"></li>
                 </ul>
-                <div className="price">{product.currency} {parseFloat(product.price).toFixed(2)}
-                    <span>$20.00</span>
+                <div className="price">{product.discount > 0 ? product.currency + ' ' + calculateDiscountedPrice(product) : product.currency + ' ' + parseFloat(product.price).toFixed(2)}
+                    <span>{product.discount > 0 ? product.currency + ' ' +  parseFloat(product.price).toFixed(2) : ''}</span>
+                    {console.log(product)}
                 </div>
             </div>
         </div>
