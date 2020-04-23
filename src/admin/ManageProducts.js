@@ -11,14 +11,63 @@ import {MDBBtn} from "mdbreact";
 import Card from "../core/Card";
 import FooterPage from "../core/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {getAllProducts, deleteSingleProduct} from "./ApiAdmin";
 
 const ManageProducts = () => {
 
+    const [products, setAllProducts] = useState([]);
+
+    const {user, token} = isAuthenticate();
+
+    const  fetchProducts = () => {
+        getAllProducts().then (data => {
+            if(data.error){
+                console.log(data.error)
+             }
+            else
+                setAllProducts(data)
+        })
+    };
+
+    const remove = productId =>{
+        deleteSingleProduct(productId, user.id, token). then(data => {
+            if(data.error){
+                console.log(data.error)
+            } else {
+                fetchProducts()
+            }
+        })
+    };
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 return (
     <Layout title="Manage Products" description="Perform Create Read Update Delete functions on Products">
         <h2 className="mb-4">Manage Products</h2>
         <div className="row">
-            <div>...</div>
+            <div className="col-12">
+                <h2 className="text-center"> Total of {products.length} Products </h2>
+                <ul className="list-group">
+                    {products.map((product, item) => (
+                        <li
+                            key={item}
+                            className="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{product.name}</strong>
+                            <Link to={'/admin/product/update/${product._id}'}>
+                                <span className="badge badge-warning badge-pill "  >
+                                    Update Product
+                                </span>
+                            </Link>
+
+                            <span onClick={() => remove(product.id)} className="badge badge-danger badge-pill">
+                                    Delete Product
+                                </span>
+
+                        </li>
+
+                    ))}
+                </ul>
+            </div>
         </div>
     </Layout>
 );
