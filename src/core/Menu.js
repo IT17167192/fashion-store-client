@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
 import {totalItems} from "./CartHelper";
+import{totalWishlistItems} from "./WishlistHelper";
 
 
 const isActive = (history, path) => {
@@ -42,6 +43,12 @@ const Menu = ({history}) => (
                     <Link className="nav-link" style={isActive(history, '/cart')}
                           to="/cart">Cart
                         <sup><small className="cart-badge"> {totalItems()}</small></sup>
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/wishlist')}
+                          to="/wishlist">Wishlist
+                        <sup><small className="wishlist-badge"> {totalWishlistItems()}</small></sup>
                     </Link>
                 </li>
             </ul>
