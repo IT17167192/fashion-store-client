@@ -4,14 +4,20 @@ import ShowImage from "./ShowImage";
 import {addItem, updateItem} from "./CartHelper";
 import {updateUserCart} from "./apiCore";
 import {isAuthenticate} from "../auth";
+import {addItemtoWishlist, updateWishlistItem} from "./WishlistHelper";
+import {updateUserWishlist} from "./apiCore";
+
 
 const Card = ({
                   product,
                   showViewBtn = true,
-                  cartUpdate = false
+                  cartUpdate = false,
+                  wishlistUpdate = false
               }) => {
 
     const [redirect, setRedirect] = useState(false);
+    const [redirectWish, setRedirectWish] = useState(false);
+
 
     const showBtn = showViewBtn => {
         return (
@@ -50,6 +56,33 @@ const Card = ({
             <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2">Add to Cart</button>;
     };
 
+    const addToWishlist = () => {
+        const {token, user} = isAuthenticate();
+
+        if (user != null) {
+            updateUserWishlist(user._id, token, {product}).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                }
+            });
+        }
+
+        addItemtoWishlist(product, () => {
+            setRedirectWish(true);
+        })
+    };
+
+    const makeRedirectWish = redirectWish => {
+        if (redirectWish) {
+            return <Redirect to="/wishlist"/>
+        }
+    };
+    const showAddToWishlistBtn = (wishlistUpdate, quantity) => {
+        return !wishlistUpdate && quantity > 0 &&
+            <button onClick={addToWishlist} className="btn btn-outline-warning mt-2 mb-2">Add to Wishlist</button>;
+    };
+
+
     const showStock = (quantity) => {
         return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock</span>
@@ -63,6 +96,7 @@ const Card = ({
             <div className="card">
                 <div className="card-body">
                     {makeRedirect(redirect)}
+                    {makeRedirectWish(redirectWish)}
                     <Link to={`/product/${product._id}`} className="mr-2">
                         <ShowImage item={product} url="product"/>
                     </Link>
@@ -75,6 +109,7 @@ const Card = ({
                     <br/>
                     {/*{showBtn(showViewBtn)}*/}
                     {showAddToCartBtn(cartUpdate, product.quantity)}
+                    {showAddToWishlistBtn(wishlistUpdate, product.quantity)}
                 </div>
             </div>
         </div>
