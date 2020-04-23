@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
 import FooterPage from "./Footer";
+import Ftr from "./Ftr";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, getProductByFilters} from "./apiCore";
 import FilterCheckbox from "./FilterCheckbox";
@@ -137,7 +138,7 @@ const ShopPage = () => {
                     </div>
                 </div>
 
-                {showViewProducts && showViewCategories ? <FooterPage/> : ''}
+                {showViewProducts && showViewCategories ? <Ftr/> : ''}
             </div>
         );
     }
