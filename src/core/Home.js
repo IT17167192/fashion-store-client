@@ -96,8 +96,8 @@ const Home = () => {
             );
         } else {
             return (
-                <div className="container-fluid text-center">
-                    <CircularProgress size={120}/>
+                <div className="container-fluid text-center mt-5">
+                    <CircularProgress size={80}/>
                 </div>
             );
         }
