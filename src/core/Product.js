@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
-import {getProduct, updateUserCart} from "./apiCore";
+import {getProduct, updateUserCart, updateUserWishlist} from "./apiCore";
 import ShowSingleImage from "./ShowSingleImage";
 import {isAuthenticate} from "../auth";
 import {addItem} from "./CartHelper";
@@ -9,6 +9,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faMoneyBill} from '@fortawesome/free-solid-svg-icons'
 import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-brands-svg-icons';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {addItemtoWishlist} from "./WishlistHelper";
+
 
 const Product = props => {
 
@@ -16,6 +18,8 @@ const Product = props => {
     const [error, setError] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [redirectWish, setRedirectWish] = useState(false);
+
 
     const singleProduct = productId => {
         getProduct(productId).then(data => {
@@ -55,6 +59,29 @@ const Product = props => {
         }
     };
 
+    const addToWishlist = () => {
+        const {token, user} = isAuthenticate();
+
+        if (user != null) {
+            updateUserWishlist(user._id, token, {product}).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                }
+            });
+        }
+
+        addItemtoWishlist(product, () => {
+            setRedirectWish(true);
+        })
+    };
+
+    const makeWishlistRedirect = redirectWish => {
+        if (redirectWish) {
+            return <Redirect to="/wishlist"/>
+        }
+    };
+
+
     const showStock = (quantity) => {
         return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock</span>
@@ -71,6 +98,7 @@ const Product = props => {
     return ( loading ? <CircularProgress size={100} style={{marginTop: "20%", marginLeft: "48%"}}/> :
         <Layout title={product.name} description={product.description} className="container-fluid">
             {makeCartRedirect(redirect)}
+            {makeWishlistRedirect(redirectWish)}
             <div className="container">
                 <div className="row">
                     <div className="col-lg-5 mt-5">
@@ -95,7 +123,7 @@ const Product = props => {
                         </div>
                         <div className="row mt-5">
                             {showAddToCartBtn(product.quantity)}
-                            <button onClick={addToCart} className="btn btn-orange text-white mt-2 mb-2">Add to Wish
+                            <button onClick={addToWishlist} className="btn btn-orange text-white mt-2 mb-2">Add to Wish
                                 List
                             </button>
                         </div>
