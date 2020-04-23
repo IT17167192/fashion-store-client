@@ -101,7 +101,7 @@ const ShopListCard = ({
                     <li className="fa fa-star"></li>
                 </ul>
                 <div className="price">{product.discount > 0 ? product.currency + ' ' + calculateDiscountedPrice(product) : product.currency + ' ' + parseFloat(product.price).toFixed(2)}
-                    <span>{product.discount > 0 ? product.currency + ' ' +  parseFloat(product.price).toFixed(2) : ''}</span>
+                    <span style={{"color" : "red"}}>{product.discount > 0 ? product.currency + ' ' +  parseFloat(product.price).toFixed(2) : ''}</span>
                     {console.log(product)}
                 </div>
             </div>
