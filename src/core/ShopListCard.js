@@ -52,9 +52,9 @@ const ShopListCard = ({
 
     const showStock = (quantity) => {
         return quantity > 0 ? (
-            <span className="product-new-label">In Stock</span>
+            <span className="product-new-label primary-color">In Stock</span>
         ) : (
-            <span className="product-new-label">Out of Stock</span>
+            <span className="product-new-label warning-color">Out of Stock</span>
         );
     };
 
@@ -79,7 +79,7 @@ const ShopListCard = ({
             </div>
             <div className="product-content">
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <h2 className="title"><a href="javascript : ;">{product.name}</a></h2>
+                    <h4 style={{'fontSize' : 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></h4>
                 </Link>
                 <Link to={`/product/${product._id}`} className="mr-2">
                     <h4 className="title"><a href="javascript : ;">Category: {product.category && product.category.name}</a></h4>
