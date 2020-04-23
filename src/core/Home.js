@@ -4,6 +4,8 @@ import Card from "./Card";
 import {getProducts} from "./apiCore";
 import FooterPage from "./Footer";
 import Carousel from 'react-bootstrap/Carousel'
+import Ftr from "./Ftr";
+import ShopListCard from "./ShopListCard";
 
 import image1 from '../images/image1.jpg';
 import image2 from '../images/image2.jpg';
@@ -79,25 +81,26 @@ const Home = () => {
                             </Carousel.Item>
                         </Carousel>
                     </div>
+                    <div className="shopping-grid">
+                        <div className="container">
+                            <h3 className="" align="center">Newest Trends</h3>
+                                <div className="row">
+                                    {products.map((product, i) => (
+                                        <div key={i} className="col-md-6 col-lg-3 col-xs-3 col-sm-6 mb-3">
+                                            <ShopListCard product={product} cartUpdate={true}/>
+                                        </div>
+                                    ))}
+                                </div>
 
-                    <h2 className="mb-4 container-fluid">Products</h2>
-
-                    <div className="row">
-                        {products.map((product, i) => (
-                            <div key={i} className="col-md-6 col-lg-3 col-sm-6 mb-3"
-                                 style={{paddingLeft: 0, paddingRight: 0}}>
-                                <Card product={product} cartUpdate={true}/>
-                            </div>
-                        ))}
+                        </div>
                     </div>
-
-                    <FooterPage/>
+                    <Ftr/>
                 </div>
             );
         } else {
             return (
-                <div className="container-fluid text-center">
-                    <CircularProgress size={120}/>
+                <div className="container-fluid text-center mt-5">
+                    <CircularProgress size={80}/>
                 </div>
             );
         }

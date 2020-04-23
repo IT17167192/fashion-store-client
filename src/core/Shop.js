@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import Layout from "./Layout";
-import Card from "./Card";
-import FooterPage from "./Footer";
+import Ftr from "./Ftr";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, getProductByFilters} from "./apiCore";
 import FilterCheckbox from "./FilterCheckbox";
+import ShopListCard from "./ShopListCard";
 
 const ShopPage = () => {
 
@@ -122,8 +122,8 @@ const ShopPage = () => {
                                     <div className="row">
                                         {
                                             filteredProducts.map((product, i) => (
-                                                <div key={i} className="col-md-12 col-lg-6 col-xl-6 col-sm-12 mb-3">
-                                                    <Card product={product}/>
+                                                <div className="col-xl-3 col-lg-4 col-md-6 mb-4">
+                                                    <ShopListCard product={product}/>
                                                 </div>
                                             ))
                                         }
@@ -137,7 +137,7 @@ const ShopPage = () => {
                     </div>
                 </div>
 
-                {showViewProducts && showViewCategories ? <FooterPage/> : ''}
+                {showViewProducts && showViewCategories ? <Ftr/> : ''}
             </div>
         );
     }
