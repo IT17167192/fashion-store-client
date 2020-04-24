@@ -54,9 +54,9 @@ const ShopListCard = ({
             const averageRating = Math.ceil(rateSum / votedCount);
             let startArray = [];
             for (let i = 0; i < averageRating; i++)
-                startArray.push(<li className="fa fa-star fa-lg"></li>);
+                startArray.push(<li key={i} className="fa fa-star fa-lg"></li>);
             for(let i = averageRating; i < 5 ; i++)
-                startArray.push(<li className="fa fa-star-o fa-lg"></li>);
+                startArray.push(<li key={i} className="fa fa-star-o fa-lg"></li>);
             return (
                 <ul className="rating">
                     {startArray}
@@ -65,11 +65,11 @@ const ShopListCard = ({
         }else{
             return (
                 <ul className="rating">
-                    <li className="fa fa-star fa-lg"></li>
-                    <li className="fa fa-star-o fa-lg"></li>
-                    <li className="fa fa-star-o fa-lg"></li>
-                    <li className="fa fa-star-o fa-lg"></li>
-                    <li className="fa fa-star-o fa-lg"></li>
+                    <li key={1} className="fa fa-star fa-lg"></li>
+                    <li key={2} className="fa fa-star-o fa-lg"></li>
+                    <li key={3} className="fa fa-star-o fa-lg"></li>
+                    <li key={4} className="fa fa-star-o fa-lg"></li>
+                    <li key={5} className="fa fa-star-o fa-lg"></li>
                 </ul>
             );
         }

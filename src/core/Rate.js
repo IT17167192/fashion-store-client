@@ -4,12 +4,12 @@ import 'react-rater/lib/react-rater.css'
 import {isAuthenticate} from "../auth";
 import {addRating} from "./apiCore";
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
 
 const RateComponent = (props) => {
 
     const [enableRating, setEnableRating] = useState(true);
-
     const getAverageRating = (rating) => {
         if(rating){
             const votedCount = rating.length;
@@ -17,7 +17,6 @@ const RateComponent = (props) => {
             rating.forEach(rate => {
                 rateSum += rate;
             });
-
             return Math.ceil(rateSum / votedCount);
         }
     }
@@ -50,7 +49,10 @@ const RateComponent = (props) => {
     };
 
     return(
-        <Rater total={5} interactive={enableRating} rating={getAverageRating(props.product.rating) ? getAverageRating(props.product.rating) : 1} onRate={onRateClicked}/>
+        <div>
+            <Rater total={5} interactive={enableRating} rating={getAverageRating(props.product.rating) ? getAverageRating(props.product.rating) : 1} onRate={onRateClicked}/>
+            {!enableRating ? <CircularProgress className="ml-4" size={30}/> : ''}
+        </div>
     );
 };
 
