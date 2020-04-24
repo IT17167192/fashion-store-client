@@ -18,6 +18,16 @@ const ShopListCard = ({
 
     const [redirect, setRedirect] = useState(false);
 
+    const showBtn = showViewBtn => {
+        return (
+            showViewBtn && (
+                <Link to={`/product/${product._id}`} className="mr-2">
+                    <button className="btn btn-outline-primary mt-2 mb-2">View Product</button>
+                </Link>
+            )
+        );
+    };
+
     const addToCart = () => {
         const {token, user} = isAuthenticate();
 
@@ -84,6 +94,14 @@ const ShopListCard = ({
             <span className="product-new-label primary-color">In Stock</span>
         ) : (
             <span className="product-new-label warning-color">Out of Stock</span>
+        );
+    };
+
+    const showCartBtn = (quantity) => {
+        return quantity > 0 ? (
+            <li><a href="" onClick={addToCart} className="fa fa-shopping-cart"> </a></li>
+        ) : (
+            ''
         );
     };
 
