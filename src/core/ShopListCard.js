@@ -18,16 +18,6 @@ const ShopListCard = ({
 
     const [redirect, setRedirect] = useState(false);
 
-    const showBtn = showViewBtn => {
-        return (
-            showViewBtn && (
-                <Link to={`/product/${product._id}`} className="mr-2">
-                    <button className="btn btn-outline-primary mt-2 mb-2">View Product</button>
-                </Link>
-            )
-        );
-    };
-
     const addToCart = () => {
         const {token, user} = isAuthenticate();
 
@@ -43,6 +33,37 @@ const ShopListCard = ({
             setRedirect(true);
         })
     };
+
+    const showRating = (rating) => {
+        if(rating.length > 0){
+            const votedCount = rating.length;
+            let rateSum = 0;
+            rating.forEach(rate => {
+                rateSum += rate;
+            });
+            const averageRating = Math.ceil(rateSum / votedCount);
+            let startArray = [];
+            for (let i = 0; i < averageRating; i++)
+                startArray.push(<li className="fa fa-star fa-lg"></li>);
+            for(let i = averageRating; i < 5 ; i++)
+                startArray.push(<li className="fa fa-star-o fa-lg"></li>);
+            return (
+                <ul className="rating">
+                    {startArray}
+                </ul>
+            );
+        }else{
+            return (
+                <ul className="rating">
+                    <li className="fa fa-star fa-lg"></li>
+                    <li className="fa fa-star-o fa-lg"></li>
+                    <li className="fa fa-star-o fa-lg"></li>
+                    <li className="fa fa-star-o fa-lg"></li>
+                    <li className="fa fa-star-o fa-lg"></li>
+                </ul>
+            );
+        }
+    }
 
     const calculateDiscountedPrice = (product) => {
         let price = product.price;
@@ -93,16 +114,9 @@ const ShopListCard = ({
                 <Link to={`/product/${product._id}`} className="mr-2">
                     <span className="title"><a href="javascript : ;">Category: {product.category && product.category.name}</a></span>
                 </Link>
-                <ul className="rating">
-                    <li className="fa fa-star"></li>
-                    <li className="fa fa-star"></li>
-                    <li className="fa fa-star"></li>
-                    <li className="fa fa-star"></li>
-                    <li className="fa fa-star"></li>
-                </ul>
+                {showRating(product.rating)}
                 <div className="price">{product.discount > 0 ? product.currency + ' ' + calculateDiscountedPrice(product) : product.currency + ' ' + parseFloat(product.price).toFixed(2)}
                     <span style={{"color" : "red"}}>{product.discount > 0 ? product.currency + ' ' +  parseFloat(product.price).toFixed(2) : ''}</span>
-                    {console.log(product)}
                 </div>
             </div>
         </div>

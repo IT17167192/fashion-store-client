@@ -10,6 +10,7 @@ import {faMoneyBill} from '@fortawesome/free-solid-svg-icons'
 import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-brands-svg-icons';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {addItemtoWishlist} from "./WishlistHelper";
+import RateComponent from "./Rate";
 
 
 const Product = props => {
@@ -117,6 +118,10 @@ const Product = props => {
                         <h6 className="text-black-50 mt-4">Note: Product colour may slightly vary depending on your
                             monitor settings.</h6>
 
+                        <div className="mt-5">
+                            <h5 className="font-weight-bolder">Rate Now</h5>
+                            <h1><RateComponent product={product}/></h1>
+                        </div>
                         <div>
                             <h5 className="mt-5">Availability</h5>
                             {showStock(product.quantity)}
