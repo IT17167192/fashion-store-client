@@ -42,13 +42,13 @@ const Menu = ({history}) => (
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/cart')}
                           to="/cart">Cart
-                        <sup><small className="cart-badge"> {totalItems()}</small></sup>
+                        <sup><small className="cart-badge badge-warning"> {totalItems()}</small></sup>
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/wishlist')}
                           to="/wishlist">Wishlist
-                        <sup><small className="wishlist-badge"> {totalWishlistItems()}</small></sup>
+                        <sup><small className="wishlist-badge badge-warning"> {totalWishlistItems()}</small></sup>
                     </Link>
                 </li>
             </ul>
