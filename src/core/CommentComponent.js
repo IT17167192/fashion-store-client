@@ -7,6 +7,7 @@ import {addComment} from './apiCore';
 import {confirmAlert} from "react-confirm-alert";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
+import Avatar from 'react-avatar';
 
 const CommentComponent = (props) => {
 
@@ -24,7 +25,9 @@ const CommentComponent = (props) => {
         if (allComments.length > 0) {
             allComments.forEach((comment, index) => {
                 renderData.push(<Comment key={index}>
-                    <Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg'/>
+                    {/*<Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg'/>*/}
+                    <Comment.Avatar src={<Avatar name={comment.user.name} size="35"/>}/>
+                    {/*<Avatar name={comment.user.name} size="40"/>*/}
                     <Comment.Content>
                         <Comment.Author as='a'>{comment.user.name}</Comment.Author>
                         <Comment.Metadata>

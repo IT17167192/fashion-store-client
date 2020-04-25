@@ -21,6 +21,7 @@
     "jquery": "^3.4.1",
     "mdbreact": "^4.25.3",
     "react": "^16.13.0",
+    "react-avatar": "^3.9.3",
     "react-bootstrap": "^1.0.0",
     "react-confirm-alert": "^2.6.1",
     "react-dom": "^16.13.0",
