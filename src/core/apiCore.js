@@ -60,6 +60,20 @@ export const addRating = (userId, token, productId, rating) => {
         .catch(err => console.log(err))
 };
 
+export const addComment = (userId, token, productId, comments) => {
+    return fetch(`${API}/product/addComment/${productId}/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(comments)
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
 export const removeCartItem = (userId, token, products) => {
     return fetch(`${API}/cart/remove/${userId}`, {
         method: "POST",

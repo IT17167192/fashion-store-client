@@ -11,11 +11,14 @@ import {faCcVisa, faCcMastercard, faCcAmex, faCcPaypal} from '@fortawesome/free-
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {addItemtoWishlist} from "./WishlistHelper";
 import RateComponent from "./Rate";
-
+import CommentComponent from "./CommentComponent";
+import Ftr from "./Ftr";
 
 const Product = props => {
 
     const [product, setProduct] = useState({});
+    const [comments, setComments] = useState(null);
+    const [loadingComments, setLoadingComments] = useState(true);
     const [error, setError] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -29,6 +32,8 @@ const Product = props => {
             } else {
                 setLoading(false);
                 setProduct(data);
+                setComments(data.comments);
+                comments ? setLoadingComments(false) : setLoadingComments(false);
             }
         })
     };
@@ -145,8 +150,15 @@ const Product = props => {
                         </div>
                     </div>
                 </div>
+                <div className="row mt-5 mb-5 container-fluid">
+                    <div className="col-lg-12">
+                        {
+                            !loadingComments ? <CommentComponent comments={comments} product={product}/> : ''
+                        }
+                    </div>
+                </div>
             </div>
-
+            <Ftr/>
         </Layout>
     );
 };
