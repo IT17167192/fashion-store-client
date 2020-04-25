@@ -88,7 +88,6 @@ const CommentComponent = (props) => {
     const handleChange = (event) => {
         let value = event.target.value;
         setComment(value);
-        console.log(comment);
     }
 
     return (
