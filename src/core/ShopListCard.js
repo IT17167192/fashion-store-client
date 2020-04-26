@@ -120,7 +120,7 @@ const ShopListCard = ({
                     <li>
                         <a href="javascript : ;" className="fa fa-shopping-bag"></a>
                     </li>
-                    <li><a href=""  onClick={addToCart} className="fa fa-shopping-cart"></a></li>
+                    {showCartBtn(product.quantity)}
                 </ul>
                 {showStock(product.quantity)}
             </div>

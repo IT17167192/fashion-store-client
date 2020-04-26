@@ -77,6 +77,7 @@ const Card = ({
             return <Redirect to="/wishlist"/>
         }
     };
+
     const showAddToWishlistBtn = (wishlistUpdate, quantity) => {
         return !wishlistUpdate && quantity > 0 &&
             <button onClick={addToWishlist} className="btn btn-outline-warning mt-2 mb-2">Add to Wishlist</button>;
