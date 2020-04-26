@@ -24,16 +24,16 @@ const CommentComponent = (props) => {
         let renderData = [];
         if (allComments.length > 0) {
             allComments.forEach((comment, index) => {
-                let userName = '';
-                if(comment.user.name.split(" ").length >= 2){
-                    userName = comment.user.name.split(" ")[0] + ' ' + comment.user.name.split(" ")[1];
-                }else{
-                    userName = comment.user.name.split(" ")[0];
-                }
+                // let userName = '';
+                // if(comment.user.name.split(" ").length >= 2){
+                //     userName = comment.user.name.split(" ")[0] + ' ' + comment.user.name.split(" ")[1];
+                // }else{
+                //     userName = comment.user.name.split(" ")[0];
+                // }
 
                 renderData.push(<Comment key={index}>
                     {/*<Comment.Avatar src='https://react.semantic-ui.com/images/avatar/small/matt.jpg'/>*/}
-                    <Comment.Avatar src={<Avatar name={userName} size="35"/>}/>
+                    <Comment.Avatar src={<Avatar name={comment.user.name} size="35"/>}/>
                     <Comment.Content>
                         <Comment.Author as='a'>{comment.user.name}</Comment.Author>
                         <Comment.Metadata>
