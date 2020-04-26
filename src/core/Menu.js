@@ -17,7 +17,7 @@ const Menu = ({history}) => (
 
     <nav className="navbar navbar-expand-lg navbar-dark rgba-grey-slight mb-2">
         <Link className="navbar-brand text-dark font-weight-bolder" to="/">Fashion Store</Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        <button className="navbar-toggler btn-orange" type="button" data-toggle="collapse" data-target="#basicExampleNav"
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -27,28 +27,28 @@ const Menu = ({history}) => (
                 {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 0 || parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
                     <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, '/user/dashboard')}
-                              to="/user/dashboard">{parseInt(isAuthenticate().user.role) === 0 ? "Dashboard" : "User Dashboard"}</Link>
+                              to="/user/dashboard">{parseInt(isAuthenticate().user.role) === 0 ? "DASHBOARD" : "USER DASHBOARD"}</Link>
                     </li>
                 )}
 
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/')} to="/">Home</Link>
+                    <Link className="nav-link" style={isActive(history, '/')} to="/">HOME</Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Shop Page</Link>
+                    <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">STORE</Link>
                 </li>
 
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/cart')}
-                          to="/cart">Cart
-                        <sup><small className="cart-badge"> {totalItems()}</small></sup>
+                          to="/cart">CART
+                        <sup><small className="cart-badge badge-warning"> {totalItems()}</small></sup>
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/wishlist')}
-                          to="/wishlist">Wishlist
-                        <sup><small className="wishlist-badge"> {totalWishlistItems()}</small></sup>
+                          to="/wishlist">WISHLIST
+                        <sup><small className="wishlist-badge badge-warning"> {totalWishlistItems()}</small></sup>
                     </Link>
                 </li>
             </ul>
@@ -57,16 +57,16 @@ const Menu = ({history}) => (
                 {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
                     <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
-                              to="/admin/dashboard">Admin Dashboard</Link>
+                              to="/admin/dashboard">ADMIN DASHBOARD</Link>
                     </li>
                 )}
                 {!isAuthenticate() && (
                     <Fragment>
                         <li className="nav-item">
-                            <Link className="nav-link" style={isActive(history, '/signin')} to="/signin">Signin</Link>
+                            <Link className="nav-link" style={isActive(history, '/signin')} to="/signin">SIGN IN</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">Signup</Link>
+                            <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">SIGN UP</Link>
                         </li>
                     </Fragment>
                 )}
@@ -77,7 +77,7 @@ const Menu = ({history}) => (
                         <span className="nav-link" style={{cursor: 'pointer', color: '#7a7a7a'}}
                               onClick={() => signout(() => {
                                   history.push('/');
-                              })}>Signout</span>
+                              })}>SIGN OUT</span>
                         </li>
                     </div>
                 )}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
 /*cart nav*/
 .cart-badge, .cart-badge:hover, .wishlist-badge , .wishlist-badge:hover {
     border-radius: 50%;
@@ -7,4 +9,7 @@
     margin-left: 3px;
     font-weight: bold;
     background: white;
+}
+body{
+    font-family: 'Roboto', sans-serif;
 }
