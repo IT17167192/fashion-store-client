@@ -121,7 +121,7 @@ const Product = props => {
                                     <h5 className="text-black-50">{product.description}</h5>
                                 </div>
 
-                                <h6 className="text-black-50 mt-4">Note: Product colour may slightly vary depending on your
+                                <h6 className="text-black-50">Note: Product colour may slightly vary depending on your
                                     monitor settings.</h6>
 
                                 <div className="mt-5">
@@ -129,7 +129,7 @@ const Product = props => {
                                     <h1><RateComponent product={product}/></h1>
                                 </div>
                                 <div>
-                                    <h5 className="mt-5">Availability</h5>
+                                    <h5 className="mt-4">Availability</h5>
                                     {showStock(product.quantity)}
                                 </div>
                                 <div className="row mt-5">
