@@ -40,7 +40,11 @@ const Checkout = ({products}) => {
 
     const showCheckout = () => {
         return isAuthenticate() ? (
-            <div>{showDropIn()}</div>
+            <div>
+                <button className="btn btn-block btn-light" onClick={() => showOnlinePay()}>Online Payment</button>
+                <button className="btn btn-block btn-light">Cash On Delivery</button>
+            </div>
+            // <div>{showDropIn()}</div>
         ) : (
             <Link to="/signin">
                 <button className="btn btn-primary col-sm-12">Sign in to Checkout</button>
@@ -118,11 +122,14 @@ const Checkout = ({products}) => {
         </div>
     );
 
+    const showOnlinePay = () => (
+        <div>
+            {showDropIn()}
+        </div>
+    );
+
     const showSuccess = success => (
-        <div
-            className="alert alert-info"
-            style={{display: success ? "" : "none"}}
-        >
+        <div className="alert alert-info" style={{display: success ? "" : "none"}}>
             Thanks! Your payment was successful!
         </div>
     );
