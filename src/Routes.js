@@ -20,6 +20,7 @@ import AddAdminUser from "./admin/AddAdminUser";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import Wishlist from "./core/Wishlist";
+import Page404 from "./core/Page404";
 
 
 const Routes = () => {
@@ -49,6 +50,7 @@ const Routes = () => {
                     path="/admin/products" exact component={ManageProducts} />
                 <AdminRoute
                     path="/admin/product/update/:productId" exact component={UpdateProduct} />
+                <Route path="" component={Page404} />
             </Switch>
         </BrowserRouter>
     )
