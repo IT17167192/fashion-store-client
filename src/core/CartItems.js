@@ -81,11 +81,11 @@ const CartItems = ({
             <div className="card">
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-sm-2 mr-5">
+                        <div className="col-lg-2 col-sm-12 mr-5">
                             <div className="row">
 
 
-                                <FormControlLabel className="col-sm-1"
+                                <FormControlLabel className="col-lg-1 col-1"
                                     control={
                                         <Checkbox
                                             checked={isChecked}
@@ -98,51 +98,52 @@ const CartItems = ({
                                     }
                                 />
 
-                                <div className="col-sm-5 text-center mt-2">
+                                <div className="col-lg-5 col-10 text-center mt-2">
                                     <ShowCartImage item={product} url="product"/>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="col-sm-9">
-                            <div className="col-sm-12 row">
-                                <div className="col-sm-6">
+                        <div className="col-lg-9 col-sm-12 text-center text-lg-left">
+                            <div className="col-lg-12 row">
+                                <div className="col-lg-6">
                                     <p className="lead mt-2 font-weight-bold"
                                        style={{marginBottom: '0px'}}>{product.name}</p>
                                 </div>
                             </div>
-                            <div className="col-sm-12 row">
-                                <div className="col-sm-6">
+                            <div className="col-lg-12 col-12 row">
+                                <div className="col-lg-6 col-12">
                                     <div className="row">
-                                        <div className="col-sm-12">
+                                        <div className="col-lg-12 col-12">
                                             <p className="mt-4 text-black-50"
                                                style={{marginBottom: '0px'}}>{product.description}</p>
                                         </div>
-                                        <div className="col-sm-12">
+                                        <div className="col-lg-12 col-12">
                                             <p className="text-black-50">Category: {product.category ? product.category.name : 'Other'}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-sm-3">
+                                <div className="col-lg-3 col-4 mt-1">
                                     {showCartUpdate(cartUpdate)}
                                 </div>
-                                <div className="col-sm-3 text-right">
+                                <div className="col-lg-3 col-8 text-right">
                                     <div className="row">
-                                        <div className="col-sm-12">
+                                        <div className="col-lg-12">
                                             <p className="lead font-weight-normal"
                                                style={{fontSize: 22}}>{product.currency}{parseFloat(product.price * count).toFixed(2)}</p>
                                         </div>
-                                        <div className="col-sm-12">
+                                        <div className="col-lg-12">
                                             <p className="lead font-weight-normal text-black-50" style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-12 row">
-                                <div className="col-sm-6">
+                            <br/>
+                            <div className="col-lg-12 col-12 row">
+                                <div className="col-lg-6 col-6">
                                     {showStock(product.quantity)}
                                 </div>
-                                <div className="col-sm-6 text-right">
+                                <div className="col-lg-6 col-6 text-right">
                                     {showRemoveBtn(removeProductCart)}
                                 </div>
                             </div>
