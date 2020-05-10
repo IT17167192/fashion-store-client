@@ -95,7 +95,9 @@ const Signup = () => {
             </div>
         </div>
     );
-
+    //when in the production, change domain name "localhost" to actual domain name
+    // Site key - 6LcZZPUUAAAAAIlxCF98ooQ_SCWA5yOvXwjd1q8S
+    // secret key - 6LcZZPUUAAAAAGk8BYDGhx7-Kf5wyHjzPF49cqad
     const recaptchaLoaded = () => {
         console.log("recaptcha successfully loaded!");
     }
