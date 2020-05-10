@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {getBraintreeClientToken, processPayment, removeCartItem} from "./apiCore";
-import {emptyCart, showSelectedCart} from "./CartHelper";
-import {Link} from "react-router-dom";
-import {isAuthenticate} from "../auth";
-import DropIn from "braintree-web-drop-in-react";
+import React, {useEffect, useState} from 'react';
+import {getBraintreeClientToken, processPayment, removeCartItem} from './apiCore';
+import {emptyCart, showSelectedCart} from './CartHelper';
+import {Link} from 'react-router-dom';
+import {isAuthenticate} from '../auth';
+import DropIn from 'braintree-web-drop-in-react';
 
 const Checkout = ({products}) => {
     const [data, setData] = useState({
@@ -25,34 +25,31 @@ const Checkout = ({products}) => {
             } else {
                 setData({clientToken: data.clientToken});
             }
-        })
+        });
     };
 
     useEffect(() => {
-        getToken(userId, token)
+        getToken(userId, token);
     }, []);
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
             return (nextValue.isChecked ? (parseFloat(currentValue) + parseFloat(nextValue.count) * parseFloat(nextValue.price)).toFixed(2) : (parseFloat(currentValue)).toFixed(2));
-        }, 0)
+        }, 0);
     };
 
     const showCheckout = () => {
         return isAuthenticate() ? (
             <div>
                 <div>
-                {showDropIn()}
-                </div>
-                <div>
-                    <button className="btn btn-block btn-success">Cash On Delivery</button>
+                  {showDropIn()}
                 </div>
             </div>
         ) : (
             <Link to="/signin">
                 <button className="btn btn-primary col-sm-12">Sign in to Checkout</button>
             </Link>
-        )
+        );
     };
 
     const buy = () => {
@@ -92,46 +89,47 @@ const Checkout = ({products}) => {
                         //delete paid products from local storage
                         emptyCart(() => {
                             console.log('payment success and empty cart');
-                            setData({loading: false})
+                            setData({loading: false});
 
                             // in case page does not reload by itself uncomment the below
-                            // window.location.reload();
+                            window.location.reload();
                         });
                     })
                     .catch(error => {
                         console.log(error);
                         setData({loading: false});
-                    })
+                    });
             })
             .catch(error => {
                 // console.log('dropin error: ', error)
-                setData({...data, error: error.message})
-            })
+                setData({...data, error: error.message});
+            });
     };
 
     const showDropIn = () => (
-        <div onBlur={() => setData({...data, error: ""})}>
+        <div onBlur={() => setData({...data, error: ''})}>
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
                     <DropIn options={{
                         authorization: data.clientToken,
                         paypal: {
-                            flow: "vault"
+                            flow: 'vault'
                         }
                     }} onInstance={instance => data.instance = instance} />
-                    <button onClick={buy} className="btn btn-success btn-block">Online Payment</button>
+                    <button onClick={buy} className="btn btn-success btn-block">Pay</button>
+                    <button className="btn btn-block btn-success">Cash On Delivery</button>
                 </div>
             ) : null}
         </div>
     );
 
     const showSuccess = success => (
-        <div className="alert alert-info" style={{display: success ? "" : "none"}}>
+        <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
             Thanks! Your payment was successful!
         </div>
     );
 
-    const showLoading = loading => loading && <h2>Loading...</h2>;
+    const showLoading = loading => loading && <h2>Your payment is processing! Please Wait...</h2>;
 
     return (
         <div>
@@ -157,7 +155,8 @@ const Checkout = ({products}) => {
             {showCheckout()}
 
         </div>
-    )
+
+    );
 };
 
 export default Checkout;
