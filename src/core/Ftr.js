@@ -71,7 +71,7 @@ const Ftr = () => {
                             <p className="mb-2">Subscribe to our newsletter</p>
                             <form className="d-flex justify-content-center justify-content-lg-end">
                                 <div className="form-group w-75">
-                                    <div className="input-group"><input className="form-control" type="text" required=""
+                                    <div className="input-group"><input className="form-control mt-2" type="text" required=""
                                                                         placeholder="Your email"
                                                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                         inputMode="email" />
