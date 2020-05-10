@@ -103,6 +103,7 @@ const Signup = () => {
     const verifyCallback = (response) => {
         if(response){
             setRecaptchaVerified(true);
+            setValues({...values, error: '', success: false})
         }
     }
 
