@@ -1,9 +1,54 @@
-import React from "react";
+import React, {useState} from "react";
 import '../assets/footer_assets/bootstrap/css/bootstrap.min.css';
 import '../assets/footer_assets/fonts/font-awesome.min.css';
 import '../assets/footer_assets/css/styles.css';
+import {confirmAlert} from "react-confirm-alert";
+import {newsletterSignUp} from "../auth";
 
 const Ftr = () => {
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (event) => {
+        let value = event.target.value;
+        console.log(value);
+        setEmail(value);
+    }
+
+    const subscribe = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        console.log(email);
+        if (email) {
+            newsletterSignUp(email).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                }else{
+                    setEmail('');
+                    setLoading(false);
+                    confirmAlert({
+                        title: 'Thank you for subscribing us!',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
+                }
+            });
+        }else{
+            confirmAlert({
+                title: 'Email is required!',
+                buttons: [
+                    {
+                        label: 'OK',
+                    }
+                ]
+            });
+            setLoading(false);
+        }
+    }
+
     return (
         <footer className="bg-dark text-white border-top border-info">
             <div className="container text-center text-sm-left position-relative py-5">
@@ -73,10 +118,12 @@ const Ftr = () => {
                                 <div className="form-group w-75">
                                     <div className="input-group"><input className="form-control mt-2" type="text" required=""
                                                                         placeholder="Your email"
+                                                                        onChange={handleChange}
+                                                                        value={email ? email : ''}
                                                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                         inputMode="email" />
                                         <div className="input-group-append">
-                                            <button className="btn btn-dark" type="submit">Go!</button>
+                                            <button className="btn btn-dark" onClick={subscribe} type="submit">Go!</button>
                                         </div>
                                     </div>
                                 </div>

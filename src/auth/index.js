@@ -26,6 +26,20 @@ export const signin = (data) => {
         .catch(err => console.log(err))
 };
 
+export const newsletterSignUp = (data) => {
+    console.log(data);
+    return fetch(`${API}/newsletterSignUp`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"email" : data})
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
 export const authenticate = (data, next) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem('userToken', JSON.stringify(data));
