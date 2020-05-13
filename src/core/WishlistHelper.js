@@ -7,7 +7,8 @@ export const addItemtoWishlist = (wishlistItem, next) => {
         wishlist.push({
             ...wishlistItem,
             count: 1,
-            isChecked: false
+            isChecked: false,
+            category: null
         });
 
         wishlist = Array.from(new Set(wishlist.map(p => p._id))).map(id => {

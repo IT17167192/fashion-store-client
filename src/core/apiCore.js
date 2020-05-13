@@ -89,7 +89,7 @@ export const removeCartItem = (userId, token, products) => {
 };
 
 export const updateUserWishlist = (userId, token, products) => {
-    return fetch(`${API}/user/${userId}`, {
+    return fetch(`${API}/wishlist/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -103,6 +103,9 @@ export const updateUserWishlist = (userId, token, products) => {
 };
 
 export const removeWishlistItem = (userId, token, products) => {
+
+    console.log(products);
+
     return fetch(`${API}/wishlist/remove/${userId}`, {
         method: "POST",
         headers: {

@@ -5,14 +5,15 @@ import {showWishlist, removeWishlistItem} from "./WishlistHelper";
 import {Link} from 'react-router-dom';
 import Checkout from "./Checkout";
 import {isAuthenticate} from "../auth";
+import CartItems from "./CartItems";
 
 const Wishlist = () => {
     const [wishlistitems, setWishlitItems] = useState([]);
-    const [runWishlist, setRunWishlist] = useState(false);
+    const [run, setRun] = useState(false);
 
     useEffect(() => {
         setWishlitItems(showWishlist());
-    }, [runWishlist]);
+    }, [run]);
 
     const showItems = wishlistitems => {
         return (
@@ -25,8 +26,8 @@ const Wishlist = () => {
                         product={product}
                         wishlistUpdate={true}
                         removeProductWishlist={true}
-                        setRunWishlist={setRunWishlist}
-                        runWishlist={runWishlist}
+                        setRun={setRun}
+                        run={run}
                     />))}
             </div>
         )
