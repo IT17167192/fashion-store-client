@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Layout from "../core/Layout";
 import {signup} from "../auth";
+import Recaptcha from 'react-recaptcha';
 
 const Signup = () => {
 
@@ -12,6 +13,9 @@ const Signup = () => {
         success: false
     });
 
+    const [recaptchaVerfied, setRecaptchaVerified] = useState(false);
+    let [recaptchaKey, setRecaptchaKey] = useState(0);
+
     const {name, email, password, success, error} = values;
 
     const handleChange = name => event => {
@@ -21,15 +25,22 @@ const Signup = () => {
     const clickSubmit = (event) => {
         event.preventDefault();
         setValues({...values, error: false});
+        if(recaptchaVerfied){
+            signup({name, email, password})
+                .then(data => {
+                    if (data.error) {
+                        setValues({...values, error: data.error, success: false});
+                    } else {
+                        const key = ++recaptchaKey;
+                        console.log(recaptchaKey);
+                        setRecaptchaKey(key);
+                        setValues({...values, name: '', email: '', password: '', error: '', success: true});
+                    }
+                });
+        }else{
+            setValues({...values, error: "Please verify ReCaptcha!", success: false})
+        }
 
-        signup({name, email, password})
-            .then(data => {
-                if (data.error) {
-                    setValues({...values, error: data.error, success: false})
-                } else {
-                    setValues({...values, name: '', email: '', password: '', error: '', success: true})
-                }
-            })
     };
 
     const showError = () => (
@@ -66,6 +77,16 @@ const Signup = () => {
                             <input type="password" onChange={handleChange('password')} className="form-control"
                                    value={password}/>
                         </div>
+
+                        <Recaptcha
+                            key={recaptchaKey}
+                            sitekey="6LcZZPUUAAAAAIlxCF98ooQ_SCWA5yOvXwjd1q8S"
+                            render="explicit"
+                            verifyCallback={verifyCallback}
+                            onloadCallback={recaptchaLoaded()}
+                        />
+
+                        <br/>
                         {showSuccess()}
                         {showError()}
                         <button className="btn btn-primary w-100" onClick={clickSubmit}>Register</button>
@@ -74,6 +95,19 @@ const Signup = () => {
             </div>
         </div>
     );
+    //when in the production, change domain name "localhost" to actual domain name
+    // Site key - 6LcZZPUUAAAAAIlxCF98ooQ_SCWA5yOvXwjd1q8S
+    // secret key - 6LcZZPUUAAAAAGk8BYDGhx7-Kf5wyHjzPF49cqad
+    const recaptchaLoaded = () => {
+        console.log("recaptcha successfully loaded!");
+    }
+
+    const verifyCallback = (response) => {
+        if(response){
+            setRecaptchaVerified(true);
+            setValues({...values, error: '', success: false})
+        }
+    }
 
     return (
         <div>
