@@ -6,7 +6,7 @@ const ShowSingleImage = ({item, url}) => (
         <img
             src={`${API}/${url}/image/${item._id}`}
             className="mb-3"
-            style={{height: "500px", width: "500px"}}
+            style={{height: "350px", width: "350px"}}
         />
     </div>
 );

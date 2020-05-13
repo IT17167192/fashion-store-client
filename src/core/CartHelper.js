@@ -7,14 +7,18 @@ export const addItem = (item, next) => {
         cart.push({
             ...item,
             count: 1,
-            isChecked: false
+            isChecked: false,
+            image: null,
+            category: null
         });
 
         cart = Array.from(new Set(cart.map(p => p._id))).map(id => {
             return cart.find(p => p._id === id)
         });
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        if (cart.length !== 0) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
         next();
     }
 };
