@@ -4,6 +4,7 @@ import '../assets/footer_assets/fonts/font-awesome.min.css';
 import '../assets/footer_assets/css/styles.css';
 import {confirmAlert} from "react-confirm-alert";
 import {newsletterSignUp} from "../auth";
+import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
 
 const Ftr = () => {
     const [email, setEmail] = useState('');
@@ -123,7 +124,7 @@ const Ftr = () => {
                                                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                         inputMode="email" />
                                         <div className="input-group-append">
-                                            <button className="btn btn-dark" onClick={subscribe} type="submit">Go!</button>
+                                            <button className="btn btn-dark" onClick={subscribe} type="submit">{loading ? <CircularProgress size={20} /> : 'Go!'}</button>
                                         </div>
                                     </div>
                                 </div>
