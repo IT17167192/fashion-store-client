@@ -124,7 +124,7 @@ const Ftr = () => {
                                                                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                         inputMode="email" />
                                         <div className="input-group-append">
-                                            <button className="btn btn-dark" onClick={subscribe} type="submit">{loading ? <CircularProgress size={20} /> : 'Go!'}</button>
+                                            <button className="btn btn-dark" onClick={subscribe} type="submit">{loading ? <CircularProgress size={15} /> : 'Go!'}</button>
                                         </div>
                                     </div>
                                 </div>
