@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import { Link } from "react-router-dom";
+import Ftr from "../core/Ftr";
 
 const AdminDashboard = () => {
 
@@ -63,12 +64,15 @@ const AdminDashboard = () => {
 
 
     return (
-        <Layout title="Dashboard" description={`Welcome back ${name}!`} className="container-fluid">
-            <div className="row">
-                {adminLinks()}
-                {adminInfo()}
-            </div>
-        </Layout>
+        <div>
+            <Layout title="Dashboard" description={`Welcome back ${name}!`} className="container-fluid">
+                <div className="row">
+                    {adminLinks()}
+                    {adminInfo()}
+                </div>
+            </Layout>
+            <Ftr/>
+        </div>
     );
 };
 
