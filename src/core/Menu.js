@@ -70,7 +70,7 @@ const Menu = ({history}) => (
                                style={{cursor: 'pointer', color: '#7a7a7a'}}
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <FontAwesomeIcon size={"lg"} icon={faUserCircle}/>
-                                Sign in | Join
+                                {'  '} Sign in | Join
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <Fragment>
@@ -103,7 +103,7 @@ const Menu = ({history}) => (
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
                                     <div>
-                                        <span className="dropdown-item">
+                                        <span className="dropdown-item" style={{cursor: 'pointer', color: '#7a7a7a'}}>
                                             <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
                                                   to="/admin/dashboard"><FontAwesomeIcon size={"lg"} icon={faUsersCog}/>
                                                   {' '} Admin Panel</Link>
