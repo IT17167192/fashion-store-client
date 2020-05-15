@@ -4,7 +4,14 @@ import {signout, isAuthenticate} from "../auth";
 import {totalItems} from "./CartHelper";
 import{totalWishlistItems} from "./WishlistHelper";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import {
+    faShoppingCart,
+    faUserCircle,
+    faSignOutAlt,
+    faUsersCog,
+    faSignInAlt,
+    faUserPlus
+} from '@fortawesome/free-solid-svg-icons'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -28,58 +35,87 @@ const Menu = ({history}) => (
                 {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 0 || parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
                     <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, '/user/dashboard')}
-                              to="/user/dashboard">{parseInt(isAuthenticate().user.role) === 0 ? "DASHBOARD" : "USER DASHBOARD"}</Link>
+                              to="/user/dashboard">Dashboard</Link>
                     </li>
                 )}
 
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/')} to="/">HOME</Link>
+                    <Link className="nav-link" style={isActive(history, '/')} to="/">Home</Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">STORE</Link>
+                    <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Store</Link>
                 </li>
 
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/wishlist')}
-                          to="/wishlist">WISHLIST
+                          to="/wishlist">Wishlist
                         <sup><small className="wishlist-badge badge-warning"> {totalWishlistItems()}</small></sup>
                     </Link>
                 </li>
             </ul>
 
             <ul className="navbar-nav">
-                <li className="nav-item mr-5">
+                <li className="nav-item mr-1">
                     <Link className="nav-link" style={isActive(history, '/cart')}
-                          to="/cart"><FontAwesomeIcon className="mr-1" size={"lg"} icon={faShoppingCart}/>
+                          to="/cart"><FontAwesomeIcon size={"lg"} icon={faShoppingCart}/>
                         <sup><small className="cart-badge badge-warning"> {totalItems()}</small></sup>
                     </Link>
                 </li>
 
-                {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
-                    <li className="nav-item">
-                        <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
-                              to="/admin/dashboard">ADMIN DASHBOARD</Link>
-                    </li>
-                )}
                 {!isAuthenticate() && (
-                    <Fragment>
-                        <li className="nav-item">
-                            <Link className="nav-link" style={isActive(history, '/signin')} to="/signin">SIGN IN</Link>
+                    <div className="mr-3">
+                        <li className="nav-item dropdown" style={{cursor: 'pointer', color: '#7a7a7a'}}>
+                            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                               style={{cursor: 'pointer', color: '#7a7a7a'}}
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <FontAwesomeIcon size={"lg"} icon={faUserCircle}/>
+                                Sign in | Join
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <Fragment>
+                                    <li className="dropdown-item">
+                                        <Link className="nav-link" style={isActive(history, '/signin')} to="/signin">
+                                            <FontAwesomeIcon size={"lg"} icon={faSignInAlt}/> {'  '} Sign in
+                                        </Link>
+                                    </li>
+                                    <li className="dropdown-item">
+                                        <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">
+                                            <FontAwesomeIcon size={"lg"} icon={faUserPlus}/> {'  '} Sign up
+                                        </Link>
+                                    </li>
+                                </Fragment>
+                            </div>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">SIGN UP</Link>
-                        </li>
-                    </Fragment>
+                    </div>
                 )}
 
+
                 {isAuthenticate() && (
-                    <div>
-                        <li className="nav-item">
-                        <span className="nav-link" style={{cursor: 'pointer', color: '#7a7a7a'}}
-                              onClick={() => signout(() => {
-                                  history.push('/');
-                              })}>SIGN OUT</span>
+                    <div className="mr-3">
+                        <li className="nav-item dropdown" style={{cursor: 'pointer', color: '#7a7a7a'}}>
+                            <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                               style={{cursor: 'pointer', color: '#7a7a7a'}}
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <FontAwesomeIcon size={"lg"} icon={faUserCircle}/>
+                                {' '} Hi! {isAuthenticate().user.name}
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                {isAuthenticate() && (parseInt(isAuthenticate().user.role) === 1 || parseInt(isAuthenticate().user.role) === 2) && (
+                                    <div>
+                                        <span className="dropdown-item">
+                                            <Link className="nav-link" style={isActive(history, '/admin/dashboard')}
+                                                  to="/admin/dashboard"><FontAwesomeIcon size={"lg"} icon={faUsersCog}/>
+                                                  {' '} Admin Panel</Link>
+                                        </span>
+                                        <div className="dropdown-divider"></div>
+                                    </div>
+                                )}
+                                <span className="dropdown-item" style={{cursor: 'pointer', color: '#7a7a7a'}}
+                                      onClick={() => signout(() => {
+                                          history.push('/');
+                                      })}> <FontAwesomeIcon size={"sm"} icon={faSignOutAlt}/> {' '} Sign out</span>
+                            </div>
                         </li>
                     </div>
                 )}
