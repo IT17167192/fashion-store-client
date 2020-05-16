@@ -6,7 +6,7 @@ import {confirmAlert} from "react-confirm-alert";
 import {newsletterSignUp} from "../auth";
 import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
 
-const Ftr = () => {
+const FtrMin = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -51,51 +51,8 @@ const Ftr = () => {
     }
 
     return (
-        <footer className="bg-dark text-white border-top border-info">
-            <div className="container text-center text-sm-left position-relative py-5">
-                <div className="row">
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                        </ul>
-                    </div>
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                        </ul>
-                    </div>
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                        </ul>
-                    </div>
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="text-center position-absolute w-100 mt-4"><a href="#top"><span
-                    className="fa-stack fa-lg"><i className="fa fa-circle fa-stack-2x text-dark"></i><i
-                    className="fa fa-angle-up fa-stack-1x text-white"></i></span></a></div>
-            </div>
-            <div className="pt-5 pb-4 bg-info text-dark">
+        <footer className="bg-dark text-white border-top border-info mt-5">
+            <div className="pt-5 pb-4 bg-light text-dark">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
@@ -152,4 +109,4 @@ const Ftr = () => {
     );
 }
 
-export default Ftr;
+export default FtrMin;

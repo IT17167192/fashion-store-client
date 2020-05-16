@@ -16,6 +16,7 @@ export const getImage = (productId) => {
         .catch(err => console.log(err))
 };
 
+//function to get product details from db
 export const getProduct = (productId) => {
     return fetch(`${API}/product/${productId}`, {
         method: "GET",
@@ -32,6 +33,34 @@ export const getAllCategories = () => {
         .catch(err => console.log(err))
 };
 
+export const getAddress = (userId, token) => {
+    return fetch(`${API}/address/${userId}`, {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+export const updateAddress = (userId, token, address) => {
+    return fetch(`${API}/user/${userId}`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(address)
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+//method to add cart items to db
 export const updateUserCart = (userId, token, products) => {
     return fetch(`${API}/user/${userId}`, {
         method: "PUT",
@@ -74,6 +103,7 @@ export const addComment = (userId, token, productId, comments) => {
         .catch(err => console.log(err))
 };
 
+//method to remove item from db
 export const removeCartItem = (userId, token, products) => {
     return fetch(`${API}/cart/remove/${userId}`, {
         method: "POST",
@@ -103,9 +133,6 @@ export const updateUserWishlist = (userId, token, products) => {
 };
 
 export const removeWishlistItem = (userId, token, products) => {
-
-    console.log(products);
-
     return fetch(`${API}/wishlist/remove/${userId}`, {
         method: "POST",
         headers: {

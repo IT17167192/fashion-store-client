@@ -24,14 +24,15 @@ const Product = props => {
     const [loading, setLoading] = useState(true);
     const [redirectWish, setRedirectWish] = useState(false);
 
-
+    //function to get product details
     const singleProduct = productId => {
+        //get details from db
         getProduct(productId).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
-                setLoading(false);
-                setProduct(data);
+                setLoading(false);  //disable loader
+                setProduct(data);   //set products
                 setComments(data.comments);
                 comments ? setLoadingComments(false) : setLoadingComments(false);
             }
@@ -39,26 +40,29 @@ const Product = props => {
     };
 
     useEffect(() => {
-        const productId = props.match.params.productId;
-        singleProduct(productId);
+        const productId = props.match.params.productId; //get product id from param
+        singleProduct(productId);   //get product details
     }, []);
 
+    //function to add item to cart list
     const addToCart = () => {
         const {token, user} = isAuthenticate();
 
         if (user != null) {
+            //add cart item to db
             updateUserCart(user._id, token, {product}).then(data => {
                 if (data.error) {
                     console.log(data.error);
                 }
             });
         }
-
+        //add cart item to local storage
         addItem(product, () => {
             setRedirect(true);
         })
     };
 
+    //redirect to cart after adding item to the cart
     const makeCartRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart"/>
@@ -88,16 +92,18 @@ const Product = props => {
     };
 
 
+    //check whether product have stocks
     const showStock = (quantity) => {
-        return quantity > 0 ? (
+        return quantity > 0 ? ( //if quantity more than 0
             <span className="badge badge-primary badge-pill">In Stock</span>
         ) : (
             <span className="badge badge-warning badge-pill">Out of Stock</span>
         );
     };
 
+    //show add to cart btn
     const showAddToCartBtn = (quantity) => {
-        return quantity > 0 &&
+        return quantity > 0 &&  //show only product have stock
             <button onClick={addToCart} className="btn bg-dark text-white mt-2 mb-2" style={{width: 156}}>Add to
                 Cart</button>;
     };

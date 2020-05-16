@@ -5,20 +5,23 @@ import {showCart, removeItem} from "./CartHelper";
 import {Link} from 'react-router-dom';
 import Checkout from "./Checkout";
 import {isAuthenticate} from "../auth";
+import FtrMin from "./FtrMin";
 
 const Cart = () => {
-    const [items, setItems] = useState([]);
-    const [run, setRun] = useState(false);
+    const [items, setItems] = useState([]); //cart items
+    const [run, setRun] = useState(false);  //inform parent that local storage have changed
 
     useEffect(() => {
-        setItems(showCart());
-    }, [run]);
+        setItems(showCart());   //get cart items
+    }, [run]);  //get cart items when only run state changed
 
     const showItems = items => {
         return (
             <div>
+                {/*get item length*/}
                 <h3>Your cart have {`${items.length}`} items</h3>
                 <hr/>
+                {/*loop through cart items to show items*/}
                 {items.map((product, i) => (
                     <CartItems
                         key={i}
@@ -77,26 +80,28 @@ const Cart = () => {
     );
 
     return (
-        <Layout title="Shopping Cart" description="Manage Cart Items" className="container-fluid">
+        <div>
+            <Layout title="Shopping Cart" description="Manage Cart Items" className="container-fluid">
 
-            <div className="container my-auto">
-                <div className="row justify-content-center align-items-center text-center">
-                    {items.length > 0 ? '' : showNoItemsSign()}
-                </div>
-            </div>
-
-
-            <div className="row">
-                <div className="col-sm-7">
-                    {items.length > 0 ? showItems(items) : ''}
+                <div className="container my-auto">
+                    <div className="row justify-content-center align-items-center text-center">
+                        {items.length > 0 ? '' : showNoItemsSign()}
+                    </div>
                 </div>
 
-                <div className="col-sm-4 ml-auto mr-auto my-5">
-                    {items.length > 0 ? showSummary(items) : ''}
-                </div>
-            </div>
 
-        </Layout>
+                <div className="row ml-4">
+                    <div className="col-sm-7">
+                        {items.length > 0 ? showItems(items) : ''}
+                    </div>
+
+                    <div className="col-sm-4 ml-auto mr-auto my-5">
+                        {items.length > 0 ? showSummary(items) : ''}
+                    </div>
+                </div>
+            </Layout>
+            <FtrMin/>
+        </div>
     );
 };
 

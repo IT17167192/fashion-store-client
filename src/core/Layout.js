@@ -1,5 +1,4 @@
 import React from "react";
-import '../StyleMain.css'
 
 const Layout = ({
                     title = 'Title',
@@ -8,9 +7,9 @@ const Layout = ({
                     children
                 }) => (
     <div>
-        <div className="jumbotron">
-            <h2>{title}</h2>
-            <p className="lead">{description}</p>
+        <div className="card mb-5 p-4 bg-light">
+            <h2 className="ml-2">{title}</h2>
+            <p className="lead ml-2">{description}</p>
         </div>
         <div className={className}>{children}</div>
     </div>
