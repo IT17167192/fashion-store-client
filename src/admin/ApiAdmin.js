@@ -54,7 +54,7 @@ export const getAllProducts = () => {
 
 //Get Single Product
 export const getSingleProduct = (productId) => {
-    return fetch(`${API}/products/${productId}`, {
+    return fetch(`${API}/product/${productId}`, {
         method: 'GET'
     })
         .then(response => response.json())
