@@ -289,7 +289,7 @@ const UpdateProduct = ({match}) => {
     );
 
     return (
-        <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
+        <Layout title="Update product" description={`Welcome back ${user.name}, Update a  product now!`}
                 className="container-fluid">
             {newUpdatePostForm()}
             <hr/>

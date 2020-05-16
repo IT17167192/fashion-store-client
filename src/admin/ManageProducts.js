@@ -30,7 +30,7 @@ const ManageProducts = () => {
     };
 
     const remove = productId =>{
-        deleteSingleProduct(productId, user.id, token). then(data => {
+        deleteSingleProduct(productId, user._id, token). then(data => {
             if(data.error){
                 console.log(data.error)
             } else {
@@ -59,7 +59,7 @@ return (
                                 </span>
                             </Link>
 
-                            <span onClick={() => remove(product.id)} className="badge badge-danger badge-pill">
+                            <span onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
                                     Delete Product
                                 </span>
 
