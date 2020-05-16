@@ -99,12 +99,12 @@ const Ftr = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <h2 className="mb-3"><i className="fa fa-diamond"></i>&nbsp;Company</h2>
+                            <h2 className="mb-3"><i className="fa fa-diamond"></i>&nbsp;Quarantine Fashion Store</h2>
                             <p className="mb-1"><i className="fa fa-map-marker fa-fw"></i>&nbsp;Royal Road - Tamarin -
                                 Mauritius</p>
-                            <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+230 12 34 56 78</p>
+                            <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+94 75 5172 666</p>
                             <p className="mb-1"><i className="fa fa-envelope fa-fw"></i>&nbsp;<a className="text-dark"
-                                                                                                 href="mailto:contact@company.com">contact@company.com</a>
+                                                                                                 href="mailto:contact@company.com">quarantinefashionstore@google.com</a>
                             </p>
                         </div>
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
@@ -145,7 +145,7 @@ const Ftr = () => {
             </div>
             <div className="text-center text-lg-left py-2 small bg-dark text-info font-italic">
                 <div className="container">
-                    <p className="m-0">© 2020 Company ~ All rights reserved</p>
+                    <p className="m-0">© 2020 Quarantine Fashion Store ~ All rights reserved</p>
                 </div>
             </div>
         </footer>
