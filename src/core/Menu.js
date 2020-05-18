@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
 import {totalItems} from "./CartHelper";
-import{totalWishlistItems} from "./WishlistHelper";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faShoppingCart,
@@ -10,7 +9,8 @@ import {
     faSignOutAlt,
     faUsersCog,
     faSignInAlt,
-    faUserPlus
+    faUserPlus,
+    faHeart
 } from '@fortawesome/free-solid-svg-icons'
 
 const isActive = (history, path) => {
@@ -46,20 +46,18 @@ const Menu = ({history}) => (
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Store</Link>
                 </li>
-
-                <li className="nav-item">
-                    <Link className="nav-link" style={isActive(history, '/wishlist')}
-                          to="/wishlist">Wishlist
-                        <sup><small className="wishlist-badge badge-warning"> {totalWishlistItems()}</small></sup>
-                    </Link>
-                </li>
             </ul>
 
             <ul className="navbar-nav">
-                <li className="nav-item mr-1">
+                <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/cart')}
                           to="/cart"><FontAwesomeIcon size={"lg"} icon={faShoppingCart}/>
                         <sup><small className="cart-badge badge-warning"> {totalItems()}</small></sup>
+                    </Link>
+                </li>
+                <li className="nav-item mr-5">
+                    <Link className="nav-link" style={isActive(history, '/wishlist')}
+                          to="/wishlist"><FontAwesomeIcon size={"lg"} icon={faHeart}/>
                     </Link>
                 </li>
 

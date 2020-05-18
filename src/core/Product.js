@@ -108,9 +108,18 @@ const Product = props => {
                 Cart</button>;
     };
 
+    //show wish list btn
+    const showWishListBtn = () => {
+        return isAuthenticate() ? (
+            <button onClick={addToWishlist}
+                    className="btn btn-orange text-white mt-2 mb-2">Add to Wish List
+            </button>
+        ) : ''
+    };
+
     const calculateDiscountedPrice = (product) => {
         let price = product.price;
-        if(product.currency === '$'){
+        if (product.currency === '$') {
             price = product.price * 180;
         }
         return product.currency === '$' ? parseFloat((price - ((price * product.discount) / 100)) / 180).toFixed(2) : parseFloat(price - ((price * product.discount) / 100)).toFixed(2);
@@ -131,7 +140,8 @@ const Product = props => {
 
                                 <div className="row pl-3">
                                     <h3 className="red-text mt-3 mr-3 font-weight-bolder">{product.currency} {calculateDiscountedPrice(product)}</h3>
-                                    <h3 style={{textDecoration: 'line-through'}} className="text-black-50 mt-3 mr-3 font-weight-bolder">{product.discount > 0 ? product.currency + ' ' + parseFloat(product.price).toFixed(2) : ''}</h3>
+                                    <h3 style={{textDecoration: 'line-through'}}
+                                        className="text-black-50 mt-3 mr-3 font-weight-bolder">{product.discount > 0 ? product.currency + ' ' + parseFloat(product.price).toFixed(2) : ''}</h3>
                                 </div>
 
                                 <div className="mt-5">
@@ -152,9 +162,7 @@ const Product = props => {
                                 </div>
                                 <div className="row mt-5">
                                     {showAddToCartBtn(product.quantity)}
-                                    <button onClick={addToWishlist}
-                                            className="btn btn-orange text-white mt-2 mb-2">Add to Wish List
-                                    </button>
+                                    {showWishListBtn()}
                                 </div>
 
                                 <div className="row mt-3">

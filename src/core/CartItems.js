@@ -5,6 +5,7 @@ import {removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import {Link} from "react-router-dom";
 
 const CartItems = ({
                        product,
@@ -92,29 +93,31 @@ const CartItems = ({
                             <div className="row">
 
                                 <FormControlLabel className="col-lg-1 col-1"
-                                    control={
-                                        <Checkbox
-                                            checked={isChecked}
-                                            onChange={selectItem(product._id)}
-                                            name="checkedB"
-                                            style ={{
-                                                color: "#ff9408",
-                                            }}
-                                        />
-                                    }
+                                                  control={
+                                                      <Checkbox
+                                                          checked={isChecked}
+                                                          onChange={selectItem(product._id)}
+                                                          name="checkedB"
+                                                          style={{
+                                                              color: "#ff9408",
+                                                          }}
+                                                      />
+                                                  }
                                 />
 
                                 <div className="col-lg-9 col-10 text-center mt-2">
-                                    <ShowCartImage item={product} url="product"/>
+                                    <Link to={`/product/${product._id}`}>
+                                        <ShowCartImage item={product} url="product"/>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
 
                         <div className="col-lg-9 col-sm-12 text-center text-lg-left">
                             <div className="col-lg-12 row">
-                                <div className="col-lg-6">
-                                    <p className="lead mt-2 font-weight-bold"
-                                       style={{marginBottom: '0px'}}>{product.name}</p>
+                                <div className="col-lg-6 mt-3">
+                                    <Link className="lead mt-2 font-weight-bold text-dark"
+                                          to={`/product/${product._id}`}>{product.name}</Link>
                                 </div>
                             </div>
                             <div className="col-lg-12 col-12 row">
@@ -139,7 +142,8 @@ const CartItems = ({
                                                style={{fontSize: 22}}>{product.currency} {parseFloat(product.price * count).toFixed(2)}</p>
                                         </div>
                                         <div className="col-lg-12">
-                                            <p className="lead font-weight-normal text-black-50" style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
+                                            <p className="lead font-weight-normal text-black-50"
+                                               style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </div>
