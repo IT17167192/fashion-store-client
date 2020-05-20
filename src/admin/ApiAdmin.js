@@ -41,7 +41,7 @@ export const addAdminUser = (userId, token, data) => {
         .catch(err => console.log(err))
 };
 
-//Perform Create Read Update Delete for Products
+//Perform Update Delete for Products
 
 //Get all products
 export const getAllProducts = () => {
@@ -80,6 +80,56 @@ export const updateSingleProduct = (productId, userId, token, product) => {
 // Delete single product
 export const deleteSingleProduct = (productId, userId, token) => {
     return fetch(`${API}/product/${productId}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+//Perform Update Delete for Categories
+
+//Get all categories
+export const getAllCategories = () => {
+    return fetch(`${API}/categories`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+//Get Single Category
+export const getSingleCategory = (categoryId) => {
+    return fetch(`${API}/category/${categoryId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+
+// Update single Category
+export const updateSingleCategory = (categoryId, userId, token, category) => {
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
+        },
+        body: category
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+// Delete single category
+export const deleteSingleCategory = (categoryId, userId, token) => {
+    return fetch(`${API}/category/${categoryId}/${userId}`, {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',

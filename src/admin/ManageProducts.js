@@ -42,7 +42,7 @@ const ManageProducts = () => {
         fetchProducts();
     }, []);
 return (
-    <Layout title="Manage Products" description="Perform Create Read Update Delete functions on Products">
+    <Layout title="Manage Products" description="Update and delete Products">
         <h2 className="mb-4">Manage Products</h2>
         <div className="row">
             <div className="col-12">
@@ -54,14 +54,14 @@ return (
                             className="list-group-item d-flex justify-content-between align-items-center">
                             <strong>{product.name}</strong>
                             <Link to={`/admin/product/update/${product._id}`}>
-                                <span className="badge badge-warning badge-pill "  >
+                                <button className="badge badge-warning badge-pill "  >
                                     Update Product
-                                </span>
+                                </button>
                             </Link>
 
-                            <span onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
+                            <button onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
                                     Delete Product
-                                </span>
+                                </button>
 
                         </li>
 
