@@ -24,14 +24,15 @@ const Product = props => {
     const [loading, setLoading] = useState(true);
     const [redirectWish, setRedirectWish] = useState(false);
 
-
+    //function to get product details
     const singleProduct = productId => {
+        //get details from db
         getProduct(productId).then(data => {
             if (data.error) {
                 setError(data.error);
             } else {
-                setLoading(false);
-                setProduct(data);
+                setLoading(false);  //disable loader
+                setProduct(data);   //set products
                 setComments(data.comments);
                 comments ? setLoadingComments(false) : setLoadingComments(false);
             }
@@ -39,26 +40,29 @@ const Product = props => {
     };
 
     useEffect(() => {
-        const productId = props.match.params.productId;
-        singleProduct(productId);
+        const productId = props.match.params.productId; //get product id from param
+        singleProduct(productId);   //get product details
     }, []);
 
+    //function to add item to cart list
     const addToCart = () => {
         const {token, user} = isAuthenticate();
 
         if (user != null) {
+            //add cart item to db
             updateUserCart(user._id, token, {product}).then(data => {
                 if (data.error) {
                     console.log(data.error);
                 }
             });
         }
-
+        //add cart item to local storage
         addItem(product, () => {
             setRedirect(true);
         })
     };
 
+    //redirect to cart after adding item to the cart
     const makeCartRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart"/>
@@ -88,23 +92,34 @@ const Product = props => {
     };
 
 
+    //check whether product have stocks
     const showStock = (quantity) => {
-        return quantity > 0 ? (
+        return quantity > 0 ? ( //if quantity more than 0
             <span className="badge badge-primary badge-pill">In Stock</span>
         ) : (
             <span className="badge badge-warning badge-pill">Out of Stock</span>
         );
     };
 
+    //show add to cart btn
     const showAddToCartBtn = (quantity) => {
-        return quantity > 0 &&
+        return quantity > 0 &&  //show only product have stock
             <button onClick={addToCart} className="btn bg-dark text-white mt-2 mb-2" style={{width: 156}}>Add to
                 Cart</button>;
     };
 
+    //show wish list btn
+    const showWishListBtn = () => {
+        return isAuthenticate() ? (
+            <button onClick={addToWishlist}
+                    className="btn btn-orange text-white mt-2 mb-2">Add to Wish List
+            </button>
+        ) : ''
+    };
+
     const calculateDiscountedPrice = (product) => {
         let price = product.price;
-        if(product.currency === '$'){
+        if (product.currency === '$') {
             price = product.price * 180;
         }
         return product.currency === '$' ? parseFloat((price - ((price * product.discount) / 100)) / 180).toFixed(2) : parseFloat(price - ((price * product.discount) / 100)).toFixed(2);
@@ -125,7 +140,8 @@ const Product = props => {
 
                                 <div className="row pl-3">
                                     <h3 className="red-text mt-3 mr-3 font-weight-bolder">{product.currency} {calculateDiscountedPrice(product)}</h3>
-                                    <h3 style={{textDecoration: 'line-through'}} className="text-black-50 mt-3 mr-3 font-weight-bolder">{product.discount > 0 ? product.currency + ' ' + parseFloat(product.price).toFixed(2) : ''}</h3>
+                                    <h3 style={{textDecoration: 'line-through'}}
+                                        className="text-black-50 mt-3 mr-3 font-weight-bolder">{product.discount > 0 ? product.currency + ' ' + parseFloat(product.price).toFixed(2) : ''}</h3>
                                 </div>
 
                                 <div className="mt-5">
@@ -146,9 +162,7 @@ const Product = props => {
                                 </div>
                                 <div className="row mt-5">
                                     {showAddToCartBtn(product.quantity)}
-                                    <button onClick={addToWishlist}
-                                            className="btn btn-orange text-white mt-2 mb-2">Add to Wish List
-                                    </button>
+                                    {showWishListBtn()}
                                 </div>
 
                                 <div className="row mt-3">

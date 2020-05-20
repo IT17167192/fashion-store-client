@@ -21,19 +21,20 @@ const Signin = () => {
         errorP: ''
     });
 
-    const [items, setItems] = useState([]);
-
-    const {product, errorP} = productId;
+    const [items, setItems] = useState([]); //state for cart items
     const {email, password, loading, error, redirect} = values;
     const {user} = isAuthenticate();
 
+
     useEffect(() => {
+        //set cart items to state
         setItems(showCart());
     }, []);
 
+    //function to add db items to local storage
     const addToCart = (product) => {
         addItem(product, () => {
-            return <Redirect to="/cart"/>;
+            return <Redirect to="/cart"/>;  //redirect to cart
         })
     };
 
@@ -44,8 +45,9 @@ const Signin = () => {
 
     //method to set cart items to db
     const setProduct = (product) => {
-        const {token, user} = isAuthenticate();
+        const {token, user} = isAuthenticate(); //get logged user details
 
+        //set items in the local storage to database
         updateUserCart(user._id, token, {product}).then(data => {
             if (data.error) {
                 console.log(data.error);
@@ -53,8 +55,11 @@ const Signin = () => {
         })
     };
 
+    //function to set db products to local storage
     const setDbProductsToCart = () => {
         const {token, user} = isAuthenticate();
+
+        //get cart items from db
         read(user._id, token).then(data => {
             if (data.error) {
             } else {

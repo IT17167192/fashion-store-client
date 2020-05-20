@@ -21,6 +21,7 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import Wishlist from "./core/Wishlist";
 import Page404 from "./core/Page404";
+import CashOnDelivery from "./core/CashOnDelivery";
 
 
 const Routes = () => {
@@ -45,6 +46,7 @@ const Routes = () => {
                     path="/create/user" exact component={AddAdminUser} />
                 <Route path="/cart" exact component={Cart} />
                 <Route path="/wishlist" exact component={Wishlist} />
+                <Route path="/cod" exact component={CashOnDelivery} />
                 <PrivateRoute path="/profile/:userId" exact component={Profile} />
                 <AdminRoute
                     path="/admin/products" exact component={ManageProducts} />

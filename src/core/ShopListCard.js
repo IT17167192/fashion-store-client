@@ -2,21 +2,23 @@ import React, {useState} from "react";
 import {Link, Redirect} from 'react-router-dom';
 import ShopListImage from "./ShopListImage";
 import {addItem, updateItem} from "./CartHelper";
-import {updateUserCart} from "./apiCore";
+import {updateUserCart, updateUserWishlist} from "./apiCore";
 import {isAuthenticate} from "../auth";
 import '../assets/shop_card_assets/bootstrap/css/bootstrap.min.css';
 import '../assets/shop_card_assets/css/Roboto.css';
 import '../assets/shop_card_assets/fonts/font-awesome.min.css';
 import '../assets/shop_card_assets/css/Shopping-Grid.css';
 import '../assets/shop_card_assets/css/styles.css';
+import {addItemtoWishlist} from "./WishlistHelper";
 
 const ShopListCard = ({
-                        product,
-                        showViewBtn = true,
-                        cartUpdate = false
-                    }) => {
+                          product,
+                          showViewBtn = true,
+                          cartUpdate = false
+                      }) => {
 
     const [redirect, setRedirect] = useState(false);
+    const [redirectWish, setRedirectWish] = useState(false);
 
     const showBtn = showViewBtn => {
         return (
@@ -44,8 +46,30 @@ const ShopListCard = ({
         })
     };
 
+    const addToWishlist = () => {
+        const {token, user} = isAuthenticate();
+
+        if (user != null) {
+            updateUserWishlist(user._id, token, {product}).then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                }
+            });
+        }
+
+        addItemtoWishlist(product, () => {
+            setRedirectWish(true);
+        })
+    };
+
+    const makeWishlistRedirect = redirectWish => {
+        if (redirectWish) {
+            return <Redirect to="/wishlist"/>
+        }
+    };
+
     const showRating = (rating) => {
-        if(rating.length > 0){
+        if (rating.length > 0) {
             const votedCount = rating.length;
             let rateSum = 0;
             rating.forEach(rate => {
@@ -55,14 +79,14 @@ const ShopListCard = ({
             let startArray = [];
             for (let i = 0; i < averageRating; i++)
                 startArray.push(<li key={i} className="fa fa-star fa-lg"></li>);
-            for(let i = averageRating; i < 5 ; i++)
+            for (let i = averageRating; i < 5; i++)
                 startArray.push(<li key={i} className="fa fa-star-o fa-lg"></li>);
             return (
                 <ul className="rating">
                     {startArray}
                 </ul>
             );
-        }else{
+        } else {
             return (
                 <ul className="rating">
                     <li key={1} className="fa fa-star fa-lg"></li>
@@ -73,11 +97,11 @@ const ShopListCard = ({
                 </ul>
             );
         }
-    }
+    };
 
     const calculateDiscountedPrice = (product) => {
         let price = product.price;
-        if(product.currency === '$'){
+        if (product.currency === '$') {
             price = product.price * 180;
         }
         return product.currency === '$' ? parseFloat((price - ((price * product.discount) / 100)) / 180).toFixed(2) : parseFloat(price - ((price * product.discount) / 100)).toFixed(2);
@@ -105,10 +129,21 @@ const ShopListCard = ({
         );
     };
 
+    const showWishListBtn = () => {
+        return isAuthenticate() ? (
+            <li>
+                <a href="" onClick={addToWishlist} className="fa fa-shopping-bag"> </a>
+            </li>
+        ) : (
+            ''
+        );
+    };
+
     return (
         <div className="product-grid7">
             <div className="product-image7">
                 {makeRedirect(redirect)}
+                {makeWishlistRedirect(redirectWish)}
                 <Link to={`/product/${product._id}`} className="mr-2">
                     <ShopListImage item={product} url="product"/>
                 </Link>
@@ -117,24 +152,25 @@ const ShopListCard = ({
                     <Link to={`/product/${product._id}`}>
                         <li><a href="" className="fa fa-search"></a></li>
                     </Link>
-                    <li>
-                        <a href="javascript : ;" className="fa fa-shopping-bag"></a>
-                    </li>
+                    {showWishListBtn()}
                     {showCartBtn(product.quantity)}
                 </ul>
                 {showStock(product.quantity)}
             </div>
             <div className="product-content">
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <span style={{'fontSize' : 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></span>
+                    <span style={{'fontSize': 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></span>
                 </Link>
                 <br/>
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <span className="title"><a href="javascript : ;">Category: {product.category && product.category.name}</a></span>
+                    <span className="title"><a
+                        href="javascript : ;">Category: {product.category && product.category.name}</a></span>
                 </Link>
                 {showRating(product.rating)}
-                <div className="price">{product.discount > 0 ? product.currency + ' ' + calculateDiscountedPrice(product) : product.currency + ' ' + parseFloat(product.price).toFixed(2)}
-                    <span style={{"color" : "red"}}>{product.discount > 0 ? product.currency + ' ' +  parseFloat(product.price).toFixed(2) : ''}</span>
+                <div
+                    className="price">{product.discount > 0 ? product.currency + ' ' + calculateDiscountedPrice(product) : product.currency + ' ' + parseFloat(product.price).toFixed(2)}
+                    <span
+                        style={{"color": "red"}}>{product.discount > 0 ? product.currency + ' ' + parseFloat(product.price).toFixed(2) : ''}</span>
                 </div>
             </div>
         </div>

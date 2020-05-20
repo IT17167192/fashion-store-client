@@ -4,6 +4,7 @@ import {emptyCart, showSelectedCart} from './CartHelper';
 import {Link} from 'react-router-dom';
 import {isAuthenticate} from '../auth';
 import DropIn from 'braintree-web-drop-in-react';
+import CashOnDelivery from "./CashOnDelivery";
 
 const Checkout = ({products}) => {
     const [data, setData] = useState({
@@ -32,10 +33,25 @@ const Checkout = ({products}) => {
         getToken(userId, token);
     }, []);
 
+    //function to get total of checked items
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
+            //current value gets as 0 and add values to current value from next value by looping through array
             return (nextValue.isChecked ? (parseFloat(currentValue) + parseFloat(nextValue.count) * parseFloat(nextValue.price)).toFixed(2) : (parseFloat(currentValue)).toFixed(2));
         }, 0);
+    };
+
+    //function to get discount of checked items
+    const getDiscount = () => {
+        return products.reduce((currentValue, nextValue) => {
+            //current value gets as 0 and add values to current value from next value by looping through array
+            return (nextValue.isChecked ? (parseFloat(currentValue) + parseFloat(nextValue.count) * (parseFloat(nextValue.price)) * parseFloat(nextValue.discount) / 100).toFixed(2) : (parseFloat(currentValue)).toFixed(2));
+        }, 0);
+    };
+
+    //function to get discount of checked items
+    const getDiscountedTotal = () => {
+        return (getTotal() - getDiscount()).toFixed(2);
     };
 
     const showCheckout = () => {
@@ -117,7 +133,7 @@ const Checkout = ({products}) => {
                         }
                     }} onInstance={instance => data.instance = instance} />
                     <button onClick={buy} className="btn btn-success btn-block">Pay</button>
-                    <button className="btn btn-block btn-success">Cash On Delivery</button>
+                    <button className="btn btn-block btn-success mt-2"><Link className="nav-link" style={{color: '#ffffff'}} to="/cod">Cash On Delivery</Link></button>
                 </div>
             ) : null}
         </div>
@@ -138,15 +154,23 @@ const Checkout = ({products}) => {
                     <h6>Subtotal: </h6>
                 </div>
                 <div className="col-sm-7 text-right">
-                    ${getTotal()}
+                    Rs {getTotal()}
                 </div>
             </div>
             <div className="row">
                 <div className="col-sm-5 mb-3">
-                    <h5>Total: </h5>
+                    <h6 className="text-black-50">Discount: </h6>
                 </div>
                 <div className="col-sm-7 text-right">
-                    <h5>${getTotal()}</h5>
+                    <h6 className="text-black-50">(-Rs {getDiscount()})</h6>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-sm-5 mb-3">
+                    <h5 className="font-weight-bold">Total: </h5>
+                </div>
+                <div className="col-sm-7 text-right">
+                    <h5 className="font-weight-bold">Rs {getDiscountedTotal()}</h5>
                 </div>
             </div>
 

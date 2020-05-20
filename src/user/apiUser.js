@@ -1,5 +1,6 @@
 import {API} from "../config";
 
+//get user details with cart items
 export const read = (userId, token) => {
     return fetch(`${API}/user/${userId}`, {
         method: "GET",

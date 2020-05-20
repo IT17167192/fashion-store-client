@@ -1,55 +1,60 @@
 import React, {useState} from "react";
-import {Link} from 'react-router-dom';
 import ShowCartImage from "./ShowCartImage";
 import {updateItem, removeItem} from "./CartHelper";
 import {removeCartItem} from "./apiCore";
 import {isAuthenticate} from "../auth";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import {Link} from "react-router-dom";
 
 const CartItems = ({
                        product,
                        cartUpdate = false,
                        removeProductCart = false,
-                       setRun = f => f,
+                       setRun,
                        run = undefined
                    }) => {
 
-    const [count, setCount] = useState(product.count);
-    const [isChecked, setIsChecked] = useState(product.isChecked);
+    const [count, setCount] = useState(product.count);  //buying amount
+    const [isChecked, setIsChecked] = useState(product.isChecked);  //whether item is selected for buying
 
+    //function to check an item
     const selectItem = productId => event => {
-        setRun(!run);
-        setIsChecked(!isChecked);
-        updateItem(productId, count, !isChecked)
+        setRun(!run);   //inform parent
+        setIsChecked(!isChecked);   //set checked or unchecked
+        updateItem(productId, count, !isChecked);   //update item in local storage
     };
 
+    //method to remove item from cart
     const removeFromCart = () => {
         const {token, user} = isAuthenticate();
 
         if (user != null) {
+            //method to remove item from db
             removeCartItem(user._id, token, product).then(data => {
                 if (data.error) {
                     console.log(data.error);
                 }
             });
         }
-
+        //remove item from local storage
         removeItem(product._id);
     };
 
+    //remove button
     const showRemoveBtn = removeProductCart => {
         return (removeProductCart &&
             <button
                 onClick={() => {
-                    removeFromCart();
-                    setRun(!run);
+                    removeFromCart();   //call remove method
+                    setRun(!run);   //inform parent that local storage has changed
                 }}
                 className="btn btn-sm btn-outline-orange">
                 Remove
             </button>);
     };
 
+    //show stock details
     const showStock = (quantity) => {
         return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock</span>
@@ -58,14 +63,17 @@ const CartItems = ({
         );
     };
 
+    //function to update item qty in local storage
     const handleCountChange = productId => event => {
-        setRun(!run);
-        setCount(event.target.value < 1 ? 1 : event.target.value);
+        setRun(!run);   //inform parent
+        setCount(event.target.value < 1 ? 1 : event.target.value);  //set count
         if (event.target.value >= 1) {
+            //update local storage if item qty more than 1
             updateItem(productId, event.target.value, isChecked)
         }
     };
 
+    //method to show item qty changer
     const showCartUpdate = cartUpdate => {
         return cartUpdate &&
             <div className="input-group">
@@ -81,38 +89,39 @@ const CartItems = ({
             <div className="card">
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-lg-2 col-sm-12 mr-5">
+                        <div className="col-lg-3 col-sm-12">
                             <div className="row">
 
-
                                 <FormControlLabel className="col-lg-1 col-1"
-                                    control={
-                                        <Checkbox
-                                            checked={isChecked}
-                                            onChange={selectItem(product._id)}
-                                            name="checkedB"
-                                            style ={{
-                                                color: "#ff9408",
-                                            }}
-                                        />
-                                    }
+                                                  control={
+                                                      <Checkbox
+                                                          checked={isChecked}
+                                                          onChange={selectItem(product._id)}
+                                                          name="checkedB"
+                                                          style={{
+                                                              color: "#ff9408",
+                                                          }}
+                                                      />
+                                                  }
                                 />
 
-                                <div className="col-lg-5 col-10 text-center mt-2">
-                                    <ShowCartImage item={product} url="product"/>
+                                <div className="col-lg-9 col-10 text-center mt-2">
+                                    <Link to={`/product/${product._id}`}>
+                                        <ShowCartImage item={product} url="product"/>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
 
                         <div className="col-lg-9 col-sm-12 text-center text-lg-left">
                             <div className="col-lg-12 row">
-                                <div className="col-lg-6">
-                                    <p className="lead mt-2 font-weight-bold"
-                                       style={{marginBottom: '0px'}}>{product.name}</p>
+                                <div className="col-lg-6 mt-3">
+                                    <Link className="lead mt-2 font-weight-bold text-dark"
+                                          to={`/product/${product._id}`}>{product.name}</Link>
                                 </div>
                             </div>
                             <div className="col-lg-12 col-12 row">
-                                <div className="col-lg-6 col-12">
+                                <div className="col-lg-5 col-12">
                                     <div className="row">
                                         <div className="col-lg-12 col-12">
                                             <p className="mt-4 text-black-50"
@@ -126,14 +135,15 @@ const CartItems = ({
                                 <div className="col-lg-3 col-4 mt-1">
                                     {showCartUpdate(cartUpdate)}
                                 </div>
-                                <div className="col-lg-3 col-8 text-right">
+                                <div className="col-lg-4 col-8 text-right">
                                     <div className="row">
                                         <div className="col-lg-12">
                                             <p className="lead font-weight-normal"
-                                               style={{fontSize: 22}}>{product.currency}{parseFloat(product.price * count).toFixed(2)}</p>
+                                               style={{fontSize: 22}}>{product.currency} {parseFloat(product.price * count).toFixed(2)}</p>
                                         </div>
                                         <div className="col-lg-12">
-                                            <p className="lead font-weight-normal text-black-50" style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
+                                            <p className="lead font-weight-normal text-black-50"
+                                               style={{fontSize: 15}}>item: {product.currency}{parseFloat(product.price).toFixed(2)}</p>
                                         </div>
                                     </div>
                                 </div>
