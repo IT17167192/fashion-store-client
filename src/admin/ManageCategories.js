@@ -3,7 +3,8 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
-import {createCategory} from "./ApiAdmin";
+import { confirmAlert } from 'react-confirm-alert';
+import {createCategory, deleteSingleProduct} from "./ApiAdmin";
 import {MDBContainer, MDBAlert} from 'mdbreact';
 import {MDBDataTable} from 'mdbreact';
 // import {getAllCategories} from "../core/apiCore";
@@ -29,14 +30,30 @@ const ManageCategories = () => {
         })
     };
 
-    const remove = categoryId =>{
-        deleteSingleCategory(categoryId, user._id, token). then(data => {
-            if(data.error){
-                console.log(data.error)
-            } else {
-                fetchCategories()
-            }
-        })
+    const remove = categoryId =>
+    {
+        confirmAlert({
+            title: 'Confirm Delete',
+            message: 'Are you sure you want to delete this Category?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        deleteSingleCategory(categoryId, user._id, token). then(data => {
+                            if(data.error){
+                                console.log(data.error)
+                            } else {
+                                fetchCategories()
+                            }
+                        })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {}
+                }
+            ]
+        });
     };
     useEffect(() => {
         fetchCategories();

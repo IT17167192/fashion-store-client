@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
+import { confirmAlert } from 'react-confirm-alert';
 import {createCategory} from "./ApiAdmin";
 import {MDBContainer, MDBAlert} from 'mdbreact';
 import {MDBDataTable} from 'mdbreact';
@@ -60,14 +61,30 @@ const ManageProducts = () => {
         }
     };
 
-    const remove = productId =>{
-        deleteSingleProduct(productId, user._id, token). then(data => {
-            if(data.error){
-                console.log(data.error)
-            } else {
-                fetchProducts()
-            }
-        })
+    const remove = productId =>
+    {
+        confirmAlert({
+            title: 'Confirm Delete',
+            message: 'Are you sure you want to delete this product?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        deleteSingleProduct(productId, user._id, token). then(data => {
+                            if(data.error){
+                                console.log(data.error)
+                            } else {
+                                fetchProducts()
+                            }
+                        })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {}
+                }
+            ]
+        });
     };
     useEffect(() => {
         fetchProducts();
