@@ -89,7 +89,9 @@ return (
                             <th scope="col">Shippable</th>
                             <th scope="col">Product Rating</th>
                             <th scope="col">Update</th>
+                            {(parseInt(user.role) === 1) && (
                             <th scope="col">Delete</th>
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -116,9 +118,11 @@ return (
                                 </Link>
                             </td>
                             <td>
+                                {(parseInt(user.role) === 1) && (
                                 <button onClick={() => remove(product._id)} className="btn btn-sm btn-danger">
                                     Delete Product
                                 </button>
+                                )}
                             </td>
                         </tr>
                     ))}
