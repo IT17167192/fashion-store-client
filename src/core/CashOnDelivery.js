@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import {MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody} from 'mdbreact';
-import {getAddress} from "./apiCore";
+import {getAddress, removeCartItem, updateAddress} from './apiCore';
 import {isAuthenticate} from "../auth";
+import {showSelectedCart, emptyCart} from './CartHelper';
 
 const CashOnDelivery = () => {
 
@@ -31,7 +32,27 @@ const CashOnDelivery = () => {
 
     const clickSubmit = (event) => {
         event.preventDefault();
-        setValues({...values, error: false});
+        const {token, user} = isAuthenticate();
+        const items = showSelectedCart();   //get selected items
+        updateAddress(user._id, token, {address1, address2, town, postal_code, mobile});
+
+        //remove paid products from db one by one
+        for (let i = 0; i < items.length; ++i) {
+          removeCartItem(user._id, token, items[i]).then(data => {
+            if (data.error) {
+              console.log(data.error);
+            }
+          });
+        }
+
+        //delete paid products from local storage
+        emptyCart(() => {
+          console.log('payment success and empty cart');
+          setValues({loading: false});
+
+          // in case page does not reload by itself uncomment the below
+          window.location.reload();
+        });
     };
 
     const showError = () => (
@@ -142,7 +163,9 @@ const CashOnDelivery = () => {
                                 </div>
                                 <div className="text-center py-4 mt-3">
                                     <MDBBtn color="cyan" type="submit" onClick={clickSubmit}>
+                                      <Link className="nav-link" style={{color: '#ffffff'}} to="/cart">
                                         Place Order
+                                      </Link>
                                     </MDBBtn>
                                 </div>
                             </form>
