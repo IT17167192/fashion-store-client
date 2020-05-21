@@ -29,6 +29,37 @@ const ManageProducts = () => {
         })
     };
 
+    const showRating = (rating) => {
+        if (rating.length > 0) {
+            const votedCount = rating.length;
+            let rateSum = 0;
+            rating.forEach(rate => {
+                rateSum += rate;
+            });
+            const averageRating = Math.ceil(rateSum / votedCount);
+            let startArray = [];
+            for (let i = 0; i < averageRating; i++)
+                startArray.push(<li key={i} className="fa fa-star fa-lg"></li>);
+            for (let i = averageRating; i < 5; i++)
+                startArray.push(<li key={i} className="fa fa-star-o fa-lg"></li>);
+            return (
+                <ul className="rating">
+                    {startArray}
+                </ul>
+            );
+        } else {
+            return (
+                <ul className="rating">
+                    <li key={1} className="fa fa-star fa-lg"></li>
+                    <li key={2} className="fa fa-star-o fa-lg"></li>
+                    <li key={3} className="fa fa-star-o fa-lg"></li>
+                    <li key={4} className="fa fa-star-o fa-lg"></li>
+                    <li key={5} className="fa fa-star-o fa-lg"></li>
+                </ul>
+            );
+        }
+    };
+
     const remove = productId =>{
         deleteSingleProduct(productId, user._id, token). then(data => {
             if(data.error){
@@ -43,39 +74,85 @@ const ManageProducts = () => {
     }, []);
 return (
     <Layout title="Manage Products" description="Update and delete Products">
-        <h2 className="mb-4">Manage Products</h2>
-        <div className="row">
-            <div className="col-12">
+        <div className="row ml-4 mr-4 mb-5">
+            <div className="col-12 table-responsive">
                 <h2 className="text-center"> Total of {products.length} Products </h2>
-                <ul className="list-group">
+                <hr/>
+                <table className="table table-hover text-center" >
+                    <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">Produuct Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Shippable</th>
+                            <th scope="col">Product Rating</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     {products.map((product, item) => (
-                        <li
-                            key={item}
-                            className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-sm">
-                                        <strong>{product.name}</strong>
-                                    </div>
-                                    <div className="col-sm">
-                                        <Link to={`/admin/product/update/${product._id}`}>
-                                            <button className="badge badge-warning badge-pill "  >
-                                                Update Product
-                                            </button>
-                                        </Link>
-                                    </div>
-                                    <div className="col-sm">
-                                        <button onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
-                                            Delete Product
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </li>
-
+                        <tr key={product._id}>
+                            <th scope="row">{product._id}</th>
+                            <td><strong>{product.name}</strong></td>
+                            <td><strong>{product.category.name}</strong></td>
+                            <td style={{textAlign:"right"}}><strong>{product.quantity}</strong></td>
+                            <td style={{textAlign:"right"}}>
+                                <strong>
+                                    {product.currency === 'Rs' ? 'Rs. '
+                                        + parseFloat(product.price).toFixed(2)
+                                        : '$ ' + parseFloat(product.price).toFixed(2)}
+                                </strong>
+                            </td>
+                            <td><strong>{product.takeInMethod ? 'Shippable' : 'Not Shippable'}</strong></td>
+                            <td style={{textAlign:"left"}}><strong>{showRating(product.rating)}</strong></td>
+                            <td>
+                                <Link to={`/admin/product/update/${product._id}`}>
+                                    <button className="btn btn-sm btn-warning"  >
+                                        Update Product
+                                    </button>
+                                </Link>
+                            </td>
+                            <td>
+                                <button onClick={() => remove(product._id)} className="btn btn-sm btn-danger">
+                                    Delete Product
+                                </button>
+                            </td>
+                        </tr>
                     ))}
-                </ul>
+                    </tbody>
+                </table>
+                {/*<ul className="list-group">*/}
+                {/*    {products.map((product, item) => (*/}
+                {/*        <li*/}
+                {/*            key={item}*/}
+                {/*            className="list-group-item d-flex justify-content-between align-items-center">*/}
+                {/*            <div className="container">*/}
+                {/*                <div className="row">*/}
+                {/*                    <div className="col-sm">*/}
+                {/*                        <strong>{product.name}</strong>*/}
+                {/*                    </div>*/}
+                {/*                    <div className="col-sm">*/}
+                {/*                        <Link to={`/admin/product/update/${product._id}`}>*/}
+                {/*                            <button className="badge badge-warning badge-pill "  >*/}
+                {/*                                Update Product*/}
+                {/*                            </button>*/}
+                {/*                        </Link>*/}
+                {/*                    </div>*/}
+                {/*                    <div className="col-sm">*/}
+                {/*                        <button onClick={() => remove(product._id)} className="badge badge-danger badge-pill">*/}
+                {/*                            Delete Product*/}
+                {/*                        </button>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+
+                {/*        </li>*/}
+
+                {/*    ))}*/}
+                {/*</ul>*/}
             </div>
         </div>
     </Layout>
