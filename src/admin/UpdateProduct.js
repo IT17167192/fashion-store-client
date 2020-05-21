@@ -306,7 +306,7 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
-import {getSingleProduct, updateSingleProduct} from "./ApiAdmin";
+import {getSingleProduct, updateSingleProduct, getAllCategories} from "./ApiAdmin";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
 
@@ -350,32 +350,33 @@ const UpdateProduct = ({match}) => {
     } = productValues;
 
     const init = (productId) => {
-        getSingleProduct(productId) .then(data => {
+        getSingleProduct(productId).then(data => {
             if (data.error) {
                 setProductValues({...productValues, error: data.error, showSuccess: false});
-            } else
-                {
-                    setProductValues({
-                        ...productValues,
-                        name: data.name,
-                        description: data.description,
-                        image: data.image,
-                        price: data.price,
-                        quantity: data.quantity,
-                        loading: false,
-                        discount: data.discount,
-                        currency: data.currency,
-                        error: false,
-                        showSuccess: true,
-                        formData: new FormData()
-                    })
-                }
+            }else{
+
+                setProductValues({
+                    ...productValues,
+                    name: data.name,
+                    description: data.description,
+                    price: data.price,
+                    category: data.category._id,
+                    quantity: data.quantity,
+                    discount: data.discount,
+                    currency: data.currency,
+                    takeInMethod: data.takeInMethod,
+                    loading: false,
+                    error: false,
+                    formData: new FormData()
+                });
+
+            }
 
         })
     }
 
     useEffect(() => {
-        // setProductValues({...productValues, formData: new FormData()});
+        setProductValues({...productValues, formData: new FormData()});
         init(match.params.productId)
     }, []);
 

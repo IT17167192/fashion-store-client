@@ -42,7 +42,7 @@ const Wishlist = () => {
 
                     <div className="row">
                         <div className="col-lg-6">
-                            <button className="btn btn-lg btn-white text-primary w-100"><Link to="/">Start
+                            <button className="btn btn-lg btn-white text-primary w-100"><Link to="/shop">Start
                                 Shopping</Link>
                             </button>
                         </div>
@@ -59,7 +59,7 @@ const Wishlist = () => {
                         <h3 className="text-center">You don't have any items in your Wishlist. Let's get shopping!</h3>
 
                         <div className="col-lg-12 text-center">
-                            <button className="btn btn-lg btn-white text-primary w-50"><Link to="/">Start
+                            <button className="btn btn-lg btn-white text-primary w-50"><Link to="/shop">Start
                                 Shopping</Link>
                             </button>
                         </div>
