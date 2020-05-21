@@ -63,6 +63,9 @@ const ManageCategories = () => {
     return (
 
         <Layout title="Manage Categories" description="Update and delete Categories">
+            <MDBBtn href="/admin/dashboard" color="mdb-color">
+                Back to Dashboard
+            </MDBBtn>
             <div className="row ml-4 mr-4 mb-5">
                 <div className="col-12 table-responsive">
                     <h2 className="text-center"> Total of {categories.length} Categories </h2>

@@ -91,6 +91,9 @@ const ManageProducts = () => {
     }, []);
 return (
     <Layout title="Manage Products" description="Update and delete Products">
+        <MDBBtn href="/admin/dashboard" color="mdb-color">
+            Back to Dashboard
+        </MDBBtn>
         <div className="row ml-4 mr-4 mb-5">
             <div className="col-12 table-responsive">
                 <h2 className="text-center"> Total of {products.length} Products </h2>
