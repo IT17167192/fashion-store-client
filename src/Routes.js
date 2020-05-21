@@ -58,10 +58,7 @@ const Routes = () => {
                     path="/admin/categories" exact component={ManageCategories} />
                 <AdminRoute
                     path="/admin/category/update/:categoryId" exact component={UpdateCategory} />
-                {/*<AdminRoute*/}
-                {/*    path="/admin/users" exact component={ManageUsers} />*/}
-                {/*<AdminRoute*/}
-                {/*    path="/admin/user/update/:userId" exact component={UpdateUser} />*/}
+
                 <Route path="" component={Page404} />
 
             </Switch>
