@@ -120,7 +120,7 @@ export const updateSingleCategory = (categoryId, userId, token, category) => {
             'Content-Type': 'application/json',
             Authorization : `Bearer ${token}`
         },
-        body: category
+        body: JSON.stringify(category)
     })
         .then(response => response.json())
         .catch(err => console.log(err))

@@ -41,7 +41,8 @@ const UpdateCategory = ({match}) => {
 
     useEffect(() => {
         loadCategories();
-        init(match.params.categoryId)
+        init(match.params.categoryId);
+        console.log(match.params.categoryId)
     }, []);
 
     //get user and info from local storage
@@ -63,7 +64,7 @@ const UpdateCategory = ({match}) => {
         updateSingleCategory(match.params.categoryId, user._id, token, {name})
             .then(data => {
                 setLoader(false);
-                // setName(data.name);
+                setName('');
                 if (data.error) {
                     setError(true);
                     setSuccess(false);
