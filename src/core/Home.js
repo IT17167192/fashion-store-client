@@ -67,7 +67,7 @@ const Home = () => {
                     </div>
                     <div className="shopping-grid">
                         <div className="container">
-                            <h3 className="" align="center">Newest Trends</h3>
+                            <h3 className="" align="center">Latest Products</h3>
                                 <div className="row">
                                     {products.map((product, i) => (
                                         <div key={i} className="col-md-6 col-lg-3 col-xs-3 col-sm-6 mb-3">
