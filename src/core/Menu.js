@@ -3,6 +3,7 @@ import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
 import {totalItems} from "./CartHelper";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import MenuLogo from '../assets/Logos/Logo_Menu-v1.png';
 import {
     faShoppingCart,
     faUserCircle,
@@ -24,7 +25,7 @@ const isActive = (history, path) => {
 const Menu = ({history}) => (
 
     <nav className="navbar navbar-expand-lg navbar-dark rgba-grey-slight mb-2">
-        <Link className="navbar-brand text-dark font-weight-bolder" to="/">Fashion Store</Link>
+        <Link className="navbar-brand text-dark font-weight-bolder" to="/"><img src={MenuLogo}/></Link>
         <button className="navbar-toggler btn-orange" type="button" data-toggle="collapse" data-target="#basicExampleNav"
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
