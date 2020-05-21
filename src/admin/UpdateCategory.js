@@ -152,7 +152,7 @@ const UpdateCategory = ({match}) => {
         }
     };
 
-    const newCategoryForm = () => (
+    const updateCategoryForm = () => (
         <div className="col-md-8 col-sm-8 col-lg-8 container-fluid">
             <form onSubmit={submit}>
                 <div className="form-group">
@@ -162,7 +162,7 @@ const UpdateCategory = ({match}) => {
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary"
-                            disabled={loader}>{loader ? 'Loading...' : 'Create Category'}</button>
+                            disabled={loader}>{loader ? 'Loading...' : 'Update Category'}</button>
                 </div>
             </form>
         </div>
@@ -173,7 +173,7 @@ const UpdateCategory = ({match}) => {
                 className="container-fluid">
             {showSuccessMsg()}
             {showErrorMsg()}
-            {newCategoryForm()}
+            {updateCategoryForm()}
             <hr/>
             {backButton()}
             {categoryTable()}

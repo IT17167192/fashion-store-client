@@ -309,7 +309,6 @@ import "mdbreact/dist/css/mdb.css";
 import {getSingleProduct, updateSingleProduct} from "./ApiAdmin";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
-import {getAllCategories} from "../core/apiCore";
 
 const UpdateProduct = ({match}) => {
     const {user, token} = isAuthenticate();
@@ -350,8 +349,34 @@ const UpdateProduct = ({match}) => {
         formData
     } = productValues;
 
+    const init = (productId) => {
+        getSingleProduct(productId) .then(data => {
+            if (data.error) {
+                setProductValues({...productValues, error: data.error, showSuccess: false});
+            } else
+                {
+                    setProductValues({
+                        ...productValues,
+                        name: data.name,
+                        description: data.description,
+                        image: data.image,
+                        price: data.price,
+                        quantity: data.quantity,
+                        loading: false,
+                        discount: data.discount,
+                        currency: data.currency,
+                        error: false,
+                        showSuccess: true,
+                        formData: new FormData()
+                    })
+                }
+
+        })
+    }
+
     useEffect(() => {
-        setProductValues({...productValues, formData: new FormData()})
+        // setProductValues({...productValues, formData: new FormData()});
+        init(match.params.productId)
     }, []);
 
     const handleOnChange = (name) => (event) => {
@@ -377,7 +402,7 @@ const UpdateProduct = ({match}) => {
             setProductValues({...productValues, currency: 'Rs'});
         }
 
-        UpdateProduct(user._id, token, formData)
+        updateSingleProduct(match.params.productId, user._id, token, formData)
             .then(data => {
                 if (data.error) {
                     setProductValues({...productValues, error: data.error, showSuccess: false});
@@ -421,7 +446,7 @@ const UpdateProduct = ({match}) => {
         }
     };
 
-    const newPostForm = () => (
+    const newPostUpdateForm = () => (
         <div>
             <MDBContainer>
                 <MDBRow>
@@ -571,7 +596,7 @@ const UpdateProduct = ({match}) => {
     return (
         <Layout title="Update product" description={`Welcome back ${user.name}, Update product now!`}
                 className="container-fluid">
-            {newPostForm()}
+            {newPostUpdateForm()}
             <hr/>
 
         </Layout>
