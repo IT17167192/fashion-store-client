@@ -419,7 +419,7 @@ const UpdateProduct = ({match}) => {
                         currency: '',
                         error: false,
                         showSuccess: true,
-                        createProduct: data.name
+                        updateSingleProduct: data.name
                     })
                 }
             })
