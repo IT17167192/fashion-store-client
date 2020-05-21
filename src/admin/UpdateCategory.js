@@ -63,7 +63,7 @@ const UpdateCategory = ({match}) => {
         updateSingleCategory(match.params.categoryId, user._id, token, {name})
             .then(data => {
                 setLoader(false);
-                setName('');
+                // setName(data.name);
                 if (data.error) {
                     setError(true);
                     setSuccess(false);

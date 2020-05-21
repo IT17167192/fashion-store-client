@@ -55,21 +55,26 @@ const Ftr = () => {
             <div className="container text-center text-sm-left position-relative py-5">
                 <div className="row">
                     <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
+                        <h3 className="text-info pb-2 border-bottom border-info">About Us</h3>
                         <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
+                            {/*<li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>*/}
+                            {/*<li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>*/}
+                            {/*<li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>*/}
+                            {/*<li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>*/}
+                            <p className="mb-2" className="text-light"> Here at Quarantine Fashion Store We provide you with the best of the best.
+                                Make your dream wardrobe a reality by shopping with us.</p>
+                            <p className="mb-2" className="text-light"> With everything at the tip of your fingers, shopping has never been easier.</p>
                         </ul>
                     </div>
                     <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
+                        <h3 className="text-info pb-2 border-bottom border-info"> Quick Links</h3>
                         <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
+                            <li className="mb-2"><a className="text-light" href="/">Home</a></li>
+                            <li className="mb-2"><a className="text-light" href="/user/dashboard">Dashboard</a></li>
+                            <li className="mb-2"><a className="text-light" href="/shop">Shop</a></li>
+                            <li className="mb-2"><a className="text-light" href="/cart">Cart</a></li>
+                            <li className="mb-2"><a className="text-light" href="/wishlist">Wishlist</a></li>
+
                         </ul>
                     </div>
                     <div className="col-sm-6 col-md-3">
