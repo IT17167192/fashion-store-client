@@ -41,13 +41,16 @@ const ManageCategories = () => {
     useEffect(() => {
         fetchCategories();
     }, []);
+
+
     return (
+
         <Layout title="Manage Categories" description="Update and delete Categories">
             <div className="row ml-4 mr-4 mb-5">
                 <div className="col-12 table-responsive">
                     <h2 className="text-center"> Total of {categories.length} Categories </h2>
                     <hr/>
-                    <table className="table table-hover text-center" >
+                    <table id="categoryTable" className="table table-hover text-center" >
                         <thead className="thead-dark">
                         <tr>
                             <th scope="col">Category Id</th>
@@ -84,6 +87,7 @@ const ManageCategories = () => {
 
                 </div>
             </div>
+
             {/*<h2 className="mb-4">Manage Categories</h2>*/}
             {/*<div className="row">*/}
             {/*    <div className="col-12">*/}
@@ -119,7 +123,12 @@ const ManageCategories = () => {
             {/*    </div>*/}
             {/*</div>*/}
         </Layout>
+
+
     );
+
 };
 
+
 export default ManageCategories;
+
