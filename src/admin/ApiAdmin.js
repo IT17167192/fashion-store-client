@@ -52,6 +52,15 @@ export const getAllProducts = () => {
         .catch(err => console.log(err))
 };
 
+//Get all users
+export const getAllUsers = () => {
+    return fetch(`${API}/users`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
 //Get Single Product
 export const getSingleProduct = (productId) => {
     return fetch(`${API}/product/${productId}`, {
@@ -72,6 +81,21 @@ export const updateSingleProduct = (productId, userId, token, product) => {
             Authorization : `Bearer ${token}`
         },
         body: product
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
+// Update user state
+export const updateUserState = (user, data, token) => {
+    return fetch(`${API}/adminUser/modify/${user}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization : `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
     })
         .then(response => response.json())
         .catch(err => console.log(err))
