@@ -5,7 +5,7 @@ import '../assets/footer_assets/css/styles.css';
 import {confirmAlert} from "react-confirm-alert";
 import {newsletterSignUp} from "../auth";
 import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
-import FooterLogo from '../assets/Logos/Logo_Footer-v1.png';
+import FooterLogo from '../assets/Logos/Logo_Footer-v2.png';
 
 const Ftr = () => {
     const [email, setEmail] = useState('');

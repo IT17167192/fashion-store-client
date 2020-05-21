@@ -5,6 +5,7 @@ import '../assets/footer_assets/css/styles.css';
 import {confirmAlert} from "react-confirm-alert";
 import {newsletterSignUp} from "../auth";
 import CircularProgress from "@material-ui/core/CircularProgress"; // Import css
+import FooterLogo from '../assets/Logos/Logo_Footer-v2.png';
 
 const FtrMin = () => {
     const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const FtrMin = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <h2 className="mb-3"><i className="fa fa-diamond"></i>&nbsp;Company</h2>
+                            <h2 className="mb-3"><img src={FooterLogo}/></h2>
                             <p className="mb-1"><i className="fa fa-map-marker fa-fw"></i>&nbsp;Royal Road - Tamarin -
                                 Mauritius</p>
                             <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+230 12 34 56 78</p>
