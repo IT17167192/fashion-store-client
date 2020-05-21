@@ -21,10 +21,13 @@ const UpdateCategory = ({match}) => {
     const init = (categoryId) => {
         getSingleCategory(categoryId).then(data => {
             if(data.error){
+                setErrorCat(data.error);
+                console.error(errorCat);
+            } else {
+                setName(data.name);
             }
         })
-
-    }
+    };
     const loadCategories = () => {
         getAllCategories().then(data => {
             if (data.error) {
@@ -57,7 +60,7 @@ const UpdateCategory = ({match}) => {
         setSuccess(false);
         //create category
         //use api request
-        createCategory(user._id, token, {name})
+        updateSingleCategory(match.params.categoryId, user._id, token, {name})
             .then(data => {
                 setLoader(false);
                 setName('');

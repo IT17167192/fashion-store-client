@@ -366,7 +366,6 @@ const UpdateProduct = ({match}) => {
                         discount: data.discount,
                         currency: data.currency,
                         error: false,
-                        showSuccess: true,
                         formData: new FormData()
                     })
                 }
@@ -375,7 +374,7 @@ const UpdateProduct = ({match}) => {
     }
 
     useEffect(() => {
-        // setProductValues({...productValues, formData: new FormData()});
+        setProductValues({...productValues, formData: new FormData()});
         init(match.params.productId)
     }, []);
 
