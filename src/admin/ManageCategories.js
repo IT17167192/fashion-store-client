@@ -41,44 +41,94 @@ const ManageCategories = () => {
     useEffect(() => {
         fetchCategories();
     }, []);
-    return (
-        <Layout title="Manage Categories" description="Update and delete Categories">
-            <h2 className="mb-4">Manage Categories</h2>
-            <div className="row">
-                <div className="col-12">
-                    <h2 className="text-center"> Total of {categories.length} Categories </h2>
-                    <ul className="list-group">
-                        {categories.map((category, item) => (
-                            <li
-                                key={item}
-                                className="list-group-item d-flex justify-content-between align-items-center">
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col-sm">
-                                            <strong>{category.name}</strong>
-                                        </div>
-                                        <div className="col-sm">
-                                            <Link to={`/admin/category/update/${category._id}`}>
-                                                <button className="badge badge-warning badge-pill "  >
-                                                    Update Category
-                                                </button>
-                                            </Link>
-                                        </div>
-                                        <div className="col-sm">
-                                            <button onClick={() => remove(category._id)} className="badge badge-danger badge-pill">
-                                                Delete Category
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
 
+
+    return (
+
+        <Layout title="Manage Categories" description="Update and delete Categories">
+            <div className="row ml-4 mr-4 mb-5">
+                <div className="col-12 table-responsive">
+                    <h2 className="text-center"> Total of {categories.length} Categories </h2>
+                    <hr/>
+                    <table id="categoryTable" className="table table-hover text-center" >
+                        <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Category Id</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Date Created</th>
+                            <th scope="col">Date Last Updated</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {categories.map((category, item) => (
+                            <tr key={category._id}>
+                                <th scope="row">{category._id}</th>
+                                <td><strong>{category.name}</strong></td>
+                                <td><strong>{category.createdAt}</strong></td>
+                                <td><strong>{category.updatedAt}</strong></td>
+                                <td>
+                                    <Link to={`/admin/category/update/${category._id}`}>
+                                        <button className="btn btn-sm btn-warning"  >
+                                            Update Category
+                                        </button>
+                                    </Link>
+                                </td>
+                                <td>
+                                    <button onClick={() => remove(category._id)} className="btn btn-sm btn-danger">
+                                        Delete Category
+                                    </button>
+                                </td>
+                            </tr>
                         ))}
-                    </ul>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
+
+            {/*<h2 className="mb-4">Manage Categories</h2>*/}
+            {/*<div className="row">*/}
+            {/*    <div className="col-12">*/}
+            {/*        <h2 className="text-center"> Total of {categories.length} Categories </h2>*/}
+            {/*        <ul className="list-group">*/}
+            {/*            {categories.map((category, item) => (*/}
+            {/*                <li*/}
+            {/*                    key={item}*/}
+            {/*                    className="list-group-item d-flex justify-content-between align-items-center">*/}
+            {/*                    <div className="container">*/}
+            {/*                        <div className="row">*/}
+            {/*                            <div className="col-sm">*/}
+            {/*                                <strong>{category.name}</strong>*/}
+            {/*                            </div>*/}
+            {/*                            <div className="col-sm">*/}
+            {/*                                <Link to={`/admin/category/update/${category._id}`}>*/}
+            {/*                                    <button className="badge badge-warning badge-pill "  >*/}
+            {/*                                        Update Category*/}
+            {/*                                    </button>*/}
+            {/*                                </Link>*/}
+            {/*                            </div>*/}
+            {/*                            <div className="col-sm">*/}
+            {/*                                <button onClick={() => remove(category._id)} className="badge badge-danger badge-pill">*/}
+            {/*                                    Delete Category*/}
+            {/*                                </button>*/}
+            {/*                            </div>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </li>*/}
+
+            {/*            ))}*/}
+            {/*        </ul>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </Layout>
+
+
     );
+
 };
 
+
 export default ManageCategories;
+
