@@ -52,17 +52,25 @@ const ManageCategories = () => {
                             <li
                                 key={item}
                                 className="list-group-item d-flex justify-content-between align-items-center">
-                                <strong>{category.name}</strong>
-                                <Link to={`/admin/category/update/${category._id}`}>
-                                <span className="badge badge-warning badge-pill "  >
-                                    Update Product
-                                </span>
-                                </Link>
-
-                                <span onClick={() => remove(category._id)} className="badge badge-danger badge-pill">
-                                    Delete Product
-                                </span>
-
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col-sm">
+                                            <strong>{category.name}</strong>
+                                        </div>
+                                        <div className="col-sm">
+                                            <Link to={`/admin/category/update/${category._id}`}>
+                                                <button className="badge badge-warning badge-pill "  >
+                                                    Update Category
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <div className="col-sm">
+                                            <button onClick={() => remove(category._id)} className="badge badge-danger badge-pill">
+                                                Delete Category
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
 
                         ))}

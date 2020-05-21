@@ -415,7 +415,7 @@ const UpdateProduct = ({match}) => {
         if (showSuccess) {
             return (
                 <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>New product is created successfully!</strong>
+                    <strong>Product is updated successfully!</strong>
                 </div>
             );
         }
@@ -555,7 +555,7 @@ const UpdateProduct = ({match}) => {
                                     </select>
                                     <div className="text-center py-4 mt-3">
                                         <MDBBtn className="btn btn-blue" type="submit">
-                                            Create Product
+                                            Update Product
                                         </MDBBtn>
                                     </div>
                                 </form>
@@ -569,7 +569,7 @@ const UpdateProduct = ({match}) => {
     );
 
     return (
-        <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
+        <Layout title="Update product" description={`Welcome back ${user.name}, Update product now!`}
                 className="container-fluid">
             {newPostForm()}
             <hr/>

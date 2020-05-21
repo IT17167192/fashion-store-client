@@ -140,3 +140,53 @@ export const deleteSingleCategory = (categoryId, userId, token) => {
         .then(response => response.json())
         .catch(err => console.log(err))
 };
+
+// //Perform Update Delete for Users
+//
+// //Get all Users
+// export const getAllUsers = () => {
+//     return fetch(`${API}/users`, {
+//         method: 'GET'
+//     })
+//         .then(response => response.json())
+//         .catch(err => console.log(err))
+// };
+//
+// //Get Single User
+// export const getSingleUser = (userId) => {
+//     return fetch(`${API}/user/${userId}`, {
+//         method: 'GET'
+//     })
+//         .then(response => response.json())
+//         .catch(err => console.log(err))
+// };
+//
+//
+// // Update single User
+// export const updateSingleUser = (userId, token, user) => {
+//     return fetch(`${API}/user/${userId}`, {
+//         method: 'PUT',
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json',
+//             Authorization : `Bearer ${token}`
+//         },
+//         body: user
+//     })
+//         .then(response => response.json())
+//         .catch(err => console.log(err))
+// };
+//
+// // Delete single User
+// export const deleteSingleUser = (userId, token) => {
+//     return fetch(`${API}/user//${userId}`, {
+//         method: 'DELETE',
+//         headers: {
+//             Accept: 'application/json',
+//             'Content-Type': 'application/json',
+//             Authorization : `Bearer ${token}`
+//         }
+//     })
+//         .then(response => response.json())
+//         .catch(err => console.log(err))
+// };

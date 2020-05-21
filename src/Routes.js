@@ -23,7 +23,7 @@ import Wishlist from "./core/Wishlist";
 import Page404 from "./core/Page404";
 import CashOnDelivery from "./core/CashOnDelivery";
 import ManageCategories from "./admin/ManageCategories";
-import ManageUsers from "./admin/ManageUsers";
+import UpdateCategory from "./admin/UpdateCategory";
 
 
 const Routes = () => {
@@ -56,12 +56,12 @@ const Routes = () => {
                     path="/admin/product/update/:productId" exact component={UpdateProduct} />
                 <AdminRoute
                     path="/admin/categories" exact component={ManageCategories} />
-                {/*<AdminRoute*/}
-                {/*    path="/admin/category/update/:categoryId" exact component={UpdateCategory} />*/}
                 <AdminRoute
-                    path="/admin/users" exact component={ManageUsers} />
+                    path="/admin/category/update/:categoryId" exact component={UpdateCategory} />
                 {/*<AdminRoute*/}
-                {/*    path="/admin/user/update/:userId" exact component={UpdateProduct} />*/}
+                {/*    path="/admin/users" exact component={ManageUsers} />*/}
+                {/*<AdminRoute*/}
+                {/*    path="/admin/user/update/:userId" exact component={UpdateUser} />*/}
                 <Route path="" component={Page404} />
 
             </Switch>

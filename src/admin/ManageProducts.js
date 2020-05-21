@@ -52,16 +52,25 @@ return (
                         <li
                             key={item}
                             className="list-group-item d-flex justify-content-between align-items-center">
-                            <strong>{product.name}</strong>
-                            <Link to={`/admin/product/update/${product._id}`}>
-                                <button className="badge badge-warning badge-pill "  >
-                                    Update Product
-                                </button>
-                            </Link>
-
-                            <button onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
-                                    Delete Product
-                                </button>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-sm">
+                                        <strong>{product.name}</strong>
+                                    </div>
+                                    <div className="col-sm">
+                                        <Link to={`/admin/product/update/${product._id}`}>
+                                            <button className="badge badge-warning badge-pill "  >
+                                                Update Product
+                                            </button>
+                                        </Link>
+                                    </div>
+                                    <div className="col-sm">
+                                        <button onClick={() => remove(product._id)} className="badge badge-danger badge-pill">
+                                            Delete Product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
                         </li>
 
