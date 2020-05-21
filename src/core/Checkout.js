@@ -107,7 +107,6 @@ const Checkout = ({products}) => {
                             console.log('payment success and empty cart');
                             setData({loading: false});
 
-                            // in case page does not reload by itself uncomment the below
                             window.location.reload();
                         });
                     })
