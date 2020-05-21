@@ -53,13 +53,13 @@ const Routes = () => {
                 <Route path="/wishlist" exact component={Wishlist} />
                 <Route path="/cod" exact component={CashOnDelivery} />
                 <PrivateRoute path="/profile/:userId" exact component={Profile} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/admin/products" exact component={ManageProducts} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/admin/product/update/:productId" exact component={UpdateProduct} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/admin/categories" exact component={ManageCategories} />
-                <AdminRoute
+                <StoreManagerRote
                     path="/admin/category/update/:categoryId" exact component={UpdateCategory} />
 
                 <Route path="" component={Page404} />
