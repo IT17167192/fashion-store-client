@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
-import {updateUserState, getAllUsers} from "./ApiAdmin";
+import {updateUserState, getAllUsers, resetPassword} from "./ApiAdmin";
+import {confirmAlert} from "react-confirm-alert";
 
 const ManageAdminUser = () => {
     const [users, setAllUsers] = useState([]);
@@ -25,8 +26,22 @@ const ManageAdminUser = () => {
         {roleName: "Admin", roleId: "1"}, {roleName: "Store Manager", roleId: "2"}
     ]);
 
-    const resetPassword = userId => {
-
+    const onClickResetPassword = userId => {
+        resetPassword(userId, token, user._id)
+            .then(data => {
+                if (data.error) {
+                    console.log("error");
+                } else {
+                    confirmAlert({
+                        title: 'Password has reset. Email sent successfully!',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
+                }
+            })
     };
 
     const changeState = data => {
@@ -72,7 +87,7 @@ const ManageAdminUser = () => {
                                     </button>}
                             </td>
                             <td>
-                                <button onClick={() => {resetPassword(user._id)}} className="btn btn-sm btn-dark">
+                                <button onClick={() => {onClickResetPassword(user._id)}} className="btn btn-sm btn-dark">
                                     Reset Password
                                 </button>
                             </td>

@@ -150,6 +150,18 @@ export const updateSingleCategory = (categoryId, userId, token, category) => {
         .catch(err => console.log(err))
 };
 
+export const resetPassword = (userId, token, adminUserId) => {
+    return fetch(`${API}/user/resetPassword/${userId}/${adminUserId}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            Authorization : `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
 // Delete single category
 export const deleteSingleCategory = (categoryId, userId, token) => {
     return fetch(`${API}/category/${categoryId}/${userId}`, {
