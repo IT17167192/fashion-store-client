@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {updateUserState, getAllUsers, resetPassword} from "./ApiAdmin";
 import {confirmAlert} from "react-confirm-alert";
+import Ftr from "../core/Ftr";
 
 const ManageAdminUser = () => {
     const [users, setAllUsers] = useState([]);
@@ -100,11 +101,14 @@ const ManageAdminUser = () => {
     );
 
     return (
+        <div>
         <Layout title="Manage User" description={`Welcome back ${user.name}, Manage User Now!`}
                 className="container-fluid">
             {manageUser()}
             <hr/>
         </Layout>
+        <Ftr/>
+        </div>
     );
 };
 

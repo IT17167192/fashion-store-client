@@ -6,6 +6,7 @@ import "mdbreact/dist/css/mdb.css";
 import {createProduct} from "./ApiAdmin";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
+import Ftr from "../core/Ftr";
 
 const AddProduct = () => {
     const {user, token} = isAuthenticate();
@@ -265,12 +266,15 @@ const AddProduct = () => {
     );
 
     return (
+     <div>
         <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
                 className="container-fluid">
             {newPostForm()}
             <hr/>
 
         </Layout>
+        <Ftr/>
+     </div>
     );
 };
 

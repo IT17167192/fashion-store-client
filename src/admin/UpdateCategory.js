@@ -9,6 +9,7 @@ import {MDBDataTable} from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
 import {MDBBtn} from "mdbreact";
 import {getSingleCategory, updateSingleCategory} from "./ApiAdmin";
+import Ftr from "../core/Ftr";
 
 const UpdateCategory = ({match}) => {
     const [name, setName] = useState('');
@@ -90,9 +91,11 @@ const UpdateCategory = ({match}) => {
     const backButton = () => {
         return (
             <Fragment>
-                <MDBBtn href="/admin/dashboard" color="mdb-color">
-                    Back to Dashboard
-                </MDBBtn>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
             </Fragment>
         );
     }
@@ -173,6 +176,7 @@ const UpdateCategory = ({match}) => {
     );
 
     return (
+        <div>
         <Layout title="Update category" description={`Welcome back ${user.name}, Update Category now`}
                 className="container-fluid">
             {showSuccessMsg()}
@@ -182,6 +186,8 @@ const UpdateCategory = ({match}) => {
             {backButton()}
             {categoryTable()}
         </Layout>
+        <Ftr/>
+        </div>
     );
 };
 
