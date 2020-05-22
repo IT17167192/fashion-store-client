@@ -126,17 +126,16 @@ const Product = props => {
         return product.currency === '$' ? parseFloat((price - ((price * product.discount) / 100)) / 180).toFixed(2) : parseFloat(price - ((price * product.discount) / 100)).toFixed(2);
     };
 
-    return (loading ? <CircularProgress size={100} style={{marginTop: "20%", marginLeft: "48%"}}/> :
-            <div>
+    return <div>
                 <Layout title={product.name} description={product.description} className="container-fluid">
                     {makeCartRedirect(redirect)}
                     {makeWishlistRedirect(redirectWish)}
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-5 col-sm-12 mt-5">
+                            <div className="col-lg-6 col-sm-12 mt-3">
                                 <ShowSingleImage item={product} url="product"/>
                             </div>
-                            <div className="col-lg-6 col-sm-12 mt-5 ml-5">
+                            <div className="col-lg-5 col-sm-12 mt-5">
                                 <h3 className="text-uppercase">{product.name}</h3>
 
                                 <div className="row pl-3">
@@ -150,7 +149,7 @@ const Product = props => {
                                     <h5 className="text-black-50">{product.description}</h5>
                                 </div>
 
-                                <h6 className="text-black-50">Note: Product colour may slightly vary depending on your
+                                <h6 className="text-black-50 mt-2">Note: Product colour may slightly vary depending on your
                                     monitor settings.</h6>
 
                                 <div className="mt-5">
@@ -195,7 +194,7 @@ const Product = props => {
                 <Ftr/>
             </div>
 
-    );
+
 };
 
 export default Product;

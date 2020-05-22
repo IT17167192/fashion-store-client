@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {getImage} from "./apiCore";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Image from 'react-bootstrap/Image'
+import {API} from "../config";
 
 const ShopListImage = ({item, url}) => {
 
@@ -34,16 +36,8 @@ const ShopListImage = ({item, url}) => {
     } else {
         return (
             <a href="javascript : ;">
-                <img className="pic-1"
-                     src={image}
-                     alt={item.name}
-                     style={{height: "300px"}}
-                />
-                <img className="pic-2"
-                     src={image}
-                     alt={item.name}
-                     style={{height: "300px"}}
-                />
+                <Image className="pic-1" src={image} fluid />
+                <Image className="pic-2" src={image} fluid />
             </a>
         )
     }
