@@ -41,11 +41,11 @@ const Orders = () => {
   const showOrdersLength = () => {
     if(orders.length > 0){
       return(
-          <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
+          <h2 className="text-danger display-2">Total online orders : {orders.length}</h2>
       )
     }
     else {
-      return <h1 className="text-danger">No orders</h1>;
+      return <h1 className="text-danger">No online orders!</h1>;
     }
   };
 
@@ -85,7 +85,7 @@ const Orders = () => {
   );
 
   return (
-      <Layout title="Orders" description={`Welcome back ${user.name}, you may manage all the orders here!`}
+      <Layout title="Orders" description={`Welcome back ${user.name}, you may manage all the online orders here!`}
               className="container-fluid">
         <div className="row">
           <div className="col-md-8 offset-md-2">
@@ -98,15 +98,15 @@ const Orders = () => {
                       <span className="bg-primary">Order ID: {ord._id}</span>
                     </h2>
                     <ul className="list-group mb-2">
-                      <li className="list-group-item">Status: {showStatus(ord)}</li>
+                      <li className="list-group-item">{showStatus(ord)}</li>
                       <li className="list-group-item">Transaction ID: {ord.transaction_id}</li>
-                      <li className="list-group-item">Amount: ${ord.amount}</li>
+                      <li className="list-group-item">Price: ${ord.amount}</li>
                       <li className="list-group-item">Ordered By: {ord.user.name}</li>
                       <li className="list-group-item">Ordered On: {moment(ord.createdAt).fromNow()}</li>
                       <li className="list-group-item">Delivery Address: {ord.address}</li>
                     </ul>
                     <h3 className="mt-4 mb-4 font-italic">
-                      Total Products of the Order: {ord.products.length}
+                      Total Products in the Order: {ord.products.length}
                     </h3>
                     {ord.products.map((prod, prodIndex) => (
                         <div className="mb-4" key={prodIndex} style={{padding: '20px', border: '1px solid indigo'}}>
