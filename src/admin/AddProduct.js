@@ -10,6 +10,7 @@ import Ftr from "../core/Ftr";
 
 const AddProduct = () => {
     const {user, token} = isAuthenticate();
+    const [loader, setLoader] = useState(false);
     const [productValues, setProductValues] = useState({
         name: '',
         description: '',
@@ -64,6 +65,7 @@ const AddProduct = () => {
 
     const submit = (event) => {
         event.preventDefault();
+        setLoader(true);
         setProductValues({...productValues, error: '', loading: true});
 
         if (!takeInMethod) {
@@ -78,7 +80,10 @@ const AddProduct = () => {
             .then(data => {
                 if (data.error) {
                     setProductValues({...productValues, error: data.error, showSuccess: false});
+                    setLoader(false);
+
                 } else {
+                    setLoader(false);
                     setProductValues({
                         ...productValues,
                         name: '',
@@ -97,6 +102,17 @@ const AddProduct = () => {
             })
 
     };
+    const backButton = () => {
+        return (
+            <Fragment>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
+            </Fragment>
+        );
+    }
 
     const showErrorMsg = () => {
         if (error) {
@@ -251,8 +267,8 @@ const AddProduct = () => {
                                         <option value="true">Yes</option>
                                     </select>
                                     <div className="text-center py-4 mt-3">
-                                        <MDBBtn className="btn btn-blue" type="submit">
-                                            Create Product
+                                        <MDBBtn className="btn btn-blue" type="submit"
+                                            disabled={loader}>{loader ? 'Loading...' : 'Add Product'}
                                         </MDBBtn>
                                     </div>
                                 </form>
@@ -269,6 +285,7 @@ const AddProduct = () => {
      <div>
         <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
                 className="container-fluid">
+            {backButton()}
             {newPostForm()}
             <hr/>
 

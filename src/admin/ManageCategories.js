@@ -100,13 +100,13 @@ const ManageCategories = () => {
                                         </button>
                                     </Link>
                                 </td>
+                                {(parseInt(user.role) === 1) && (
                                 <td>
-                                    {(parseInt(user.role) === 1) && (
                                     <button onClick={() => remove(category._id)} className="btn btn-sm btn-danger">
                                         Delete Category
                                     </button>
-                                    )}
                                 </td>
+                                )}
                             </tr>
                         ))}
                         </tbody>
