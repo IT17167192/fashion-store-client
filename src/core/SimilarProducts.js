@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import '../assets/similar_products_assets/bootstrap/css/bootstrap.min.css';
-import '../assets/similar_products_assets/fonts/font-awesome.min.css';
-import '../assets/similar_products_assets/css/Bootstrap-Cards-v2.css';
-import '../assets/similar_products_assets/css/styles.css';
+// import '../assets/similar_products_assets/bootstrap/css/bootstrap.min.css';
+// import '../assets/similar_products_assets/fonts/font-awesome.min.css';
+// import '../assets/similar_products_assets/css/Bootstrap-Cards-v2.css';
+// import '../assets/similar_products_assets/css/styles.css';
 import {getRelatedProducts} from "./apiCore";
 import {API} from "../config";
 import {Link} from "react-router-dom";

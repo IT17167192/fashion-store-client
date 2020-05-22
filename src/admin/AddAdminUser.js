@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {addAdminUser} from "./ApiAdmin";
+import Ftr from "../core/Ftr";
 
 const AddAdminUser = () => {
     const {user, token} = isAuthenticate();
@@ -115,11 +116,14 @@ const AddAdminUser = () => {
     );
 
     return (
+     <div>
         <Layout title="Add new user" description={`Welcome back ${user.name}, Add a new user now!`}
                 className="container-fluid">
             {newUser()}
             <hr/>
         </Layout>
+         <Ftr/>
+     </div>
     );
 };
 

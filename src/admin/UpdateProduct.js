@@ -431,9 +431,11 @@ const UpdateProduct = ({match}) => {
     const backButton = () => {
         return (
             <Fragment>
-                <MDBBtn href="/admin/dashboard" color="mdb-color">
-                    Back to Dashboard
-                </MDBBtn>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
             </Fragment>
         );
     }

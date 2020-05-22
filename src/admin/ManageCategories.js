@@ -13,6 +13,7 @@ import Card from "../core/Card";
 import FooterPage from "../core/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, deleteSingleCategory} from "./ApiAdmin";
+import Ftr from "../core/Ftr";
 
 const ManageCategories = () => {
 
@@ -61,11 +62,13 @@ const ManageCategories = () => {
 
 
     return (
-
+        <div>
         <Layout title="Manage Categories" description="Update and delete Categories">
-            <MDBBtn href="/admin/dashboard" color="mdb-color">
-                Back to Dashboard
-            </MDBBtn>
+            <Link to="/admin/dashboard">
+                <MDBBtn color="mdb-color">
+                    Back to Dashboard
+                </MDBBtn>
+            </Link>
             <div className="row ml-4 mr-4 mb-5">
                 <div className="col-12 table-responsive">
                     <h2 className="text-center"> Total of {categories.length} Categories </h2>
@@ -147,7 +150,8 @@ const ManageCategories = () => {
             {/*    </div>*/}
             {/*</div>*/}
         </Layout>
-
+        <Ftr/>
+        </div>
 
     );
 
