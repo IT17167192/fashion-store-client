@@ -68,8 +68,8 @@ const Ftr = () => {
                         </ul>
                     </div>
                     <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
-                        <h3 className="text-info pb-2 border-bottom border-info"> Quick Links</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
+                        <h3 className="text-info pb-2 text-center border-bottom border-info"> Quick Links</h3>
+                        <ul className="list-unstyled d-inline-block d-sm-block text-center">
                             <li className="mb-2"><a className="text-light" href="/">Home</a></li>
                             <li className="mb-2"><a className="text-light" href="/user/dashboard">Dashboard</a></li>
                             <li className="mb-2"><a className="text-light" href="/shop">Shop</a></li>
@@ -79,8 +79,8 @@ const Ftr = () => {
                         </ul>
                     </div>
                     <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
-                        <h3 className="text-info pb-2 border-bottom border-info">Contact Us</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
+                        <h3 className="text-info pb-2 text-right border-bottom border-info">Contact Us</h3>
+                        <ul className="list-unstyled d-inline-block d-sm-block text-right">
                             <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+94 75 5172 666</p>
                             <p className="mb-1"><i className="fa fa-envelope fa-fw"></i>&nbsp;<a className="text-light"
                                                                                                  href="mailto:contact@company.com">quarantinefashionstore@google.com</a>
@@ -116,7 +116,7 @@ const Ftr = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <h2 className="mb-3"><img src={FooterLogo}/></h2>
+                            <h2 className="mb-3 "><img src={FooterLogo}/></h2>
                             <p className="mb-1"><i className="fa fa-map-marker fa-fw"></i>&nbsp;Royal Road - Tamarin -
                                 Mauritius</p>
                             <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+94 75 5172 666</p>
@@ -125,7 +125,7 @@ const Ftr = () => {
                             </p>
                         </div>
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <p className="my-3">The Quarantine Fashion Store offers a wide range of clothes and accessories for everyone.
+                            <p className="my-3 text-center">The Quarantine Fashion Store offers a wide range of clothes and accessories for everyone.
                                 Our vision is to provide our valued customers with quality products at an affordable price. </p>
                         </div>
                         <div className="col-lg-4 text-center text-lg-right pb-4">

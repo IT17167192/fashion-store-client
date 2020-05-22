@@ -78,12 +78,14 @@ const AddCategory = () => {
     const backButton = () => {
         return (
             <Fragment>
-                <MDBBtn href="/admin/dashboard" color="mdb-color">
-                    Back to Dashboard
-                </MDBBtn>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
             </Fragment>
         );
-    }
+    };
 
 
     const categoryTable = () => {
@@ -164,11 +166,11 @@ const AddCategory = () => {
      <div>
         <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
                 className="container-fluid">
+            {backButton()}
             {showSuccessMsg()}
             {showErrorMsg()}
             {newCategoryForm()}
             <hr/>
-            {backButton()}
             {categoryTable()}
         </Layout>
          <Ftr/>

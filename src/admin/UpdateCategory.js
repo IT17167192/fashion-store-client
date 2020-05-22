@@ -98,7 +98,7 @@ const UpdateCategory = ({match}) => {
                 </Link>
             </Fragment>
         );
-    }
+    };
 
 
     const categoryTable = () => {

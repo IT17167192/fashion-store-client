@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {addAdminUser} from "./ApiAdmin";
 import Ftr from "../core/Ftr";
+import {Link} from "react-router-dom";
+import {MDBBtn} from "mdbreact";
 
 const AddAdminUser = () => {
     const {user, token} = isAuthenticate();
+    const [loader, setLoader] = useState(false);
     const [roles] = useState([
         {roleName: "Admin", roleId: "1"}, {roleName: "Store Manager", roleId: "2"}
     ]);
@@ -56,6 +59,17 @@ const AddAdminUser = () => {
             );
         }
     };
+    const backButton = () => {
+        return (
+            <Fragment>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
+            </Fragment>
+        );
+    };
 
     const showSuccessMsg = () => {
         if(showSuccess){
@@ -69,13 +83,17 @@ const AddAdminUser = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
+        setLoader(true);
         setUserDetails({...userDetails});
         addAdminUser(user._id, token,{name, email, password, role})
             .then(data => {
                 if (data.error) {
                     setUserDetails({...userDetails, error: data.error, showSuccess: false});
+                    setLoader(false);
+
                 } else {
-                    setUserDetails({...userDetails, name: '', email: '', password: '', role: '1', error: false, showSuccess: true, createUser: data.name})
+                    setUserDetails({...userDetails, name: '', email: '', password: '', role: '1', error: false, showSuccess: true, createUser: data.name});
+                    setLoader(false);
                 }
             })
     };
@@ -109,7 +127,9 @@ const AddAdminUser = () => {
 
 
                 <div className="form-group">
-                    <button className="btn btn-primary" onClick={onSubmit}>Create User</button>
+                    {/*<button className="btn btn-primary" onClick={onSubmit}>Create User</button>*/}
+                    <button className="btn btn-primary" onClick={onSubmit}
+                            disabled={loader}>{loader ? 'Loading...' : 'Create User'}</button>
                 </div>
             </form>
         </div>
@@ -119,8 +139,12 @@ const AddAdminUser = () => {
      <div>
         <Layout title="Add new user" description={`Welcome back ${user.name}, Add a new user now!`}
                 className="container-fluid">
+            {backButton()}
+            <hr/>
             {newUser()}
             <hr/>
+
+
         </Layout>
          <Ftr/>
      </div>

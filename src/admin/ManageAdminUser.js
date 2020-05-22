@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {updateUserState, getAllUsers, resetPassword} from "./ApiAdmin";
 import {confirmAlert} from "react-confirm-alert";
 import Ftr from "../core/Ftr";
+import {Link} from "react-router-dom";
+import {MDBBtn} from "mdbreact";
 
 const ManageAdminUser = () => {
     const [users, setAllUsers] = useState([]);
@@ -54,6 +56,18 @@ const ManageAdminUser = () => {
             }
         })
     };
+    const backButton = () => {
+        return (
+            <Fragment>
+                <Link to="/admin/dashboard">
+                    <MDBBtn color="mdb-color">
+                        Back to Dashboard
+                    </MDBBtn>
+                </Link>
+            </Fragment>
+        );
+    };
+
 
     const manageUser = () => (
         <div className="row ml-4 mr-4 mb-5">
@@ -102,8 +116,10 @@ const ManageAdminUser = () => {
 
     return (
         <div>
-        <Layout title="Manage User" description={`Welcome back ${user.name}, Manage User Now!`}
+        <Layout title="Manage Users" description={`Welcome back ${user.name}, Manage Users Now!`}
                 className="container-fluid">
+            {backButton()}
+            <hr/>
             {manageUser()}
             <hr/>
         </Layout>

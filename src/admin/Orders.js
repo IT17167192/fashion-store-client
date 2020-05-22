@@ -4,6 +4,8 @@ import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import {listOrders, getStatusValues, updateOrderStatus} from "./ApiAdmin";
 import moment from 'moment';
+import Ftr from "../core/Ftr";
+import {MDBBtn} from "mdbreact";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -41,11 +43,11 @@ const Orders = () => {
   const showOrdersLength = () => {
     if(orders.length > 0){
       return(
-          <h2 className="text-danger display-2">Total online orders : {orders.length}</h2>
+          <h6 className="text-danger display-4">Total online orders : {orders.length}</h6>
       )
     }
     else {
-      return <h1 className="text-danger">No online orders!</h1>;
+      return <h1 className="text-danger mb-5">No online orders!</h1>;
     }
   };
 
@@ -85,8 +87,14 @@ const Orders = () => {
   );
 
   return (
+      <div>
       <Layout title="Orders" description={`Welcome back ${user.name}, you may manage all the online orders here!`}
               className="container-fluid">
+          <Link to="/admin/dashboard">
+              <MDBBtn color="mdb-color">
+                  Back to Dashboard
+              </MDBBtn>
+          </Link>
         <div className="row">
           <div className="col-md-8 offset-md-2">
             {showOrdersLength()}
@@ -122,6 +130,8 @@ const Orders = () => {
           </div>
         </div>
       </Layout>
+        <Ftr/>
+      </div>
   );
 
 };
