@@ -8,6 +8,7 @@ import {MDBContainer, MDBAlert} from 'mdbreact';
 import {MDBDataTable} from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
 import {MDBBtn} from "mdbreact";
+import Ftr from "../core/Ftr";
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -160,6 +161,7 @@ const AddCategory = () => {
     );
 
     return (
+     <div>
         <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
                 className="container-fluid">
             {showSuccessMsg()}
@@ -169,6 +171,8 @@ const AddCategory = () => {
             {backButton()}
             {categoryTable()}
         </Layout>
+         <Ftr/>
+     </div>
     );
 };
 

@@ -11,6 +11,7 @@ import image3 from '../images/image4.jpg';
 
 //Mui stuff
 import CircularProgress from "@material-ui/core/CircularProgress";
+import CategoryCard from "./CategoryCard";
 
 const Home = () => {
 
@@ -65,9 +66,15 @@ const Home = () => {
                             </Carousel.Item>
                         </Carousel>
                     </div>
+                    <div className="team-grid">
+                        <div className="container">
+                            <h3 className="font-weight-bold" align="center">SHOP BY CATEGORIES</h3>
+                            <CategoryCard/>
+                        </div>
+                    </div>
                     <div className="shopping-grid">
                         <div className="container">
-                            <h3 className="" align="center">Latest Products</h3>
+                            <h3 className="font-weight-bold" align="center">LATEST PRODUCTS</h3>
                                 <div className="row">
                                     {products.map((product, i) => (
                                         <div key={i} className="col-md-6 col-lg-3 col-xs-3 col-sm-6 mb-3">

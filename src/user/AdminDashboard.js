@@ -40,6 +40,9 @@ const AdminDashboard = () => {
                             <li className="list-group-item">
                                 <Link className="nav-link" to="/admin/categories">Manage Categories</Link>
                             </li>
+                            <li className="list-group-item">
+                                <Link className="nav-link" to="/admin/orders">View Orders</Link>
+                            </li>
                             {/*{(parseInt(isAuthenticate().user.role) === 1) && (*/}
                             {/*    <li className="list-group-item">*/}
                             {/*        <Link className="nav-link" to="/admin/users">Manage Users</Link>*/}

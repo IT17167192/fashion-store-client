@@ -13,6 +13,7 @@ import Card from "../core/Card";
 import FooterPage from "../core/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllProducts, deleteSingleProduct} from "./ApiAdmin";
+import Ftr from "../core/Ftr";
 
 const ManageProducts = () => {
 
@@ -90,6 +91,7 @@ const ManageProducts = () => {
         fetchProducts();
     }, []);
 return (
+    <div>
     <Layout title="Manage Products" description="Update and delete Products">
         <div className="ml-4">
             <Link to="/admin/dashboard">
@@ -184,6 +186,8 @@ return (
             </div>
         </div>
     </Layout>
+    <Ftr/>
+    </div>
 );
 };
 

@@ -13,6 +13,7 @@ import {addItemtoWishlist} from "./WishlistHelper";
 import RateComponent from "./Rate";
 import CommentComponent from "./CommentComponent";
 import Ftr from "./Ftr";
+import SimilarProducts from "./SimilarProducts";
 
 const Product = props => {
 
@@ -184,8 +185,13 @@ const Product = props => {
                                 }
                             </div>
                         </div>
+
                     </div>
                 </Layout>
+                <div className="card card-body ml-2 mr-2 mb-4">
+                    <SimilarProducts productId={props.match.params.productId}/>
+                </div>
+
                 <Ftr/>
             </div>
 

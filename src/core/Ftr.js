@@ -125,9 +125,8 @@ const Ftr = () => {
                             </p>
                         </div>
                         <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <p className="my-3">Post quorum necem nihilo lenius ferociens Gallus ut leo cadaveribus
-                                pastus multa huius modi scrutabatur. quae singula narrare non refert, me professione
-                                modum, quod evitandum est, excedamus.</p>
+                            <p className="my-3">The Quarantine Fashion Store offers a wide range of clothes and accessories for everyone.
+                                Our vision is to provide our valued customers with quality products at an affordable price. </p>
                         </div>
                         <div className="col-lg-4 text-center text-lg-right pb-4">
                             <h3 className="mb-0">Follow us</h3>
