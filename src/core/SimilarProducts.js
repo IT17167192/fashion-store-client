@@ -71,7 +71,7 @@ const SimilarProducts = (props) => {
                     <div className="card-body p-4">
                         <a href={`/product/${similarProduct._id}`}>
                             <img
-                                style={{height:"130px", width: "130px"}}
+                                style={{height:"120px", width:"110px"}}
                                 src={`${API}/product/image/${similarProduct._id}`}
                                 alt=""
                                 className="img-fluid d-block mx-auto mb-3"
@@ -98,8 +98,8 @@ const SimilarProducts = (props) => {
 
     return (
         <div>
-            <h2 class="font-weight-bold mt-5 mb-4">Similar products</h2>
-            {!populateSimilarProducts() ?<div className="alert alert-info alert-dismissible fade show" role="alert">
+            <h4 class="font-weight-bold mt-2 mb-5">Similar products</h4>
+            {!populateSimilarProducts() ? <div className="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>No related products!</strong>
             </div> : ''}
             <div class="row pb-5 mb-4">

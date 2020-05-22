@@ -185,10 +185,13 @@ const Product = props => {
                                 }
                             </div>
                         </div>
-                        <hr/>
-                        <SimilarProducts productId={props.match.params.productId}/>
+
                     </div>
                 </Layout>
+                <div className="card card-body ml-2 mr-2 mb-4">
+                    <SimilarProducts productId={props.match.params.productId}/>
+                </div>
+
                 <Ftr/>
             </div>
 
