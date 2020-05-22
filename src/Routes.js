@@ -25,6 +25,7 @@ import CashOnDelivery from "./core/CashOnDelivery";
 import ManageCategories from "./admin/ManageCategories";
 import UpdateCategory from "./admin/UpdateCategory";
 import Orders from "./admin/Orders";
+import ManageAdminUser from "./admin/ManageAdminUser";
 
 
 const Routes = () => {
@@ -61,6 +62,8 @@ const Routes = () => {
                     path="/admin/orders" exact component={Orders} />
                 <AdminRoute
                     path="/admin/category/update/:categoryId" exact component={UpdateCategory} />
+                <AdminRoute
+                    path="/manage/user" exact component={ManageAdminUser} />
 
                 <Route path="" component={Page404} />
 

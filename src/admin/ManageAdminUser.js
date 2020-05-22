@@ -46,6 +46,16 @@ const ManageAdminUser = () => {
                 }
             })
     };
+
+    const changeState = data => {
+        updateUserState(user._id, data, token). then(data => {
+            if(data.error){
+                console.log(data.error)
+            } else {
+                fetchUsers()
+            }
+        })
+    };
     const backButton = () => {
         return (
             <Fragment>
@@ -56,16 +66,8 @@ const ManageAdminUser = () => {
                 </Link>
             </Fragment>
         );
-    }
-    const changeState = data => {
-        updateUserState(user._id, data, token). then(data => {
-            if(data.error){
-                console.log(data.error)
-            } else {
-                fetchUsers()
-            }
-        })
     };
+
 
     const manageUser = () => (
         <div className="row ml-4 mr-4 mb-5">
@@ -120,7 +122,6 @@ const ManageAdminUser = () => {
             <hr/>
             {manageUser()}
             <hr/>
-
         </Layout>
         <Ftr/>
         </div>
