@@ -66,9 +66,9 @@ const Home = () => {
                             </Carousel.Item>
                         </Carousel>
                     </div>
-                    <div className="team-grid">
+                    <div style={{marginTop: "100px"}} className="team-grid">
                         <div className="container">
-                            <h3 className="font-weight-bold" align="center">SHOP BY CATEGORIES</h3>
+                            <h2 className="font-weight-bold" align="center">SHOP BY CATEGORIES</h2>
                             <CategoryCard/>
                         </div>
                     </div>
