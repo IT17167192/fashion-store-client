@@ -13,6 +13,7 @@ import {addItemtoWishlist} from "./WishlistHelper";
 import RateComponent from "./Rate";
 import CommentComponent from "./CommentComponent";
 import Ftr from "./Ftr";
+import SimilarProducts from "./SimilarProducts";
 
 const Product = props => {
 
@@ -184,6 +185,8 @@ const Product = props => {
                                 }
                             </div>
                         </div>
+                        <hr/>
+                        <SimilarProducts productId={props.match.params.productId}/>
                     </div>
                 </Layout>
                 <Ftr/>
