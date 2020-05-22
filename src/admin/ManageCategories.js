@@ -3,7 +3,8 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
-import {createCategory} from "./ApiAdmin";
+import { confirmAlert } from 'react-confirm-alert';
+import {createCategory, deleteSingleProduct} from "./ApiAdmin";
 import {MDBContainer, MDBAlert} from 'mdbreact';
 import {MDBDataTable} from 'mdbreact';
 // import {getAllCategories} from "../core/apiCore";
@@ -29,14 +30,30 @@ const ManageCategories = () => {
         })
     };
 
-    const remove = categoryId =>{
-        deleteSingleCategory(categoryId, user._id, token). then(data => {
-            if(data.error){
-                console.log(data.error)
-            } else {
-                fetchCategories()
-            }
-        })
+    const remove = categoryId =>
+    {
+        confirmAlert({
+            title: 'Confirm Delete',
+            message: 'Are you sure you want to delete this Category?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        deleteSingleCategory(categoryId, user._id, token). then(data => {
+                            if(data.error){
+                                console.log(data.error)
+                            } else {
+                                fetchCategories()
+                            }
+                        })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {}
+                }
+            ]
+        });
     };
     useEffect(() => {
         fetchCategories();
@@ -46,6 +63,9 @@ const ManageCategories = () => {
     return (
 
         <Layout title="Manage Categories" description="Update and delete Categories">
+            <MDBBtn href="/admin/dashboard" color="mdb-color">
+                Back to Dashboard
+            </MDBBtn>
             <div className="row ml-4 mr-4 mb-5">
                 <div className="col-12 table-responsive">
                     <h2 className="text-center"> Total of {categories.length} Categories </h2>
@@ -58,7 +78,9 @@ const ManageCategories = () => {
                             <th scope="col">Date Created</th>
                             <th scope="col">Date Last Updated</th>
                             <th scope="col">Update</th>
+                            {(parseInt(user.role) === 1) && (
                             <th scope="col">Delete</th>
+                            )}
                         </tr>
                         </thead>
                         <tbody>
@@ -76,9 +98,11 @@ const ManageCategories = () => {
                                     </Link>
                                 </td>
                                 <td>
+                                    {(parseInt(user.role) === 1) && (
                                     <button onClick={() => remove(category._id)} className="btn btn-sm btn-danger">
                                         Delete Category
                                     </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}

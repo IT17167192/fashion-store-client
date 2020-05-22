@@ -55,7 +55,7 @@ const Ftr = () => {
         <footer className="bg-dark text-white border-top border-info">
             <div className="container text-center text-sm-left position-relative py-5">
                 <div className="row">
-                    <div className="col-sm-6 col-md-3">
+                    <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
                         <h3 className="text-info pb-2 border-bottom border-info">About Us</h3>
                         <ul className="list-unstyled d-inline-block d-sm-block">
                             {/*<li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>*/}
@@ -67,7 +67,7 @@ const Ftr = () => {
                             <p className="mb-2" className="text-light"> With everything at the tip of your fingers, shopping has never been easier.</p>
                         </ul>
                     </div>
-                    <div className="col-sm-6 col-md-3">
+                    <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
                         <h3 className="text-info pb-2 border-bottom border-info"> Quick Links</h3>
                         <ul className="list-unstyled d-inline-block d-sm-block">
                             <li className="mb-2"><a className="text-light" href="/">Home</a></li>
@@ -78,24 +78,35 @@ const Ftr = () => {
 
                         </ul>
                     </div>
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
+                    <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
+                        <h3 className="text-info pb-2 border-bottom border-info">Contact Us</h3>
                         <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
+                            <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+94 75 5172 666</p>
+                            <p className="mb-1"><i className="fa fa-envelope fa-fw"></i>&nbsp;<a className="text-light"
+                                                                                                 href="mailto:contact@company.com">quarantinefashionstore@google.com</a>
+                            </p>
+                            <br></br>
+                            <div><a className="text-light " href="#"><i
+                                className="fa fa-instagram fa-2x"></i></a><a className="text-light mx-2 mx-lg-0 ml-lg-3"
+                                                                             href="#"><i
+                                className="fa fa-twitter fa-2x"></i></a><a className="text-light mx-2 mx-lg-0 ml-lg-3"
+                                                                           href="#"><i
+                                className="fa fa-facebook-square fa-2x"></i></a>
+                                <a
+                                    className="text-light mx-2 mx-lg-0 ml-lg-3" href="#"><i
+                                    className="fa fa-snapchat-ghost fa-2x"></i></a>
+                            </div>
                         </ul>
                     </div>
-                    <div className="col-sm-6 col-md-3">
-                        <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block">
-                            <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>
-                            <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>
-                        </ul>
-                    </div>
+                    {/*<div className="col-sm-6 col-md-3">*/}
+                    {/*    <h3 className="text-info pb-2 border-bottom border-info">Lorem Ipsum</h3>*/}
+                    {/*    <ul className="list-unstyled d-inline-block d-sm-block">*/}
+                    {/*        <li className="mb-2"><a className="text-light" href="#">Minimumque</a></li>*/}
+                    {/*        <li className="mb-2"><a className="text-light" href="#">Sensim fame petivere</a></li>*/}
+                    {/*        <li className="mb-2"><a className="text-light" href="#">Vulgasset ut solent</a></li>*/}
+                    {/*        <li className="mb-2"><a className="text-light" href="#">Expers cum eodem</a></li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="text-center position-absolute w-100 mt-4"><a href="#top"><span
                     className="fa-stack fa-lg"><i className="fa fa-circle fa-stack-2x text-dark"></i><i

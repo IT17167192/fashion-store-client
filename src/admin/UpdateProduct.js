@@ -309,6 +309,8 @@ import "mdbreact/dist/css/mdb.css";
 import {getSingleProduct, updateSingleProduct, getAllCategories} from "./ApiAdmin";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
+import Ftr from "../core/Ftr";
+
 
 const UpdateProduct = ({match}) => {
     const {user, token} = isAuthenticate();
@@ -426,7 +428,15 @@ const UpdateProduct = ({match}) => {
             })
 
     };
-
+    const backButton = () => {
+        return (
+            <Fragment>
+                <MDBBtn href="/admin/dashboard" color="mdb-color">
+                    Back to Dashboard
+                </MDBBtn>
+            </Fragment>
+        );
+    }
     const showErrorMsg = () => {
         if (error) {
             return (
@@ -595,12 +605,18 @@ const UpdateProduct = ({match}) => {
     );
 
     return (
+        <div>
         <Layout title="Update product" description={`Welcome back ${user.name}, Update product now!`}
                 className="container-fluid">
+
+            {backButton()}
+            <hr/>
             {newPostUpdateForm()}
             <hr/>
 
         </Layout>
+        <Ftr/>
+        </div>
     );
 };
 

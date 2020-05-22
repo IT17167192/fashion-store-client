@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
+import { confirmAlert } from 'react-confirm-alert';
 import {createCategory} from "./ApiAdmin";
 import {MDBContainer, MDBAlert} from 'mdbreact';
 import {MDBDataTable} from 'mdbreact';
@@ -60,20 +61,39 @@ const ManageProducts = () => {
         }
     };
 
-    const remove = productId =>{
-        deleteSingleProduct(productId, user._id, token). then(data => {
-            if(data.error){
-                console.log(data.error)
-            } else {
-                fetchProducts()
-            }
-        })
+    const remove = productId =>
+    {
+        confirmAlert({
+            title: 'Confirm Delete',
+            message: 'Are you sure you want to delete this product?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        deleteSingleProduct(productId, user._id, token). then(data => {
+                            if(data.error){
+                                console.log(data.error)
+                            } else {
+                                fetchProducts()
+                            }
+                        })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {}
+                }
+            ]
+        });
     };
     useEffect(() => {
         fetchProducts();
     }, []);
 return (
     <Layout title="Manage Products" description="Update and delete Products">
+        <MDBBtn href="/admin/dashboard" color="mdb-color">
+            Back to Dashboard
+        </MDBBtn>
         <div className="row ml-4 mr-4 mb-5">
             <div className="col-12 table-responsive">
                 <h2 className="text-center"> Total of {products.length} Products </h2>
@@ -89,7 +109,9 @@ return (
                             <th scope="col">Shippable</th>
                             <th scope="col">Product Rating</th>
                             <th scope="col">Update</th>
+                            {(parseInt(user.role) === 1) && (
                             <th scope="col">Delete</th>
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -116,9 +138,11 @@ return (
                                 </Link>
                             </td>
                             <td>
+                                {(parseInt(user.role) === 1) && (
                                 <button onClick={() => remove(product._id)} className="btn btn-sm btn-danger">
                                     Delete Product
                                 </button>
+                                )}
                             </td>
                         </tr>
                     ))}
