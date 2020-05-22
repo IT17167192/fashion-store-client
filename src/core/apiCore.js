@@ -8,6 +8,14 @@ export const getProducts = (sortBy) => {
         .catch(err => console.log(err))
 };
 
+export const getProductsByCategory = (categoryId) => {
+    return fetch(`${API}/product/category/${categoryId}`, {
+        method: "GET",
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+};
+
 export const getImage = (productId) => {
     return fetch(`${API}/product/image/${productId}`, {
         method: "GET",
@@ -217,4 +225,13 @@ export const createOrder = (userId, token, createOrderData) => {
             return response.json();
         })
         .catch(err => console.log(err));
+};
+
+//Get Single Category
+export const getSingleCategory = (categoryId) => {
+    return fetch(`${API}/category/${categoryId}`, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
 };

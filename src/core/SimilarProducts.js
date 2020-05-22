@@ -5,7 +5,7 @@ import '../assets/similar_products_assets/css/Bootstrap-Cards-v2.css';
 import '../assets/similar_products_assets/css/styles.css';
 import {getRelatedProducts} from "./apiCore";
 import {API} from "../config";
-import {Link} from "react-router-dom";
+import Image from 'react-bootstrap/Image'
 
 const SimilarProducts = (props) => {
     const [similarProducts, setSimilarProducts] = useState([]);
@@ -70,8 +70,7 @@ const SimilarProducts = (props) => {
                 <div className="card rounded shadow-sm border-0">
                     <div className="card-body p-4">
                         <a href={`/product/${similarProduct._id}`}>
-                            <img
-                                style={{height:"120px", width:"110px"}}
+                            <Image
                                 src={`${API}/product/image/${similarProduct._id}`}
                                 alt=""
                                 className="img-fluid d-block mx-auto mb-3"
