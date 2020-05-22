@@ -17,13 +17,14 @@ import {signin, authenticate, isAuthenticate} from "../auth";
 import {addItem, getCartProductId, showCart} from "../core/CartHelper";
 import {updateUserCart} from "../core/apiCore";
 import {read} from "./apiUser";
+import Logo from '../assets/Logos/Logo_Menu-v1.png';
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                QuarantineFashion.com
+            <Link color="inherit" href="https://quarantinefashionstore.herokuapp.com/">
+                QuarantineFashionStore.herokuapp.com
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -190,6 +191,7 @@ const Signin = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
+
                     <form className={classes.form} noValidate>
                         <TextField
                             variant="outlined"
@@ -241,6 +243,7 @@ const Signin = () => {
                             <Copyright/>
                         </Box>
                     </form>
+                    <img className="mt-5" src={Logo}/>
                 </div>
             </Grid>
             {redirectUser()}
