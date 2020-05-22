@@ -15,34 +15,34 @@ const AdminDashboard = () => {
         return (
             <div className="col-md-3 mb-4">
                 <div className="card">
-                    <div className="card-header" >{parseInt(isAuthenticate().user.role) === 1 ? "Admin Links" : "Store Manager Links"}</div>
+                    <div className="card-header" ><h3>{parseInt(isAuthenticate().user.role) === 1 ? "Admin Links" : "Store Manager Links"}</h3></div>
                     <div className="card-body">
                         <ul className="list-group">
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/create/category">Create Category</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/create/category">Create Category</Link>
                             </li>
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/create/product">Create Product</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/create/product">Create Product</Link>
                             </li>
                             {(parseInt(isAuthenticate().user.role) === 1) && (
                                 <li className="list-group-item">
-                                    <Link className="nav-link" to="/create/user">Create Admin User</Link>
+                                    <Link className="nav-link bg-info text-white rounded" to="/create/user">Create Admin User</Link>
                                 </li>
                             )}
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/admin/categories">Manage Categories</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/admin/categories">Manage Categories</Link>
                             </li>
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/admin/products">Manage Products</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/admin/products">Manage Products</Link>
                             </li>
 
                             {(parseInt(isAuthenticate().user.role) === 1) && (
                                 <li className="list-group-item">
-                                    <Link className="nav-link" to="/manage/user">Manage Admin Users</Link>
+                                    <Link className="nav-link bg-info text-white rounded" to="/manage/user">Manage Admin Users</Link>
                                 </li>
                             )}
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/admin/orders">View Orders</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/admin/orders">View Orders</Link>
                             </li>
                             {/*{(parseInt(isAuthenticate().user.role) === 1) && (*/}
                             {/*    <li className="list-group-item">*/}
