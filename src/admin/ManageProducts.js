@@ -93,7 +93,7 @@ return (
     <Layout title="Manage Products" description="Update and delete Products">
         <div className="ml-4">
             <Link to="/admin/dashboard">
-                <MDBBtn href="/admin/dashboard" color="mdb-color">
+                <MDBBtn color="mdb-color">
                     Back to Dashboard
                 </MDBBtn>
             </Link>
