@@ -17,7 +17,6 @@ import AddCategory from "./admin/AddCategory";
 import Profile from "./user/Profile";
 import AddProduct from "./admin/AddProduct";
 import AddAdminUser from "./admin/AddAdminUser";
-import ManageAdminUser from "./admin/ManageAdminUser";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import Wishlist from "./core/Wishlist";
@@ -25,6 +24,7 @@ import Page404 from "./core/Page404";
 import CashOnDelivery from "./core/CashOnDelivery";
 import ManageCategories from "./admin/ManageCategories";
 import UpdateCategory from "./admin/UpdateCategory";
+import Orders from "./admin/Orders";
 
 
 const Routes = () => {
@@ -47,19 +47,19 @@ const Routes = () => {
                     path="/create/product" exact component={AddProduct} />
                 <AdminRoute
                     path="/create/user" exact component={AddAdminUser} />
-                <AdminRoute
-                    path="/manage/user" exact component={ManageAdminUser} />
                 <Route path="/cart" exact component={Cart} />
                 <Route path="/wishlist" exact component={Wishlist} />
                 <Route path="/cod" exact component={CashOnDelivery} />
                 <PrivateRoute path="/profile/:userId" exact component={Profile} />
-                <StoreManagerRote
+                <AdminRoute
                     path="/admin/products" exact component={ManageProducts} />
-                <StoreManagerRote
+                <AdminRoute
                     path="/admin/product/update/:productId" exact component={UpdateProduct} />
-                <StoreManagerRote
+                <AdminRoute
                     path="/admin/categories" exact component={ManageCategories} />
-                <StoreManagerRote
+                <AdminRoute
+                    path="/admin/orders" exact component={Orders} />
+                <AdminRoute
                     path="/admin/category/update/:categoryId" exact component={UpdateCategory} />
 
                 <Route path="" component={Page404} />

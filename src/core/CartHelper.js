@@ -57,7 +57,7 @@ export const showSelectedCart = () => {
                 cart.splice(i, 1);
             }
         });
-        console.log(cart.length);
+
         return JSON.parse(JSON.stringify(cart));
     }
     return [];
@@ -119,16 +119,18 @@ export const removeItem = (productId) => {
 
 export const emptyCart = next => {
     let cart = [];
-    if(typeof window !== 'undefined'){
+    if (typeof window !== 'undefined') {
         if (localStorage.getItem('cart')) {
             cart = JSON.parse(localStorage.getItem('cart'));
         }
 
-        cart.map((product, i) => {
-            if (product.isChecked) {
+        //backward because does not need do any corrections to index after deleting an item
+        for (let i = cart.length - 1; i >= 0; i--) {
+            if (cart[i].isChecked) {
+                // remove current element
                 cart.splice(i, 1);
             }
-        });
+        }
         localStorage.setItem('cart', JSON.stringify(cart));
         next()
     }
