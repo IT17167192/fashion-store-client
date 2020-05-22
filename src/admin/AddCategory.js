@@ -85,7 +85,7 @@ const AddCategory = () => {
                 </Link>
             </Fragment>
         );
-    }
+    };
 
 
     const categoryTable = () => {

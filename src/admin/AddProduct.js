@@ -112,7 +112,7 @@ const AddProduct = () => {
                 </Link>
             </Fragment>
         );
-    }
+    };
 
     const showErrorMsg = () => {
         if (error) {

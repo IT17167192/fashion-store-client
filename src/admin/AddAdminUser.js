@@ -69,7 +69,7 @@ const AddAdminUser = () => {
                 </Link>
             </Fragment>
         );
-    }
+    };
 
     const showSuccessMsg = () => {
         if(showSuccess){

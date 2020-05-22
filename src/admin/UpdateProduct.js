@@ -139,7 +139,7 @@ const UpdateProduct = ({match}) => {
                 </Link>
             </Fragment>
         );
-    }
+    };
     const showErrorMsg = () => {
         if (error) {
             return (
