@@ -1,13 +1,10 @@
 import React from "react";
 import {API} from "../config";
+import Image from 'react-bootstrap/Image'
 
 const ShowSingleImage = ({item, url}) => (
     <div className="product-img">
-        <img
-            src={`${API}/${url}/image/${item._id}`}
-            className="mb-3"
-            style={{height: "350px", width: "350px"}}
-        />
+        <Image src={`${API}/${url}/image/${item._id}`} fluid />
     </div>
 );
 

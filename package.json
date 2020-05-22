@@ -26,6 +26,7 @@
     "react-bootstrap": "^1.0.0",
     "react-confirm-alert": "^2.6.1",
     "react-dom": "^16.13.0",
+    "react-image-responsive": "^2.0.2",
     "react-rater": "^5.1.1",
     "react-recaptcha": "^2.3.10",
     "react-router-dom": "^5.1.2",
