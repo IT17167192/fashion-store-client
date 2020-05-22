@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getBraintreeClientToken, processPayment, removeCartItem} from './apiCore';
+import {getProducts, getBraintreeClientToken, processPayment, removeCartItem, createOrder} from './apiCore';
 import {emptyCart, showSelectedCart} from './CartHelper';
 import {Link} from 'react-router-dom';
 import {isAuthenticate} from '../auth';
@@ -32,6 +32,10 @@ const Checkout = ({products}) => {
     useEffect(() => {
         getToken(userId, token);
     }, []);
+
+    const handleAddress = event => {
+        setData({...data, address: event.target.value});
+    }
 
     //function to get total of checked items
     const getTotal = () => {
@@ -68,6 +72,8 @@ const Checkout = ({products}) => {
         );
     };
 
+    let deliveryAddress = data.address;
+
     const buy = () => {
         setData({loading: true});
         // send the nonce to your server
@@ -87,28 +93,46 @@ const Checkout = ({products}) => {
 
                 processPayment(userId, token, paymentData)
                     .then(response => {
-                        // console.log(response)
-                        setData({...data, success: response.success});
+                        console.log(response)
 
-                        const { token, user } = isAuthenticate();
-                        const items = showSelectedCart();   //get selected items
+                        // create order
+                        const createOrderData = {
+                            products: products,
+                            transaction_id: response.transaction.id,
+                            amount: response.transaction.amount,
+                            address: deliveryAddress
+                        };
 
-                        //remove paid products from db one by one
-                        for (let i = 0; i < items.length; ++i) {
-                            removeCartItem(user._id, token, items[i]).then(data => {
-                                if (data.error) {
-                                    console.log(data.error);
+                        createOrder(userId, token, createOrderData)
+                            .then(response => {
+                                setData({...data, success: response.success});
+
+                                const { token, user } = isAuthenticate();
+                                const items = showSelectedCart();   //get selected items
+
+                                // remove paid products from db one by one
+                                for (let i = 0; i < items.length; ++i) {
+                                    removeCartItem(user._id, token, items[i]).then(data => {
+                                        if (data.error) {
+                                            console.log(data.error);
+                                        }
+                                    });
                                 }
+
+                                // delete paid products from local storage
+                                emptyCart(() => {
+                                    console.log('payment success and empty cart');
+                                    setData({loading: false});
+
+                                    window.location.reload();
+                                });
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                setData({loading: false});
                             });
-                        }
 
-                        //delete paid products from local storage
-                        emptyCart(() => {
-                            console.log('payment success and empty cart');
-                            setData({loading: false});
 
-                            window.location.reload();
-                        });
                     })
                     .catch(error => {
                         console.log(error);
@@ -125,6 +149,15 @@ const Checkout = ({products}) => {
         <div onBlur={() => setData({...data, error: ''})}>
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
+                    <div className="gorm-group">
+                        <label className="text-muted">Online order delivery address:</label>
+                        <textarea
+                            onChange={handleAddress}
+                            className="form-control"
+                            value={data.address}
+                            placeholder="Type delivery address here..."
+                        />
+                    </div>
                     <DropIn options={{
                         authorization: data.clientToken,
                         paypal: {

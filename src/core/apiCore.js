@@ -195,10 +195,18 @@ export const processPayment = (userId, token, paymentData) => {
         .catch(err => console.log(err));
 };
 
-export const getRelatedProducts = (productId) => {
-    return fetch(`${API}/products/similar/${productId}`, {
-        method: "GET",
+export const createOrder = (userId, token, createOrderData) => {
+    return fetch(`${API}/order/create/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({order: createOrderData})
     })
-        .then(response => response.json())
-        .catch(err => console.log(err))
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
 };
