@@ -47,6 +47,9 @@ const Menu = ({history}) => (
                 <li className="nav-item">
                     <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">Store</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" style={isActive(history, '/aboutUs')} to="/aboutUs">About Us</Link>
+                </li>
             </ul>
 
             <ul className="navbar-nav">

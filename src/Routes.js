@@ -6,6 +6,7 @@ import ShopPage from './core/Shop';
 import Signup from "./user/Signup";
 import Menu from './core/Menu';
 import Signin from "./user/Signin";
+import AboutUs from "./core/AboutUs";
 import Product from "./core/Product";
 import PrivateRoute from "./auth/PrivateRoute";
 import Dashboard from "./user/UserDashboard";
@@ -28,7 +29,6 @@ import Orders from "./admin/Orders";
 import ManageAdminUser from "./admin/ManageAdminUser";
 import ProductByCategory from "./core/ProductByCategory";
 
-
 const Routes = () => {
     return (
         <BrowserRouter>
@@ -39,6 +39,7 @@ const Routes = () => {
                 <Route path="/layout" exact component={Layout} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/signin" exact component={Signin} />
+                <Route path="/aboutUs" exact component={AboutUs} />
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path="/product/category/:categoryId" exact component={ProductByCategory} />
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
