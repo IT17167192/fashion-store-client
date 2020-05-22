@@ -29,17 +29,20 @@ const AdminDashboard = () => {
                                     <Link className="nav-link border bg-info text-white rounded" to="/create/user">Create Admin User</Link>
                                 </li>
                             )}
-                            {(parseInt(isAuthenticate().user.role) === 1) && (
-                                <li className="list-group-item">
-                                    <Link className="nav-link border bg-info text-white rounded" to="/manage/user">Manage Admin User</Link>
-                                </li>
-                            )}
-                            <li className="list-group-item">
-                                <Link className="nav-link border bg-info text-white" to="/admin/products">Manage Products</Link>
-                            </li>
+
                             <li className="list-group-item">
                                 <Link className="nav-link border bg-info text-white" to="/admin/categories">Manage Categories</Link>
                             </li>
+
+                            <li className="list-group-item">
+                                <Link className="nav-link border bg-info text-white" to="/admin/products">Manage Products</Link>
+                            </li>
+
+                            {(parseInt(isAuthenticate().user.role) === 1) && (
+                                <li className="list-group-item">
+                                    <Link className="nav-link border bg-info text-white rounded" to="/manage/user">Manage Admin Users</Link>
+                                </li>
+                            )}
                             {/*{(parseInt(isAuthenticate().user.role) === 1) && (*/}
                             {/*    <li className="list-group-item">*/}
                             {/*        <Link className="nav-link" to="/admin/users">Manage Users</Link>*/}
