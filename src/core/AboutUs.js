@@ -5,7 +5,6 @@ import '../assets/about_us_assets/fonts/font-awesome.min.css';
 import '../assets/about_us_assets/css/styles.css';
 import '../assets/about_us_assets/css/Team-Boxed.css'
 import yp from '../assets/about_us_assets/img/yp.jpg';
-import img1 from '../assets/about_us_assets/img/1.jpg';
 import ug from '../assets/about_us_assets/img/ug.png';
 import kasun from '../assets/about_us_assets/img/kasun.jpg';
 import ckw from '../assets/about_us_assets/img/ckw.jpg';
