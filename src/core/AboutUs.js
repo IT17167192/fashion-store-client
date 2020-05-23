@@ -8,6 +8,7 @@ import yp from '../assets/about_us_assets/img/yp.jpg';
 import img1 from '../assets/about_us_assets/img/1.jpg';
 import ug from '../assets/about_us_assets/img/ug.png';
 import kasun from '../assets/about_us_assets/img/kasun.jpg';
+import ckw from '../assets/about_us_assets/img/ckw.jpg';
 
 const AboutUs = () => {
     return (
@@ -41,7 +42,7 @@ const AboutUs = () => {
                           </div>
                       </div>
                       <div className="col-md-6 col-lg-3 col-sm-12 item">
-                          <div className="box"><img className="rounded-circle" src={img1} />
+                          <div className="box"><img className="rounded-circle" src={ckw} />
                               <h3 className="name">Chamith Weligepola</h3>
                               <p className="title">IT17164368</p>
                               <p className="description">Group Member</p>
