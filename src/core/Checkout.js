@@ -182,26 +182,26 @@ const Checkout = ({products}) => {
     return (
         <div>
             <div className="row">
-                <div className="col-sm-5">
+                <div className="col-lg-5 col-5">
                     <h6>Subtotal: </h6>
                 </div>
-                <div className="col-sm-7 text-right">
+                <div className="col-lg-7 col-7 text-right">
                     Rs {getTotal()}
                 </div>
             </div>
             <div className="row">
-                <div className="col-sm-5 mb-3">
+                <div className="col-lg-5 col-5 mb-3">
                     <h6 className="text-black-50">Discount: </h6>
                 </div>
-                <div className="col-sm-7 text-right">
+                <div className="col-lg-7 col-7 text-right">
                     <h6 className="text-black-50">(-Rs {getDiscount()})</h6>
                 </div>
             </div>
             <div className="row">
-                <div className="col-sm-5 mb-3">
+                <div className="col-lg-5 col-5 mb-3">
                     <h5 className="font-weight-bold">Total: </h5>
                 </div>
-                <div className="col-sm-7 text-right">
+                <div className="col-lg-7 col-7 text-right">
                     <h5 className="font-weight-bold">Rs {getDiscountedTotal()}</h5>
                 </div>
             </div>

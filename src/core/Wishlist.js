@@ -38,16 +38,16 @@ const Wishlist = () => {
         return (
             !isAuthenticate() ? (
                 <div>
-                    <h3 className="text-center">Have an account? Sign in to see your items.</h3>
+                    <h3 className="text-center mb-4">Have an account? Sign in to see your items.</h3>
 
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <button className="btn btn-lg btn-white text-primary w-100"><Link to="/shop">Start
+                    <div className="row mb-5 text-center">
+                        <div className="col-sm-6 mb-5 text-right">
+                            <button className="btn btn-lg btn-white text-primary w-50"><Link to="/shop">Start
                                 Shopping</Link>
                             </button>
                         </div>
-                        <div className="col-lg-6">
-                            <button className="btn btn-lg btn-white w-100"><Link to="/signin"> Sign in </Link></button>
+                        <div className="col-sm-6 mb-5 text-left">
+                            <button className="btn btn-lg btn-white w-50"><Link to="/signin"> Sign in </Link></button>
                         </div>
                     </div>
                 </div>
@@ -58,11 +58,14 @@ const Wishlist = () => {
                     <div>
                         <h3 className="text-center">You don't have any items in your Wishlist. Let's get shopping!</h3>
 
-                        <div className="col-lg-12 text-center">
+                        <div className="col-lg-12 text-center mb-5">
                             <button className="btn btn-lg btn-white text-primary w-50"><Link to="/shop">Start
                                 Shopping</Link>
                             </button>
                         </div>
+                        <br/>
+                        <br/>
+                        <br/>
                     </div>
                 )
             )
@@ -82,6 +85,7 @@ const Wishlist = () => {
                     </div>
                 </div>
             </Layout>
+            <br/>
             <FtrMin/>
         </div>
     );

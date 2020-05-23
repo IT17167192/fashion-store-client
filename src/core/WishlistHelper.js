@@ -8,7 +8,6 @@ export const addItemtoWishlist = (wishlistItem, next) => {
             ...wishlistItem,
             count: 1,
             isChecked: false,
-            category: null,
             image: null
         });
 
@@ -35,37 +34,6 @@ export const showWishlist = () => {
         if (localStorage.getItem('wishlist')) {
             return JSON.parse(localStorage.getItem('wishlist'));
         }
-    }
-    return [];
-};
-
-export const showSelectedWishlist = () => {
-    let wishlist = [];
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('wishlist')) {
-            wishlist = JSON.parse(localStorage.getItem('wishlist'));
-        }
-
-        wishlist.map((product, i) => {
-            if (!product.isChecked) {
-                wishlist.splice(i, 1);
-            }
-        });
-        console.log(wishlist.length);
-        return JSON.parse(JSON.stringify(wishlist));
-    }
-    return [];
-};
-
-export const getWishlistProductId = () => {
-    let products = [];
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('wishlist')) {
-            for (let i = 0; i < JSON.parse(localStorage.getItem('wishlist')).length; i++) {
-                products.push(JSON.parse(localStorage.getItem('wishlist'))[i]);
-            }
-        }
-        return JSON.parse(JSON.stringify(products));
     }
     return [];
 };
@@ -101,24 +69,6 @@ export const removeItem = (productId) => {
             }
         });
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-    }
-    return wishlist;
-};
-
-export const emptyWishlist = next => {
-    let wishlist = [];
-    if(typeof window !== 'undefined'){
-        if (localStorage.getItem('wishlist')) {
-            wishlist = JSON.parse(localStorage.getItem('wishlist'));
-        }
-
-        wishlist.map((product, i) => {
-            if (product.isChecked) {
-                wishlist.splice(i, 1);
-            }
-        });
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        next()
     }
     return wishlist;
 };

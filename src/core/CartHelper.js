@@ -10,8 +10,7 @@ export const addItem = (item, next) => {
             ...item,
             count: 1,   //no of selected items
             isChecked: false,   //checked for payment
-            image: null,
-            category: null
+            image: null
         });
 
         //check whether selected item is already in cart

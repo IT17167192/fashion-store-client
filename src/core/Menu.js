@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import {Link, withRouter} from "react-router-dom";
 import {signout, isAuthenticate} from "../auth";
 import {totalItems} from "./CartHelper";
+import {totalWishlistItems} from "./WishlistHelper";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import MenuLogo from '../assets/Logos/Logo_Menu-v1.png';
 import {
@@ -62,6 +63,7 @@ const Menu = ({history}) => (
                 <li className="nav-item mr-5">
                     <Link className="nav-link" style={isActive(history, '/wishlist')}
                           to="/wishlist"><FontAwesomeIcon size={"lg"} icon={faHeart}/>
+                        <sup><small className="cart-badge badge-warning"> {totalWishlistItems()}</small></sup>
                     </Link>
                 </li>
 

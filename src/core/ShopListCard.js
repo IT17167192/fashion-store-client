@@ -132,7 +132,7 @@ const ShopListCard = ({
     const showWishListBtn = () => {
         return isAuthenticate() ? (
             <li>
-                <a href="" onClick={addToWishlist} className="fa fa-shopping-bag"> </a>
+                <a href="" onClick={addToWishlist} className="fa fa-heart"> </a>
             </li>
         ) : (
             ''
