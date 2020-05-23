@@ -41,9 +41,11 @@ const AdminDashboard = () => {
                                     <Link className="nav-link bg-info text-white rounded" to="/manage/user">Manage Admin Users</Link>
                                 </li>
                             )}
+                            {(parseInt(isAuthenticate().user.role) === 1) && (
                             <li className="list-group-item">
                                 <Link className="nav-link bg-info text-white rounded" to="/admin/orders">View Orders</Link>
                             </li>
+                            )}
                             {/*{(parseInt(isAuthenticate().user.role) === 1) && (*/}
                             {/*    <li className="list-group-item">*/}
                             {/*        <Link className="nav-link" to="/admin/users">Manage Users</Link>*/}
