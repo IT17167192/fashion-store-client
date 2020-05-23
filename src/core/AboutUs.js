@@ -29,7 +29,7 @@ const AboutUs = () => {
                       <div className="col-md-6 col-lg-3 col-sm-12 item">
                           <div className="box"><img className="rounded-circle" src={ug} />
                               <h3 className="name">Upeksha Galappaththi</h3>
-                              <p className="title">IT17165730></p>
+                              <p className="title">IT17165730</p>
                               <p className="description">Group Member</p>
                           </div>
                       </div>
