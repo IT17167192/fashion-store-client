@@ -91,11 +91,11 @@ const Cart = () => {
 
 
                 <div className="row ml-4">
-                    <div className="col-sm-7">
+                    <div className="col-lg-7 col-sm-12">
                         {items.length > 0 ? showItems(items) : ''}
                     </div>
 
-                    <div className="col-sm-4 ml-auto mr-auto my-5">
+                    <div className="col-lg-4 col-sm-12 ml-auto mr-auto my-5">
                         {items.length > 0 ? showSummary(items) : ''}
                     </div>
                 </div>
