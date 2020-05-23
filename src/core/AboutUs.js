@@ -6,8 +6,8 @@ import '../assets/about_us_assets/css/styles.css';
 import '../assets/about_us_assets/css/Team-Boxed.css'
 import yp from '../assets/about_us_assets/img/yp.jpg';
 import img1 from '../assets/about_us_assets/img/1.jpg';
-import ug from '../assets/about_us_assets/img/ug.png';
-import img3 from '../assets/about_us_assets/img/3.jpg';
+import img2 from '../assets/about_us_assets/img/2.jpg';
+import kasun from '../assets/about_us_assets/img/kasun.jpg';
 
 const AboutUs = () => {
     return (
@@ -27,14 +27,14 @@ const AboutUs = () => {
                           </div>
                       </div>
                       <div className="col-md-6 col-lg-3 col-sm-12 item">
-                          <div className="box"><img className="rounded-circle" src={ug} />
+                          <div className="box"><img className="rounded-circle" src={img2} />
                               <h3 className="name">Upeksha Galappaththi</h3>
-                              <p className="title">IT17165730</p>
+                              <p className="title">IT17165730></p>
                               <p className="description">Group Member</p>
                           </div>
                       </div>
                       <div className="col-md-6 col-lg-3 col-sm-12 item">
-                          <div className="box"><img className="rounded-circle" src={img3} />
+                          <div className="box"><img className="rounded-circle" src={kasun} />
                               <h3 className="name">Kasun Gunasekara</h3>
                               <p className="title">IT17186698</p>
                               <p className="description">Group Member</p>
