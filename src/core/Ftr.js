@@ -67,9 +67,9 @@ const Ftr = () => {
                             <p className="mb-2" className="text-light"> With everything at the tip of your fingers, shopping has never been easier.</p>
                         </ul>
                     </div>
-                    <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
+                    <div className="col-sm-12 col-md-4 text-center text-md-center pb-4">
                         <h3 className="text-info pb-2 text-center border-bottom border-info"> Quick Links</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block text-center">
+                        <ul className="list-unstyled d-inline-block d-sm-block ">
                             <li className="mb-2"><a className="text-light" href="/">Home</a></li>
                             <li className="mb-2"><a className="text-light" href="/user/dashboard">Dashboard</a></li>
                             <li className="mb-2"><a className="text-light" href="/shop">Shop</a></li>
@@ -78,9 +78,9 @@ const Ftr = () => {
 
                         </ul>
                     </div>
-                    <div className="col-sm-12 col-md-4 text-center text-md-left pb-4">
-                        <h3 className="text-info pb-2 text-right border-bottom border-info">Contact Us</h3>
-                        <ul className="list-unstyled d-inline-block d-sm-block text-right">
+                    <div className="col-sm-12 col-md-4 text-center text-md-right pb-4">
+                        <h3 className="text-info pb-2 border-bottom border-info">Contact Us</h3>
+                        <ul className="list-unstyled d-inline-block d-sm-block">
                             <p className="mb-1"><i className="fa fa-phone fa-fw"></i>&nbsp;+94 75 5172 666</p>
                             <p className="mb-1"><i className="fa fa-envelope fa-fw"></i>&nbsp;<a className="text-light"
                                                                                                  href="mailto:contact@company.com">quarantinefashionstore@google.com</a>
@@ -124,8 +124,8 @@ const Ftr = () => {
                                                                                                  href="mailto:contact@company.com">quarantinefashionstore@google.com</a>
                             </p>
                         </div>
-                        <div className="col-md-6 col-lg-4 text-center text-md-left pb-4">
-                            <p className="my-3 text-center">The Quarantine Fashion Store offers a wide range of clothes and accessories for everyone.
+                        <div className="col-md-6 col-lg-4 text-center text-md-center pb-4">
+                            <p className="my-3">The Quarantine Fashion Store offers a wide range of clothes and accessories for everyone.
                                 Our vision is to provide our valued customers with quality products at an affordable price. </p>
                         </div>
                         <div className="col-lg-4 text-center text-lg-right pb-4">
