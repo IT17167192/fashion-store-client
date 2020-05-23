@@ -81,9 +81,7 @@ const ManageCategories = () => {
                             <th scope="col">Date Created</th>
                             <th scope="col">Date Last Updated</th>
                             <th scope="col">Update</th>
-                            {(parseInt(user.role) === 1) && (
                             <th scope="col">Delete</th>
-                            )}
                         </tr>
                         </thead>
                         <tbody>
@@ -100,13 +98,11 @@ const ManageCategories = () => {
                                         </button>
                                     </Link>
                                 </td>
-                                {(parseInt(user.role) === 1) && (
                                 <td>
                                     <button onClick={() => remove(category._id)} className="btn btn-sm btn-danger">
                                         Delete Category
                                     </button>
                                 </td>
-                                )}
                             </tr>
                         ))}
                         </tbody>

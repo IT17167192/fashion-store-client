@@ -58,6 +58,7 @@ const UpdateProduct = ({match}) => {
                 setProductValues({
                     ...productValues,
                     name: data.name,
+                    image: data.image,
                     description: data.description,
                     price: data.price,
                     category: data.category._id,
