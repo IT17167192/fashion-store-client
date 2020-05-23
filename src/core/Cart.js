@@ -44,7 +44,7 @@ const Cart = () => {
 
                     <div className="row">
                         <div className="col-sm-6">
-                            <button className="btn btn-lg btn-white text-primary w-100"><Link to="/">Start
+                            <button className="btn btn-lg btn-white text-primary w-100"><Link to="/shop">Start
                                 Shopping</Link>
                             </button>
                         </div>
@@ -58,7 +58,7 @@ const Cart = () => {
                     <h3>You don't have any items in your cart. Let's get shopping!</h3>
 
                     <div className="col-sm-12">
-                        <button className="btn btn-lg btn-white text-primary w-50"><Link to="/">Start
+                        <button className="btn btn-lg btn-white text-primary w-50"><Link to="/shop">Start
                             Shopping</Link>
                         </button>
                     </div>
