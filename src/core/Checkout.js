@@ -126,11 +126,11 @@ const Checkout = ({products}) => {
 
                                     window.location.reload();
                                 });
-                            })
-                            .catch(error => {
-                                console.log(error);
-                                setData({loading: false});
-                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            setData({loading: false});
+                        });
 
 
                     })
@@ -144,6 +144,29 @@ const Checkout = ({products}) => {
                 setData({...data, error: error.message});
             });
     };
+
+    const cod = () => {
+      setData({loading: true});
+      const { token, user } = isAuthenticate();
+      const items = showSelectedCart();   //get selected items
+
+      // remove paid products from db one by one
+      for (let i = 0; i < items.length; ++i) {
+        removeCartItem(user._id, token, items[i]).then(data => {
+          if (data.error) {
+            console.log(data.error);
+          }
+        });
+      }
+
+      // delete paid products from local storage
+      emptyCart(() => {
+        console.log('payment success and empty cart');
+        setData({loading: false});
+
+        window.location.reload();
+      });
+    }
 
     const showDropIn = () => (
         <div onBlur={() => setData({...data, error: ''})}>
@@ -165,7 +188,8 @@ const Checkout = ({products}) => {
                         }
                     }} onInstance={instance => data.instance = instance} />
                     <button onClick={buy} className="btn btn-success btn-block">Pay</button>
-                    <button className="btn btn-block btn-success mt-2"><Link className="nav-link" style={{color: '#ffffff'}} to="/cod">Cash On Delivery</Link></button>
+                    {/*<button className="btn btn-block btn-success mt-2"><Link className="nav-link" style={{color: '#ffffff'}} to="/cod">Cash On Delivery</Link></button>*/}
+                    <button onClick={cod} className="btn btn-block btn-success mt-2">Cash On Delivery</button>
                 </div>
             ) : null}
         </div>
@@ -177,7 +201,7 @@ const Checkout = ({products}) => {
         </div>
     );
 
-    const showLoading = loading => loading && <h2>Your payment is processing! Please Wait...</h2>;
+    const showLoading = loading => loading && <h2>Your transaction is processing! Please Wait...</h2>;
 
     return (
         <div>

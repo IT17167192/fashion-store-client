@@ -14,12 +14,20 @@ import FooterPage from "../core/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllProducts, deleteSingleProduct} from "./ApiAdmin";
 import Ftr from "../core/Ftr";
+import Pagination from "./Pagination";
+
 
 const ManageProducts = () => {
 
     const [products, setAllProducts] = useState([]);
 
     const {user, token} = isAuthenticate();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    //get Current item
+    const indexOfLast = currentPage * itemsPerPage;
+    const indexOfFirst = indexOfLast - itemsPerPage;
+    const getCurrentItem = products.slice(indexOfFirst, indexOfLast);
 
     const  fetchProducts = () => {
         getAllProducts().then (data => {
@@ -75,7 +83,15 @@ const ManageProducts = () => {
                             if(data.error){
                                 console.log(data.error)
                             } else {
-                                fetchProducts()
+                                fetchProducts();
+                                confirmAlert({
+                                    title: 'Product deleted successfully!',
+                                    buttons: [
+                                        {
+                                            label: 'OK',
+                                        }
+                                    ]
+                                });
                             }
                         })
                     }
@@ -90,6 +106,11 @@ const ManageProducts = () => {
     useEffect(() => {
         fetchProducts();
     }, []);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
+
 return (
     <div>
     <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Manage Products" description="Update and delete Products">
@@ -114,7 +135,7 @@ return (
                         </tr>
                     </thead>
                     <tbody>
-                    {products.map((product, item) => (
+                    {getCurrentItem.map((product, item) => (
                         <tr key={product._id}>
                             <th scope="row">{product._id}</th>
                             <td><strong>{product.name}</strong></td>
@@ -147,6 +168,8 @@ return (
                     ))}
                     </tbody>
                 </table>
+                <br/>
+                <Pagination itemsPerPage={itemsPerPage} totalItems={products.length} currentPage={currentPage} paginate={paginate}/>
                 {/*<ul className="list-group">*/}
                 {/*    {products.map((product, item) => (*/}
                 {/*        <li*/}

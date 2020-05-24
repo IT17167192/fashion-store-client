@@ -7,7 +7,7 @@ import '../assets/about_us_assets/css/Team-Boxed.css'
 import yp from '../assets/about_us_assets/img/yp.jpg';
 import ug from '../assets/about_us_assets/img/ug.png';
 import kasun from '../assets/about_us_assets/img/kasun.jpg';
-import ckw from '../assets/about_us_assets/img/ckw.jpg';
+import ckw from '../assets/about_us_assets/img/ckw2.jpg';
 
 const AboutUs = () => {
     return (

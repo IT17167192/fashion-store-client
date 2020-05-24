@@ -28,7 +28,6 @@ import UpdateCategory from "./admin/UpdateCategory";
 import Orders from "./admin/Orders";
 import ManageAdminUser from "./admin/ManageAdminUser";
 import ProductByCategory from "./core/ProductByCategory";
-import ProductSearch from "./admin/ProductSearch";
 import ProductBySearch from "./core/ProductBySearch";
 
 const Routes = () => {

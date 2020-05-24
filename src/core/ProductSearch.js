@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from '@material-ui/core/TextField';
-import {getAllCategories} from "./ApiAdmin";
+import {getAllCategories} from "./apiCore";
 import Button from '@material-ui/core/Button';
 import {Link, Redirect} from 'react-router-dom';
 import IconButton from "@material-ui/core/IconButton";

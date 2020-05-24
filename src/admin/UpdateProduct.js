@@ -7,6 +7,7 @@ import {getSingleProduct, updateSingleProduct, getAllCategories} from "./ApiAdmi
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
 import Ftr from "../core/Ftr";
+import {confirmAlert} from "react-confirm-alert";
 
 
 const UpdateProduct = ({match}) => {
@@ -126,6 +127,14 @@ const UpdateProduct = ({match}) => {
                         showSuccess: true,
                         updateSingleProduct: data.name
                     })
+                    confirmAlert({
+                        title: 'Product updated successfully!',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
                 }
             })
 
