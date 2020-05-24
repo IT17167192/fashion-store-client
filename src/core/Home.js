@@ -3,7 +3,7 @@ import {getProducts} from "./apiCore";
 import Carousel from 'react-bootstrap/Carousel'
 import Ftr from "./Ftr";
 import ShopListCard from "./ShopListCard";
-import ProductSearch from "../admin/ProductSearch";
+import ProductSearch from "./ProductSearch";
 
 //images for carousel
 import image1 from '../images/image5.jpg';
