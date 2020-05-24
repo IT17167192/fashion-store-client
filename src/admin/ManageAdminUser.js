@@ -6,9 +6,16 @@ import {confirmAlert} from "react-confirm-alert";
 import Ftr from "../core/Ftr";
 import {Link} from "react-router-dom";
 import {MDBBtn} from "mdbreact";
+import Pagination from "./Pagination";
 
 const ManageAdminUser = () => {
     const [users, setAllUsers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    //get Current item
+    const indexOfLast = currentPage * itemsPerPage;
+    const indexOfFirst = indexOfLast - itemsPerPage;
+    const getCurrentItem = users.slice(indexOfFirst, indexOfLast);
 
     const {user, token} = isAuthenticate();
 
@@ -24,6 +31,10 @@ const ManageAdminUser = () => {
     useEffect(() => {
         fetchUsers();
     }, []);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
 
     const [roles] = useState([
         {roleName: "Admin", roleId: "1"}, {roleName: "Store Manager", roleId: "2"}
@@ -73,7 +84,7 @@ const ManageAdminUser = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {users.map((user, item) => (
+                    {getCurrentItem.map((user, item) => (
                         <tr key={user._id}>
                             <th scope="row">{user._id}</th>
                             <td><strong>{user.name}</strong></td>
@@ -98,6 +109,8 @@ const ManageAdminUser = () => {
                     ))}
                     </tbody>
                 </table>
+                <br/>
+                <Pagination itemsPerPage={itemsPerPage} totalItems={users.length} currentPage={currentPage} paginate={paginate}/>
             </div>
         </div>
     );

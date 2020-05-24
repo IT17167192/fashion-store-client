@@ -50,7 +50,7 @@ const RateComponent = (props) => {
 
     return(
         <div>
-            <Rater total={5} interactive={enableRating} rating={getAverageRating(props.product.rating) ? getAverageRating(props.product.rating) : 1} onRate={onRateClicked}/>
+            <Rater total={5} interactive={enableRating} rating={getAverageRating(props.product.rating) ? getAverageRating(props.product.rating) : 0} onRate={onRateClicked}/>
             {!enableRating ? <CircularProgress className="ml-4" size={30}/> : ''}
         </div>
     );
