@@ -77,10 +77,10 @@ const Wishlist = () => {
         <div>
             <Layout title="Wishlist" description="Manage Wishlist Items" className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-2 ml-5">
+                    <div className="col-lg-2 ml-lg-5">
 
                     </div>
-                    <div className="col-lg-7 ml-5">
+                    <div className="col-lg-7 ml-lg-5">
                         {showNoItemsSign()}
                     </div>
                 </div>
