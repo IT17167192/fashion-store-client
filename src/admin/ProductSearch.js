@@ -4,6 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import {getAllCategories} from "./ApiAdmin";
 import Button from '@material-ui/core/Button';
 import {Link, Redirect} from 'react-router-dom';
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
 
 const ProductSearch = () => {
     const [categories, setCategories] = useState([]);
@@ -21,12 +24,11 @@ const ProductSearch = () => {
         setSearchData(value);
     }
 
-    const  fetchCategories = () => {
-        getAllCategories().then (data => {
-            if(data.error){
+    const fetchCategories = () => {
+        getAllCategories().then(data => {
+            if (data.error) {
                 console.log(data.error)
-            }
-            else
+            } else
                 setCategories(data)
         })
     };
@@ -36,46 +38,49 @@ const ProductSearch = () => {
     }, []);
 
     return (
-        <div className="card col-8 container mt-5">
-            <div className="card-body">
-                <div className="row">
-                    <div className="col-md-12 col-lg-3 col-xl-3 col-sm-12">
-                        <div className="form-group">
-                            <Autocomplete
-                                onChange={(event, value) => handleCategoryChange(value)}
-                                freeSolo
-                                id="free-solo-2-demo"
-                                disableClearable
-                                options={categories.map((option) => option)}
-                                getOptionLabel={ options => (options.name)}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Search Category"
-                                        margin="normal"
-                                        variant="outlined"
-                                        InputProps={{ ...params.InputProps, type: 'search' }}
-                                    />
-                                )}
+        <div className="row d-flex justify-content-center">
+            <div className="input-group col-md-12 col-lg-10 col-xl-10 col-sm-12 m-5">
+                <div className="col-md-12 col-lg-4 col-xl-4 col-sm-3 pr-1 pl-1">
+                    <Autocomplete
+                        onChange={(event, value) => handleCategoryChange(value)}
+                        freeSolo
+                        id="free-solo-2-demo"
+                        disableClearable
+                        options={categories.map((option) => option)}
+                        getOptionLabel={options => (options.name)}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Category"
+                                margin="normal"
+                                variant="outlined"
+                                InputProps={{...params.InputProps, type: 'search'}}
                             />
-                        </div>
-                    </div>
-                    <div className="col-md-12 col-lg-7 col-xl-7 col-sm-12">
-                        <TextField
-                            label="Search Product"
-                            margin="normal"
-                            variant="outlined"
-                            placeholder="Search products"
-                            fullWidth
-                            onChange={searchDataOnChange}
-                            value={searchData}
-                        />
-                    </div>
-                    <div className="col-md-12 col-lg-2 col-xl-2 col-sm-12 mt-4">
-                        <Link to={`/product/search/${searchData === '' ? 'All' : searchData }/${categoryId}`}>
-                            <Button  variant="outlined" size="large">Search</Button>
-                        </Link>
-                    </div>
+                        )}
+                    />
+                </div>
+                <div className="col-md-12 col-lg-8 col-xl-8 col-sm-9 pl-1 pr-1">
+                    <TextField
+                        label="Search Product"
+                        margin="normal"
+                        variant="outlined"
+                        placeholder="Search products"
+                        fullWidth
+                        onChange={searchDataOnChange}
+                        value={searchData}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment>
+                                    <IconButton>
+                                        <Link
+                                            to={`/product/search/${searchData === '' ? 'All' : searchData}/${categoryId}`}>
+                                            <SearchIcon/>
+                                        </Link>
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
                 </div>
             </div>
         </div>

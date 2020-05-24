@@ -51,6 +51,7 @@ export const signout = (next) => {
     if (typeof window !== 'undefined') {
         localStorage.removeItem('userToken');
         localStorage.removeItem('cart');
+        localStorage.removeItem('wishlist');
         next();
 
         return fetch(`${API}/signout`, {
