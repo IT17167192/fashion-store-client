@@ -176,7 +176,7 @@ const Checkout = ({products}) => {
                         <label className="text-muted">Online order delivery address:</label>
                         <textarea
                             onChange={handleAddress}
-                            className="form-control"
+                            className="form-control mb-3"
                             value={data.address}
                             placeholder="Type delivery address here..."
                         />
@@ -225,7 +225,7 @@ const Checkout = ({products}) => {
                 <div className="col-lg-5 col-5 mb-3">
                     <h5 className="font-weight-bold">Total: </h5>
                 </div>
-                <div className="col-lg-7 col-7 text-right">
+                <div className="col-lg-7 col-7 text-right mb-4">
                     <h5 className="font-weight-bold">Rs {getDiscountedTotal()}</h5>
                 </div>
             </div>

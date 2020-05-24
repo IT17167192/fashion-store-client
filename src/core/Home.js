@@ -3,8 +3,6 @@ import {getProducts} from "./apiCore";
 import Carousel from 'react-bootstrap/Carousel'
 import Ftr from "./Ftr";
 import ShopListCard from "./ShopListCard";
-import ProductSearch from "./ProductSearch";
-import Image from 'react-bootstrap/Image'
 
 //images for carousel
 import image1 from '../images/image5.jpg';
@@ -14,8 +12,7 @@ import image3 from '../images/image4.jpg';
 //Mui stuff
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CategoryCard from "./CategoryCard";
-import MenuLogoV1 from "../assets/Logos/Logo_Email-v1.png";
-import {Link} from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Home = () => {
 
@@ -23,14 +20,6 @@ const Home = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showView, setShowView] = useState(false);
-
-    const fontColor = () => {
-        return {color: '#000000', fontSize: 15}
-    };
-
-    const hover = () => {
-        return {color: '#ff9900', fontSize: 15}
-    };
 
     const loadProducts = () => {
         getProducts('quantity').then(data => {
@@ -53,38 +42,7 @@ const Home = () => {
         if (showView) {
             return (
                 <div>
-                    <div className="row" style={{background: '#fefefe'}}>
-                        <div className="col-lg-3 m-5">
-                            <Image src={MenuLogoV1} fluid/>
-                        </div>
-                        <div className="col-lg-5 text-center mt-lg-5">
-                            <div className="row people mt-lg-4">
-                                <div className="col-md-4 col-lg-3 item">
-                                    <Link to="/product/category/5e6cd92b0befdd2d4caa420cx">
-                                        <h5 style={fontColor()} className="title text-uppercase">Business Casual</h5>
-                                    </Link>
-                                </div>
-                                <div className="col-md-4 col-lg-3 item">
-                                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
-                                        <h5 style={fontColor()} className="title text-uppercase">Gents Casual</h5>
-                                    </Link>
-                                </div>
-                                <div className="col-md-4 col-lg-3 item">
-                                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
-                                        <h5 style={fontColor()} className="title text-uppercase">Ladies Casual </h5>
-                                    </Link>
-                                </div>
-                                <div className="col-md-4 col-lg-3 item">
-                                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
-                                        <h5 style={fontColor()} className="title text-uppercase">Ladies Fashion</h5>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-3 container-fluid">
-                            <ProductSearch/>
-                        </div>
-                    </div>
+                    <NavBar/>
                     <div className="mb-5">
                         <Carousel>
                             <Carousel.Item>

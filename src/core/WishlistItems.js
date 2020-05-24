@@ -118,10 +118,10 @@ const WishlistItems = ({
                         <div className="col-lg-7 col-md-9 col-sm-12 pr-1">
                             <div className="col-lg-12 col-md-12 row mt-3">
                                 <Link className="lead font-weight-bold text-dark"
-                                      to={`/product/${product._id}`}>{product.name}</Link>
+                                      to={`/product/${product._id}`}>{product.name.length > 50 ? product.name.slice(0, 50) + '..' : product.name}</Link>
                             </div>
-                            <div className="col-lg-12 col-md-12 row">
-                                <h6 className="text-black-50">{product.description}</h6>
+                            <div className="col-lg-12 col-md-12 row text-uppercase">
+                                <h6 className="text-black-50">{product.description.length > 116 ? product.description.slice(0, 116) + '..' : product.description}</h6>
                             </div>
 
                             <div className="col-lg-12 col-md-6 col-12 text-center">
