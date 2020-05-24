@@ -3,6 +3,8 @@ import Image from "react-bootstrap/Image";
 import MenuLogoV1 from "../assets/Logos/Logo_Email-v1.png";
 import {Link} from "react-router-dom";
 import ProductSearch from "./ProductSearch";
+import '../App.css';
+
 
 const NavBar = () => {
 
