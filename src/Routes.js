@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import ResetPasswordPage from "./core/ResetPasswordPage";
 import Layout from './core/Layout';
 import Home from './core/Home';
 import ShopPage from './core/Shop';
@@ -29,7 +30,6 @@ import Orders from "./admin/Orders";
 import ManageAdminUser from "./admin/ManageAdminUser";
 import ProductByCategory from "./core/ProductByCategory";
 import ProductBySearch from "./core/ProductBySearch";
-import ResetPasswordPage from "./core/ResetPasswordPage";
 
 const Routes = () => {
     return (
