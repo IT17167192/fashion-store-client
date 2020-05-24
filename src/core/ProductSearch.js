@@ -71,12 +71,12 @@ const ProductSearch = () => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment>
-                                    <IconButton>
-                                        <Link
-                                            to={`/product/search/${searchData === '' ? 'All' : searchData}/${categoryId}`}>
+                                    <a
+                                        href={`/product/search/${searchData === '' ? 'All' : searchData}/${categoryId}`}>
+                                        <IconButton>
                                             <SearchIcon/>
-                                        </Link>
-                                    </IconButton>
+                                        </IconButton>
+                                    </a>
                                 </InputAdornment>
                             )
                         }}
