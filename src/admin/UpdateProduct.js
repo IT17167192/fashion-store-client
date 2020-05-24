@@ -130,17 +130,7 @@ const UpdateProduct = ({match}) => {
             })
 
     };
-    const backButton = () => {
-        return (
-            <Fragment>
-                <Link to="/admin/dashboard">
-                    <MDBBtn color="mdb-color">
-                        Back to Dashboard
-                    </MDBBtn>
-                </Link>
-            </Fragment>
-        );
-    };
+
     const showErrorMsg = () => {
         if (error) {
             return (
@@ -310,10 +300,9 @@ const UpdateProduct = ({match}) => {
 
     return (
         <div>
-        <Layout title="Update product" description={`Welcome back ${user.name}, Update product now!`}
+        <Layout back={true} backText="Back to Manage Products" to="/admin/products" title="Update product" description={`Welcome back ${user.name}, Update product now!`}
                 className="container-fluid">
 
-            {backButton()}
             <hr/>
             {newPostUpdateForm()}
             <hr/>

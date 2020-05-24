@@ -1,4 +1,5 @@
 import {API} from "../config";
+import queryString from 'query-string';
 
 export const getProducts = (sortBy) => {
     return fetch(`${API}/products`, {
@@ -235,3 +236,16 @@ export const getSingleCategory = (categoryId) => {
         .then(response => response.json())
         .catch(err => console.log(err))
 };
+
+export const search = params => {
+    const query = queryString.stringify(params);
+    return fetch(`${API}/products/search?${query}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}

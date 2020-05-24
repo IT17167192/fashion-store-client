@@ -13,7 +13,7 @@ const CategoryCard = () => {
     return (
             <div className="row people">
                 <div className="col-md-4 col-lg-3 item">
-                    <Link to="/product/category/5e6cd92b0befdd2d4caa420c">
+                    <Link to="/product/category/5e6cd92b0befdd2d4caa420cx">
                         <div className="box" style={{backgroundImage: `url(${backgroundI3})`}}>
                             <div className="cover">
                                 <p className="title">Business Casual</p>

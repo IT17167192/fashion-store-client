@@ -4,22 +4,21 @@ import {isAuthenticate} from "../auth";
 import {Link} from "react-router-dom";
 import "mdbreact/dist/css/mdb.css";
 import { confirmAlert } from 'react-confirm-alert';
-import {createCategory, deleteSingleProduct} from "./ApiAdmin";
-import {MDBContainer, MDBAlert} from 'mdbreact';
-import {MDBDataTable} from 'mdbreact';
-// import {getAllCategories} from "../core/apiCore";
-import {MDBBtn} from "mdbreact";
-import Card from "../core/Card";
-import FooterPage from "../core/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, deleteSingleCategory} from "./ApiAdmin";
 import Ftr from "../core/Ftr";
+import Pagination from "./Pagination";
 
 const ManageCategories = () => {
 
     const [categories, setAllCategories] = useState([]);
-
     const {user, token} = isAuthenticate();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(3);
+    //get Current item
+    const indexOfLast = currentPage * itemsPerPage;
+    const indexOfFirst = indexOfLast - itemsPerPage;
+    const getCurrentItem = categories.slice(indexOfFirst, indexOfLast);
 
     const  fetchCategories = () => {
         getAllCategories().then (data => {
@@ -60,15 +59,13 @@ const ManageCategories = () => {
         fetchCategories();
     }, []);
 
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    }
 
     return (
         <div>
-        <Layout title="Manage Categories" description="Update and delete Categories">
-            <Link to="/admin/dashboard">
-                <MDBBtn color="mdb-color">
-                    Back to Dashboard
-                </MDBBtn>
-            </Link>
+        <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Manage Categories" description="Update and delete Categories">
             <div className="row ml-4 mr-4 mb-5">
                 <div className="col-12 table-responsive">
                     <h2 className="text-center"> Total of {categories.length} Categories </h2>
@@ -85,7 +82,7 @@ const ManageCategories = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {categories.map((category, item) => (
+                        {getCurrentItem.map((category, item) => (
                             <tr key={category._id}>
                                 <th scope="row">{category._id}</th>
                                 <td><strong>{category.name}</strong></td>
@@ -107,7 +104,8 @@ const ManageCategories = () => {
                         ))}
                         </tbody>
                     </table>
-
+                    <br/>
+                    <Pagination itemsPerPage={itemsPerPage} totalItems={categories.length} currentPage={currentPage} paginate={paginate}/>
                 </div>
             </div>
 

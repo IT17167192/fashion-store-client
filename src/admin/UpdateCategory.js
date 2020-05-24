@@ -88,19 +88,6 @@ const UpdateCategory = ({match}) => {
         }
     };
 
-    const backButton = () => {
-        return (
-            <Fragment>
-                <Link to="/admin/dashboard">
-                    <MDBBtn color="mdb-color">
-                        Back to Dashboard
-                    </MDBBtn>
-                </Link>
-            </Fragment>
-        );
-    };
-
-
     const categoryTable = () => {
         if (categories.length > 0) {
             const data = {
@@ -177,13 +164,12 @@ const UpdateCategory = ({match}) => {
 
     return (
         <div>
-        <Layout title="Update category" description={`Welcome back ${user.name}, Update Category now`}
+        <Layout back={true} backText="Back to Manage Category" to="/admin/categories" title="Update category" description={`Welcome back ${user.name}, Update Category now`}
                 className="container-fluid">
             {showSuccessMsg()}
             {showErrorMsg()}
             {updateCategoryForm()}
             <hr/>
-            {backButton()}
             {categoryTable()}
         </Layout>
         <Ftr/>

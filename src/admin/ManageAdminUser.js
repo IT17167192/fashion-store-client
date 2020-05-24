@@ -56,18 +56,6 @@ const ManageAdminUser = () => {
             }
         })
     };
-    const backButton = () => {
-        return (
-            <Fragment>
-                <Link to="/admin/dashboard">
-                    <MDBBtn color="mdb-color">
-                        Back to Dashboard
-                    </MDBBtn>
-                </Link>
-            </Fragment>
-        );
-    };
-
 
     const manageUser = () => (
         <div className="row ml-4 mr-4 mb-5">
@@ -116,9 +104,8 @@ const ManageAdminUser = () => {
 
     return (
         <div>
-        <Layout title="Manage Users" description={`Welcome back ${user.name}, Manage Users Now!`}
+        <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Manage Users" description={`Welcome back ${user.name}, Manage Users Now!`}
                 className="container-fluid">
-            {backButton()}
             <hr/>
             {manageUser()}
             <hr/>

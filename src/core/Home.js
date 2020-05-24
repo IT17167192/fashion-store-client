@@ -3,6 +3,7 @@ import {getProducts} from "./apiCore";
 import Carousel from 'react-bootstrap/Carousel'
 import Ftr from "./Ftr";
 import ShopListCard from "./ShopListCard";
+import ProductSearch from "../admin/ProductSearch";
 
 //images for carousel
 import image1 from '../images/image5.jpg';
@@ -72,6 +73,11 @@ const Home = () => {
                             <CategoryCard/>
                         </div>
                     </div>
+
+                    <div className="text-center container-fluid">
+                        <ProductSearch/>
+                    </div>
+
                     <div className="shopping-grid">
                         <div className="container">
                             <h3 className="font-weight-bold" align="center">LATEST PRODUCTS</h3>

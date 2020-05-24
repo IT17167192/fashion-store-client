@@ -9,6 +9,7 @@ import {MDBDataTable} from 'mdbreact';
 import {getAllCategories} from "../core/apiCore";
 import {MDBBtn} from "mdbreact";
 import Ftr from "../core/Ftr";
+import {confirmAlert} from "react-confirm-alert";
 
 const AddCategory = () => {
     const [name, setName] = useState('');
@@ -56,37 +57,30 @@ const AddCategory = () => {
                 if (data.error) {
                     setError(true);
                     setSuccess(false);
+                    confirmAlert({
+                        title: 'Name should be unique',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
                 } else {
                     setError(false);
                     setSuccess(true);
                     loadCategories();
+                    confirmAlert({
+                        title: 'New category is created successfully!',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
                 }
             })
 
     };
-
-    const showSuccessMsg = () => {
-        if (success) {
-            return (
-                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>New category is created successfully!</strong>
-                </div>
-            );
-        }
-    };
-
-    const backButton = () => {
-        return (
-            <Fragment>
-                <Link to="/admin/dashboard">
-                    <MDBBtn color="mdb-color">
-                        Back to Dashboard
-                    </MDBBtn>
-                </Link>
-            </Fragment>
-        );
-    };
-
 
     const categoryTable = () => {
         if (categories.length > 0) {
@@ -136,16 +130,6 @@ const AddCategory = () => {
         }
     };
 
-    const showErrorMsg = () => {
-        if (error) {
-            return (
-                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Name</strong> should be unique!
-                </div>
-            );
-        }
-    };
-
     const newCategoryForm = () => (
         <div className="col-md-8 col-sm-8 col-lg-8 container-fluid">
             <form onSubmit={submit}>
@@ -164,11 +148,8 @@ const AddCategory = () => {
 
     return (
      <div>
-        <Layout title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
+        <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Add new category" description={`Welcome back ${user.name}, Add a new category now!`}
                 className="container-fluid">
-            {backButton()}
-            {showSuccessMsg()}
-            {showErrorMsg()}
             {newCategoryForm()}
             <hr/>
             {categoryTable()}

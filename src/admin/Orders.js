@@ -88,13 +88,8 @@ const Orders = () => {
 
   return (
       <div>
-      <Layout title="Orders" description={`Welcome back ${user.name}, you may manage all the online orders here!`}
+      <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Orders" description={`Welcome back ${user.name}, you may manage all the online orders here!`}
               className="container-fluid">
-          <Link to="/admin/dashboard">
-              <MDBBtn color="mdb-color">
-                  Back to Dashboard
-              </MDBBtn>
-          </Link>
         <div className="row">
           <div className="col-md-8 offset-md-2">
             {showOrdersLength()}

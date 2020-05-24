@@ -7,6 +7,7 @@ import {createProduct} from "./ApiAdmin";
 import {MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBIcon, MDBAlert} from 'mdbreact';
 import AutoCompleteCategories from "../autocomplete/AutoCompleteCategories";
 import Ftr from "../core/Ftr";
+import {confirmAlert} from "react-confirm-alert";
 
 const AddProduct = () => {
     const {user, token} = isAuthenticate();
@@ -76,61 +77,64 @@ const AddProduct = () => {
             setProductValues({...productValues, currency: 'Rs'});
         }
 
-        createProduct(user._id, token, formData)
-            .then(data => {
-                if (data.error) {
-                    setProductValues({...productValues, error: data.error, showSuccess: false});
-                    setLoader(false);
+        if(productValues.image){
+            createProduct(user._id, token, formData)
+                .then(data => {
+                    if (data.error) {
+                        setProductValues({...productValues, error: data.error, showSuccess: false});
+                        setLoader(false);
+                    } else {
+                        setLoader(false);
+                        setProductValues({
+                            ...productValues,
+                            name: '',
+                            description: '',
+                            image: '',
+                            price: '',
+                            quantity: '',
+                            category: '',
+                            loading: false,
+                            discount: '',
+                            currency: '',
+                            error: false,
+                            showSuccess: true,
+                            createProduct: data.name,
+                            formData: new FormData()
+                        });
+                        confirmAlert({
+                            title: 'New product is created successfully!',
+                            buttons: [
+                                {
+                                    label: 'OK',
+                                }
+                            ]
+                        });
+                    }
+                });
+        }else{
+            confirmAlert({
+                title: 'Please upload an image!',
+                buttons: [
+                    {
+                        label: 'OK',
+                    }
+                ]
+            });
+            setLoader(false);
+        }
 
-                } else {
-                    setLoader(false);
-                    setProductValues({
-                        ...productValues,
-                        name: '',
-                        description: '',
-                        image: '',
-                        price: '',
-                        quantity: '',
-                        loading: false,
-                        discount: '',
-                        currency: '',
-                        error: false,
-                        showSuccess: true,
-                        createProduct: data.name
-                    })
-                }
-            })
-
-    };
-    const backButton = () => {
-        return (
-            <Fragment>
-                <Link to="/admin/dashboard">
-                    <MDBBtn color="mdb-color">
-                        Back to Dashboard
-                    </MDBBtn>
-                </Link>
-            </Fragment>
-        );
     };
 
     const showErrorMsg = () => {
         if (error) {
-            return (
-                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{error}</strong>
-                </div>
-            );
-        }
-    };
-
-    const showSuccessMsg = () => {
-        if (showSuccess) {
-            return (
-                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>New product is created successfully!</strong>
-                </div>
-            );
+            confirmAlert({
+                title: error,
+                buttons: [
+                    {
+                        label: 'OK',
+                    }
+                ]
+            });
         }
     };
 
@@ -140,7 +144,6 @@ const AddProduct = () => {
                 <MDBRow>
                     <MDBCol md="12" lg="12" sm="12">
                         {showErrorMsg()}
-                        {showSuccessMsg()}
                         <MDBCard>
                             <MDBCardBody>
                                 <form onSubmit={submit}>
@@ -283,9 +286,8 @@ const AddProduct = () => {
 
     return (
      <div>
-        <Layout title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
+        <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Add new product" description={`Welcome back ${user.name}, Add a new product now!`}
                 className="container-fluid">
-            {backButton()}
             {newPostForm()}
             <hr/>
 

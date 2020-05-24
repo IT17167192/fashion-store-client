@@ -25,6 +25,7 @@ const ShopListImage = ({item, url}) => {
         setId(item._id);
         setLoading(true);
         loadImage(id);
+        console.log("Triggered!")
     }, []);
 
     if (loading) {

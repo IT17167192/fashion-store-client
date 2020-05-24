@@ -92,14 +92,7 @@ const ManageProducts = () => {
     }, []);
 return (
     <div>
-    <Layout title="Manage Products" description="Update and delete Products">
-        <div className="ml-4">
-            <Link to="/admin/dashboard">
-                <MDBBtn color="mdb-color">
-                    Back to Dashboard
-                </MDBBtn>
-            </Link>
-        </div>
+    <Layout back={true} backText="Back to dashboard" to="/admin/dashboard" title="Manage Products" description="Update and delete Products">
         <div className="row ml-4 mr-4 mb-5">
             <div className="col-12 table-responsive">
                 <h2 className="text-center"> Total of {products.length} Products </h2>

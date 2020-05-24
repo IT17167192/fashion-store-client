@@ -28,6 +28,8 @@ import UpdateCategory from "./admin/UpdateCategory";
 import Orders from "./admin/Orders";
 import ManageAdminUser from "./admin/ManageAdminUser";
 import ProductByCategory from "./core/ProductByCategory";
+import ProductSearch from "./admin/ProductSearch";
+import ProductBySearch from "./core/ProductBySearch";
 
 const Routes = () => {
     return (
@@ -42,6 +44,7 @@ const Routes = () => {
                 <Route path="/aboutUs" exact component={AboutUs} />
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path="/product/category/:categoryId" exact component={ProductByCategory} />
+                <Route path="/product/search/:searchData/:categoryId" exact component={ProductBySearch} />
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
                 <StoreManagerRote
                     path="/admin/dashboard" exact component={AdminDashboard} />

@@ -108,10 +108,7 @@ const ShopPage = () => {
                                         </div>
                                     </div>
                                 </div>
-                                : <div className="text-center text-sm-center
-                                                  text-md-center text-lg-left text-xl-left">
-                                    <CircularProgress size={30}/>
-                                  </div>
+                                : ''
                         }
                     </div>
 

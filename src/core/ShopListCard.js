@@ -10,6 +10,7 @@ import '../assets/shop_card_assets/fonts/font-awesome.min.css';
 import '../assets/shop_card_assets/css/Shopping-Grid.css';
 import '../assets/shop_card_assets/css/styles.css';
 import {addItemtoWishlist} from "./WishlistHelper";
+import ShowCartImage from "./ShowCartImage";
 
 const ShopListCard = ({
                           product,
@@ -82,14 +83,16 @@ const ShopListCard = ({
             for (let i = averageRating; i < 5; i++)
                 startArray.push(<li key={i} className="fa fa-star-o fa-lg"></li>);
             return (
-                <ul className="rating">
-                    {startArray}
-                </ul>
+                <div>
+                    <ul className="rating">
+                        {startArray} {'  '} <span className="page-item">({votedCount} {votedCount > 1 ? 'reviews' : 'review'})</span>
+                    </ul>
+                </div>
             );
         } else {
             return (
                 <ul className="rating">
-                    <li key={1} className="fa fa-star fa-lg"></li>
+                    <li key={1} className="fa fa-star-o fa-lg"></li>
                     <li key={2} className="fa fa-star-o fa-lg"></li>
                     <li key={3} className="fa fa-star-o fa-lg"></li>
                     <li key={4} className="fa fa-star-o fa-lg"></li>
@@ -145,7 +148,7 @@ const ShopListCard = ({
                 {makeRedirect(redirect)}
                 {makeWishlistRedirect(redirectWish)}
                 <Link to={`/product/${product._id}`}>
-                    <ShopListImage item={product} url="product"/>
+                    <ShowCartImage item={product} url="product"/>
                 </Link>
                 <ul className="social">
                     {makeRedirect(redirect)}
@@ -159,7 +162,7 @@ const ShopListCard = ({
             </div>
             <div className="product-content">
                 <Link to={`/product/${product._id}`} className="mr-2">
-                    <span style={{'fontSize': 'x-large'}} className="title"><a href="javascript : ;">{product.name}</a></span>
+                    <span style={{'fontSize': 'x-large'}} className="title"><a href="javascript : ;">{product.name.length > 20 ? product.name.slice(0, 18) + ' ..' : product.name}</a></span>
                 </Link>
                 <br/>
                 <Link to={`/product/${product._id}`} className="mr-2">
