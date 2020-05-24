@@ -14,7 +14,7 @@ const Layout = ({
                     children
                 }) => (
     <div>
-        <div className="card mb-5 p-4 bg-light">
+        <div className="card mb-5 p-4" style={{background: '#efefef'}}>
             {
                 back ? <div className="row">
                     <div className="col-1 mt-3 ml-2">
