@@ -40,7 +40,7 @@ const ProductSearch = () => {
     return (
         <div className="row d-flex justify-content-center">
             <div className="input-group col-md-12 col-lg-10 col-xl-10 col-sm-12 m-5">
-                <div className="col-md-12 col-lg-4 col-xl-4 col-sm-3 pr-1 pl-1">
+                <div className="col-md-12 col-lg-5 col-xl-5 col-sm-3 pr-1 pl-1">
                     <Autocomplete
                         onChange={(event, value) => handleCategoryChange(value)}
                         freeSolo
@@ -59,12 +59,12 @@ const ProductSearch = () => {
                         )}
                     />
                 </div>
-                <div className="col-md-12 col-lg-8 col-xl-8 col-sm-9 pl-1 pr-1">
+                <div className="col-md-12 col-lg-7 col-xl-7 col-sm-9 pl-1 pr-1">
                     <TextField
-                        label="Search Product"
+                        label="Search"
                         margin="normal"
                         variant="outlined"
-                        placeholder="Search products"
+                        placeholder="Search"
                         fullWidth
                         onChange={searchDataOnChange}
                         value={searchData}
