@@ -10,6 +10,7 @@ import {getAllCategories} from "../core/apiCore";
 import {MDBBtn} from "mdbreact";
 import {getSingleCategory, updateSingleCategory} from "./ApiAdmin";
 import Ftr from "../core/Ftr";
+import {confirmAlert} from "react-confirm-alert";
 
 const UpdateCategory = ({match}) => {
     const [name, setName] = useState('');
@@ -69,10 +70,26 @@ const UpdateCategory = ({match}) => {
                 if (data.error) {
                     setError(true);
                     setSuccess(false);
+                    confirmAlert({
+                        title: 'Name should be unique',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
                 } else {
                     setError(false);
                     setSuccess(true);
                     loadCategories();
+                    confirmAlert({
+                        title: 'Category updated successfully!',
+                        buttons: [
+                            {
+                                label: 'OK',
+                            }
+                        ]
+                    });
                 }
             })
 

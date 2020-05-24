@@ -14,7 +14,7 @@ const ManageCategories = () => {
     const [categories, setAllCategories] = useState([]);
     const {user, token} = isAuthenticate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(3);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
     //get Current item
     const indexOfLast = currentPage * itemsPerPage;
     const indexOfFirst = indexOfLast - itemsPerPage;
@@ -43,7 +43,15 @@ const ManageCategories = () => {
                             if(data.error){
                                 console.log(data.error)
                             } else {
-                                fetchCategories()
+                                fetchCategories();
+                                confirmAlert({
+                                    title: 'Category deleted successfully!',
+                                    buttons: [
+                                        {
+                                            label: 'OK',
+                                        }
+                                    ]
+                                });
                             }
                         })
                     }
