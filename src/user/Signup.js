@@ -109,7 +109,7 @@ const Signup = () => {
 
     const showSuccess = () => (
         <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
-            New User Added Successfully
+            New User Added Successfully <a href="/signin">Login</a>
         </div>
     );
 
@@ -180,18 +180,6 @@ const Signup = () => {
                         >
                             Register
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="/signup" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                         <Box mt={5}>
                             <Copyright/>
                         </Box>
@@ -214,7 +202,7 @@ const Signup = () => {
     const verifyCallback = (response) => {
         if (response) {
             setRecaptchaVerified(true);
-            setValues({...values, error: '', success: false})
+            // setValues({...values, error: '', success: false})
         }
     }
 

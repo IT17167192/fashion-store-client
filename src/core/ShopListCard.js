@@ -148,7 +148,7 @@ const ShopListCard = ({
                 {makeRedirect(redirect)}
                 {makeWishlistRedirect(redirectWish)}
                 <Link to={`/product/${product._id}`}>
-                    <ShowCartImage item={product} url="product"/>
+                    <ShopListImage item={product} url="product"/>
                 </Link>
                 <ul className="social">
                     {makeRedirect(redirect)}
