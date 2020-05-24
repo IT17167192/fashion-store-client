@@ -122,7 +122,7 @@ return (
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">Product Id</th>
-                            <th scope="col">Produuct Name</th>
+                            <th scope="col">Product Name</th>
                             <th scope="col">Category</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
