@@ -117,7 +117,7 @@ const CartItems = ({
                             <div className="col-lg-12 row">
                                 <div className="col-lg-6 mt-3">
                                     <Link className="lead mt-2 font-weight-bold text-dark"
-                                          to={`/product/${product._id}`}>{product.name}</Link>
+                                          to={`/product/${product._id}`}>{product.name.length > 24 ? product.name.slice(0, 24) + '..' : product.name}</Link>
                                 </div>
                             </div>
                             <div className="col-lg-12 col-12 row">
@@ -125,10 +125,10 @@ const CartItems = ({
                                     <div className="row">
                                         <div className="col-lg-12 col-12">
                                             <p className="mt-4 text-black-50"
-                                               style={{marginBottom: '0px'}}>{product.description}</p>
+                                               style={{marginBottom: '0px'}}>{product.description.length > 50 ? product.description.slice(0, 50) + '..' : product.description}</p>
                                         </div>
-                                        <div className="col-lg-12 col-12">
-                                            <p className="text-black-50">Category: {product.category ? product.category.name : 'Other'}</p>
+                                        <div className="col-lg-12 col-12 mt-1">
+                                            <p className="text-black-50">Category: {product.category.name !== undefined ? product.category.name : 'Other'}</p>
                                         </div>
                                     </div>
                                 </div>

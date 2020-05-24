@@ -5,6 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {getAllCategories, getProductByFilters} from "./apiCore";
 import FilterCheckbox from "./FilterCheckbox";
 import ShopListCard from "./ShopListCard";
+import NavBar from "./NavBar";
 
 const ShopPage = () => {
 
@@ -91,7 +92,7 @@ const ShopPage = () => {
 
     const appendView = () => {
         return (
-            <div>
+            <div className="mt-4">
                 <div className="row container-fluid">
                     <div
                         className="text-left col-sm-12 col-md-12 col-lg-2 col-xl-2 mb-5">
@@ -137,12 +138,14 @@ const ShopPage = () => {
                 {showViewProducts && showViewCategories ? <Ftr/> : ''}
             </div>
         );
-    }
+    };
 
     return (
-        <Layout title="Shopping Page" description="Search and find all products">
+        <div>
+            <NavBar/>
+            <hr/>
             {appendView()}
-        </Layout>
+        </div>
     );
 }
 
