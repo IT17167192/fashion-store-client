@@ -15,9 +15,10 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Redirect} from "react-router-dom";
 import {signin, authenticate, isAuthenticate} from "../auth";
 import {addItem, getCartProductId, showCart} from "../core/CartHelper";
-import {updateUserCart} from "../core/apiCore";
+import {updateUserCart, forgotPassword} from "../core/apiCore";
 import {read} from "./apiUser";
 import Logo from '../assets/Logos/Logo_Menu-v1.png';
+import {confirmAlert} from "react-confirm-alert";
 
 function Copyright() {
     return (
@@ -165,6 +166,50 @@ const Signin = () => {
         </div>
     );
 
+    const handleForgotPassword = () => {
+        if(email === ''){
+            confirmAlert({
+                title: 'Please add an email!',
+                buttons: [
+                    {
+                        label: 'OK',
+                    }
+                ]
+            });
+        }else{
+            const emailObj = {
+                email: email
+            }
+
+            forgotPassword(emailObj)
+                .then(response => {
+                    if(response.error){
+                        console.log(error);
+                        if(!error){
+                            confirmAlert({
+                                title: 'User not found!',
+                                buttons: [
+                                    {
+                                        label: 'OK',
+                                    }
+                                ]
+                            });
+                        }
+                    }else{
+                        console.log(response);
+                        confirmAlert({
+                            title: response.message,
+                            buttons: [
+                                {
+                                    label: 'OK',
+                                }
+                            ]
+                        });
+                    }
+                });
+        }
+    }
+
     const redirectUser = () => {
         if (redirect) {
             if (user && (user.role === "1" || user.role === "2")) {
@@ -229,7 +274,7 @@ const Signin = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link onClick={handleForgotPassword} href="#" variant="body2">
                                     Forgot password?
                                 </Link>
                             </Grid>

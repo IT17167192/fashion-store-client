@@ -29,6 +29,7 @@ import Orders from "./admin/Orders";
 import ManageAdminUser from "./admin/ManageAdminUser";
 import ProductByCategory from "./core/ProductByCategory";
 import ProductBySearch from "./core/ProductBySearch";
+import ResetPasswordPage from "./core/ResetPasswordPage";
 
 const Routes = () => {
     return (
@@ -44,6 +45,7 @@ const Routes = () => {
                 <Route path="/product/:productId" exact component={Product} />
                 <Route path="/product/category/:categoryId" exact component={ProductByCategory} />
                 <Route path="/product/search/:searchData/:categoryId" exact component={ProductBySearch} />
+                <Route path="/reset/password/:tokenId" exact component={ResetPasswordPage} />
                 <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
                 <StoreManagerRote
                     path="/admin/dashboard" exact component={AdminDashboard} />

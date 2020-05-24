@@ -249,3 +249,29 @@ export const search = params => {
             console.log(err);
         });
 }
+
+export const forgotPassword = (email) => {
+    return fetch(`${API}/forgotPassword`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(email)
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+}
+
+export const resetPasswordByLink = (obj) => {
+    return fetch(`${API}/resetPasswordByLink`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(obj)
+    })
+        .then(response => response.json())
+        .catch(err => console.log(err))
+}
