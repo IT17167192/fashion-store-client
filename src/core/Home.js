@@ -4,7 +4,6 @@ import Carousel from 'react-bootstrap/Carousel'
 import Ftr from "./Ftr";
 import ShopListCard from "./ShopListCard";
 import ProductSearch from "./ProductSearch";
-import ProductSearch1 from "../admin/ProductSearch";
 import Image from 'react-bootstrap/Image'
 
 //images for carousel
