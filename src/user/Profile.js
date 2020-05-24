@@ -3,6 +3,9 @@ import Layout from "../core/Layout";
 import {isAuthenticate} from "../auth";
 import { Link, Redirect } from "react-router-dom";
 import {read, update, updateUser} from "./apiUser";
+import {forgotPassword, resetPasswordByLink} from "../core/apiCore";
+import {confirmAlert} from "react-confirm-alert";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Profile = ({match}) => {
     const [values, setValues] = useState({
@@ -12,6 +15,8 @@ const Profile = ({match}) => {
         error: false,
         success: false
     });
+
+    const [resetPasswordLoad, setResetPasswordLoad] = useState(false);
 
     const {token} = isAuthenticate();
     const {name, email, password, error, success} = values;
@@ -53,6 +58,55 @@ const Profile = ({match}) => {
         }
     };
 
+    const resetPassword = (event) => {
+        event.preventDefault();
+        setResetPasswordLoad(true);
+        if(email === ''){
+            confirmAlert({
+                title: 'Please add an email!',
+                buttons: [
+                    {
+                        label: 'OK',
+                    }
+                ]
+            });
+            setResetPasswordLoad(false);
+        }else{
+            const emailObj = {
+                email: email
+            }
+
+            forgotPassword(emailObj)
+                .then(response => {
+                    if(response.error){
+                        console.log(error);
+                        if(!error){
+                            confirmAlert({
+                                title: 'User not found!',
+                                buttons: [
+                                    {
+                                        label: 'OK',
+                                    }
+                                ]
+                            });
+                        }
+                        setResetPasswordLoad(false);
+                    }else{
+                        console.log(response);
+                        confirmAlert({
+                            title: response.message,
+                            buttons: [
+                                {
+                                    label: 'OK',
+                                }
+                            ]
+                        });
+                        setResetPasswordLoad(false);
+                    }
+                });
+        }
+    };
+
     const profileUpdate = (name, email, password) => (
         <form>
             <div className="form-group">
@@ -63,12 +117,13 @@ const Profile = ({match}) => {
                 <label className="text-muted">Email</label>
                 <input type="email" onChange={handleChange('email')} className="form-control" value={email} />
             </div>
-            <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input type="password" onChange={handleChange('password')} className="form-control" value={password} />
-            </div>
 
             <button className="btn btn-primary" onClick={clickSubmit}>Submit</button>
+            <br/>
+            <div className="form-group">
+                <label className="text-muted">Click to reset password <button className="btn btn-primary" onClick={resetPassword}>{resetPasswordLoad ?
+                    <CircularProgress size={20}/> : 'RESET PASSWORD'}</button></label>
+            </div>
         </form>
     );
 
