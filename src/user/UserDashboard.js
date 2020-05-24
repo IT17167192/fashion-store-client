@@ -15,14 +15,14 @@ const Dashboard = () => {
         return (
             <div className="col-md-3 mb-4">
                 <div className="card">
-                    <div className="card-header" >User Links</div>
+                    <div className="card-header" > <h3>User Links</h3></div>
                     <div className="card-body">
                         <ul className="list-group">
                             <li className="list-group-item">
-                                <Link className="nav-link" to="/cart">My Cart</Link>
+                                <Link className="nav-link bg-info text-white rounded" to="/cart">My Cart</Link>
                             </li>
                             <li className="list-group-item">
-                                <Link className="nav-link" to={`/profile/${_id}`}>Update Profile</Link>
+                                <Link className="nav-link bg-info text-white rounded" to={`/profile/${_id}`}>Update Profile</Link>
                             </li>
                         </ul>
                     </div>
