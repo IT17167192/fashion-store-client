@@ -90,7 +90,7 @@ const Cart = () => {
                 </div>
 
 
-                <div className="row ml-4">
+                <div className="row ml-lg-4">
                     <div className="col-lg-7 col-sm-12">
                         {items.length > 0 ? showItems(items) : ''}
                     </div>
