@@ -45,7 +45,7 @@ const SimilarProducts = (props) => {
         } else {
             return (
                 <ul className="list-inline small">
-                    <li key={1} className="list-inline-item m-0"><i className="fa fa-star text-success"></i></li>
+                    <li key={1} className="list-inline-item m-0"><i className="fa fa-star-o text-success"></i></li>
                     <li key={2} className="list-inline-item m-0"><i className="fa fa-star-o text-success"></i></li>
                     <li key={3} className="list-inline-item m-0"><i className="fa fa-star-o text-success"></i></li>
                     <li key={4} className="list-inline-item m-0"><i className="fa fa-star-o text-success"></i></li>
