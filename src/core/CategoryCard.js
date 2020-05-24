@@ -13,7 +13,7 @@ const CategoryCard = () => {
     return (
             <div className="row people">
                 <div className="col-md-4 col-lg-3 item">
-                    <Link to="/product/category/5e6cd92b0befdd2d4caa420cx">
+                    <Link to="/product/category/5e6cd92b0befdd2d4caa420c">
                         <div className="box" style={{backgroundImage: `url(${backgroundI3})`}}>
                             <div className="cover">
                                 <p className="title">Business Casual</p>
@@ -22,7 +22,7 @@ const CategoryCard = () => {
                     </Link>
                 </div>
                 <div className="col-md-4 col-lg-3 item">
-                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
+                    <Link to="/product/category/5ecaa059be7b48235c6a131f">
                         <div className="box" style={{backgroundImage: `url(${backgroundI1})`}}>
                             <div className="cover">
                                <p className="title">Gents Casual</p>
@@ -31,7 +31,7 @@ const CategoryCard = () => {
                     </Link>
                 </div>
                 <div className="col-md-4 col-lg-3 item">
-                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
+                    <Link to="/product/category/5ecaa08abe7b48235c6a1320">
                         <div className="box" style={{backgroundImage: `url(${backgroundI2})`}}>
                             <div className="cover">
                                 <p className="title">Ladies Casual </p>
@@ -40,7 +40,7 @@ const CategoryCard = () => {
                     </Link>
                 </div>
                 <div className="col-md-4 col-lg-3 item">
-                    <Link to="/product/category/5e65d07cec753b45bc5021f4">
+                    <Link to="/product/category/5ecaa0bbbe7b48235c6a1321">
                         <div className="box" style={{backgroundImage: `url(${backgroundI4})`}}>
                             <div className="cover">
                                 <p className="title">Ladies Fashion</p>
