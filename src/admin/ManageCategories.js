@@ -14,7 +14,7 @@ const ManageCategories = () => {
     const [categories, setAllCategories] = useState([]);
     const {user, token} = isAuthenticate();
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
     //get Current item
     const indexOfLast = currentPage * itemsPerPage;
     const indexOfFirst = indexOfLast - itemsPerPage;
