@@ -1,48 +1,13 @@
-import React, {useState, useEffect} from "react";
-import {getImage} from "./apiCore";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Image from 'react-bootstrap/Image'
+import React from "react";
 import {API} from "../config";
+import Image from "react-bootstrap/Image";
 
-const ShopListImage = ({item, url}) => {
-
-    const [image, setImage] = useState('');
-    const [loading, setLoading] = useState(true);
-    const [id, setId] = useState(item._id);
-    const [itemDetails, setItemDetails] = useState('');
-
-    const loadImage = (id) => {
-        getImage(id).then(data => {
-            if (data) {
-                setImage(data.url);
-                setItemDetails(data);
-                setLoading(false);
-            }
-        })
-    };
-
-    useEffect(() => {
-        setId(item._id);
-        setLoading(true);
-        loadImage(id);
-        console.log("Triggered!")
-    }, []);
-
-    if (loading) {
-        return (
-            <div style={{height: "182px", width: "360px", marginTop: "40%", marginLeft: "45%"}}>
-                <CircularProgress size={30}/>
-            </div>
-        );
-    } else {
-        return (
-            <a href="javascript : ;">
-                <Image className="pic-1" src={image} fluid />
-                <Image className="pic-2" src={image} fluid />
-            </a>
-        )
-    }
-
-};
+//function to show item image on cart
+const ShopListImage = ({item, url}) => (
+    <div className="product-img">
+        <Image className="pic-1" src={`${API}/${url}/image/${item._id}`} fluid />
+        <Image className="pic-2" src={`${API}/${url}/image/${item._id}`} fluid />
+    </div>
+);
 
 export default ShopListImage;
