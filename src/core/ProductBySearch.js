@@ -9,6 +9,7 @@ import image2 from "../images/image2.jpg";
 import image3 from "../images/image4.jpg";
 import CategoryCard from "./CategoryCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import NavBar from "./NavBar";
 
 const ProductBySearch = ({match}) => {
     const [products, setProducts] = useState([]);
@@ -19,12 +20,12 @@ const ProductBySearch = ({match}) => {
 
     const loadProducts = (searchText, categoryId) => {
         console.log(searchText + " and " + categoryId);
-        if (searchText){
+        if (searchText) {
             search({search: searchText || undefined, category: categoryId})
                 .then(res => {
-                    if (res.error){
+                    if (res.error) {
                         console.log(res.error);
-                    }else {
+                    } else {
                         console.log(res.data);
                         console.log(res);
                         setLoading(false);
@@ -47,7 +48,7 @@ const ProductBySearch = ({match}) => {
                 <div>
                     <div className="shopping-grid">
                         <div className="container">
-                            <h3 className="font-weight-bold" align="center">PRODUCTS BY SEARCH</h3>
+                            <h3 className="font-weight-bolder" align="center">PRODUCTS BY SEARCH</h3>
                             <div className="row">
                                 {products.map((product, i) => (
                                     <div key={i} className="col-md-6 col-lg-3 col-xs-3 col-sm-6 mb-3">
@@ -74,9 +75,11 @@ const ProductBySearch = ({match}) => {
     };
 
     return (
-        <Layout title="Search results" description={typeof searchData !== 'undefined' ? `Products related to ${searchData}` : 'Products related to'} className="container-fluid">
+        <div>
+            <NavBar/>
+            <hr/>
             {appendView()}
-        </Layout>
+        </div>
     );
 };
 
